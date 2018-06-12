@@ -2,7 +2,7 @@ package com.bisa.health.basic.entity;
 
 import java.util.List;
 
-public class Pager<T> {
+public class Pager<T>  {
 
 	private int size;
 
