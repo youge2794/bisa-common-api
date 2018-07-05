@@ -31,4 +31,14 @@ public class HttpHelpUtils {
 		    Matcher m = p.matcher(url);
 		    return m.find()?m.group(2).split("\\:"):null;
 	}
+	
+	
+	public static void main(String[] args) {
+		String[] ss=getIP("https://translate.google.cn/#zh-CN/en/%E6%BA%90");
+		System.out.println(ss.length);
+		for(String s : ss){
+			System.out.println(s);
+		}
+	}
+
 }

@@ -15,7 +15,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="t_controller_res")
+@Table(name="sys_controller_res")
 public class ControllerResources implements SystemResources {
 	public static final String RES_TYPE="controller";
 	/**

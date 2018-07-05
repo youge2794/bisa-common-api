@@ -13,6 +13,41 @@ import java.nio.channels.FileLock;
 public class FileIOKit {
 	
 	
+	public boolean is_file_status(File file) {
+
+		FileLock outlock = null;
+		FileChannel fout = null;
+		try {
+			RandomAccessFile rafout = new RandomAccessFile(file, "rws");
+			fout = rafout.getChannel();
+			outlock = fout.tryLock();
+			if (outlock.isValid()) {
+				return true;
+			} else {
+				return false;
+			}
+
+		} catch (Exception e) {
+			return false;
+		} finally {
+			if (outlock != null) {
+				try {
+					outlock.release();
+				} catch (IOException e) {
+				}
+			}
+
+			if (fout != null) {
+				try {
+					fout.close();
+				} catch (IOException e) {
+				}
+			}
+
+		}
+
+	}
+	
 	@SuppressWarnings("resource")
 	public static boolean FromByteToFile(byte[] inbyte,File outFile){
 		

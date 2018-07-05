@@ -8,12 +8,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
+
+import com.bisa.health.basic.constant.MessageSource;
+
 @Entity
-@Table(name="t_users")
+@Table(name="sys_users")
 public class Users implements Serializable{
 	
 	private static final long serialVersionUID = -4270156796596069231L;
-	public static final String PRINCIPAL_TYPE="users";
+	
 	/**
 	 * ID
 	 */
@@ -25,30 +30,38 @@ public class Users implements Serializable{
 	/**
 	 * 用户名字
 	 */
+	
+	@NotBlank(message=MessageSource.ParamError)
 	private String name;
 	/**
 	 * 用户性别
 	 */
+	@Range(message=MessageSource.ParamError,min=0,max=1)
 	private int sex;
 	/**
 	 * 用户年龄
 	 */
+	@Range(message=MessageSource.ParamError,min=1,max=120)
 	private int age;
 	/**
 	 * 用户体重
 	 */
+	@Range(message=MessageSource.ParamError,min=20,max=200)
 	private int weight;
 	/**
 	 * 用户身高
 	 */
+	@Range(message=MessageSource.ParamError,min=80,max=250)
 	private int height;
 	/**
 	 * 运动类型
 	 */
+	@Range(message=MessageSource.ParamError,min=1,max=3)
 	private int sport_type;
 	/**
 	 * 用户体型
 	 */
+	@Range(message=MessageSource.ParamError,min=1,max=4)
 	private int shape_type;
 
 	/**
@@ -58,6 +71,7 @@ public class Users implements Serializable{
 	/**
 	 * 用户生日
 	 */
+	@NotBlank(message=MessageSource.ParamError)
 	private String birthday;
 
 	/**
@@ -200,7 +214,59 @@ public class Users implements Serializable{
 		this.activate = activate;
 	}
 
+	public Users() {
+		super();
+	}
 
+	public Users(int user_guid, String area_name, String area_code, String time_zone, int activate) {
+		super();
+		this.user_guid = user_guid;
+		this.area_name = area_name;
+		this.area_code = area_code;
+		this.time_zone = time_zone;
+		this.activate = activate;
+	}
+
+	
+	public void mergeUsers(SysUser sysUser){
+		this.activate=sysUser.getActivate();
+		this.age=sysUser.getAge();
+		this.area_code=sysUser.getArea_code();
+		this.area_name=sysUser.getArea_name();
+		this.birthday=sysUser.getBirthday();
+		this.height=sysUser.getHeight();
+		this.name=sysUser.getName();
+		this.user_guid=sysUser.getUser_guid();
+		this.sex=sysUser.getSex();
+		this.shape_type=sysUser.getShape_type();
+		this.sport_type=sysUser.getSport_type();
+		this.time_zone=sysUser.getTime_zone();
+		this.uri_pic=sysUser.getUri_pic();
+		this.weight=sysUser.getWeight();
+	}
+	
+	public Users mergeUsers(Users users){
+		this.age=users.getAge();
+		this.birthday=users.getBirthday();
+		this.height=users.getHeight();
+		this.name=users.getName();
+		this.user_guid=users.getUser_guid();
+		this.sex=users.getSex();
+		this.shape_type=users.getShape_type();
+		this.sport_type=users.getSport_type();
+		this.weight=users.getWeight();
+		return this;
+	}
+
+	@Override
+	public String toString() {
+		return "Users [id=" + id + ", user_guid=" + user_guid + ", name=" + name + ", sex=" + sex + ", age=" + age
+				+ ", weight=" + weight + ", height=" + height + ", sport_type=" + sport_type + ", shape_type="
+				+ shape_type + ", uri_pic=" + uri_pic + ", birthday=" + birthday + ", area_name=" + area_name
+				+ ", area_code=" + area_code + ", time_zone=" + time_zone + ", activate=" + activate + "]";
+	}
+	
+	
 	
 	
 	

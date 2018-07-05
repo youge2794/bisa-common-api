@@ -1,6 +1,7 @@
 package com.bisa.health.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,11 +11,13 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="t_user_auths")
-public class UserAuths implements Serializable {
+@Table(name="sys_user_auths")
+public class UserAuths implements Serializable,Principal {
 	
 	
 	private static final long serialVersionUID = -4153599885114012823L;
+	
+	public static final String PRINCIPAL_TYPE="users";
 	
 	private int id;
 	/**
@@ -148,7 +151,44 @@ public class UserAuths implements Serializable {
 		this.create_time = create_time;
 	}
 
+	public static UserAuths getUserAuthsByLtype(List<UserAuths> lists,String username){
+		for(UserAuths user :lists){
+			if(user.getUsername().equals(username.trim())){
+				return user;
+			}
+		}
+		return null;
+	}
 
+	public static UserAuths getUserAuthsByLtype(List<UserAuths> lists,int loginType){
+		for(UserAuths user :lists){
+			if(user.getL_type()==loginType){
+				return user;
+			}
+		}
+		return null;
+	}
+
+	public UserAuths() {
+		super();
+	}
+
+	public UserAuths(int user_guid, String username, String password, int l_type, int verified) {
+		super();
+		this.user_guid = user_guid;
+		this.username = username;
+		this.password = password;
+		this.l_type = l_type;
+		this.verified = verified;
+	}
+
+	@Override
+	public String toString() {
+		return "UserAuths [id=" + id + ", user_guid=" + user_guid + ", l_type=" + l_type + ", username=" + username
+				+ ", password=" + password + ", verified=" + verified + ", role_id=" + role_id + ", salt=" + salt
+				+ ", archived=" + archived + ", create_time=" + create_time + "]";
+	}
+	
 	
 	
 }

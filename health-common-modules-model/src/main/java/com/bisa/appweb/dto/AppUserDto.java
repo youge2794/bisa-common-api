@@ -1,5 +1,8 @@
 package com.bisa.appweb.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.bisa.health.model.UserAuths;
 
 public class AppUserDto {
@@ -35,6 +38,17 @@ public class AppUserDto {
 		appUserDto.setUsername(user.getUsername());
 		return appUserDto;
 	}
-	
+	public static  List<AppUserDto> takeListAppUserDto(List<UserAuths> list){
+		
+		if(list==null){
+			return null;
+		}
+		List<AppUserDto> audList = new ArrayList<AppUserDto>();
+		for (UserAuths user : list) {
+			AppUserDto apd = new AppUserDto();
+			audList.add(apd.takeAppUserDto(user));
+		}
+		return audList;
+	}
 	
 }

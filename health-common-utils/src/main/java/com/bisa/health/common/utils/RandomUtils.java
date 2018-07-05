@@ -34,4 +34,20 @@ public class RandomUtils {
 		return timeStr+guid+randInt;
 		
 	}
+	
+	//产生四位随机数
+		public static String randomUtil(){
+			String code =  null;
+			
+			code = ""+Math.round(Math.random()*9000+1000);
+			
+			return code;
+		}
+		
+		//六位随机数
+		public static String randomSixNum(){
+			String number = "" + Math.round(Math.random()*900000+100000);
+			return number;
+		}
+		
 }

@@ -15,7 +15,6 @@ public class DBRoutingDto implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private boolean isWrite;
-	private Integer uuid;
 	private List<ShardGroup> listGroup;
 	private List<Shard> listShard;
 	private List<FragmentTable> listTable;
@@ -37,12 +36,7 @@ public class DBRoutingDto implements Serializable{
 	public void setListTable(List<FragmentTable> listTable) {
 		this.listTable = listTable;
 	}
-	public Integer getUuid() {
-		return uuid;
-	}
-	public void setUuid(Integer uuid) {
-		this.uuid = uuid;
-	}
+
 	public boolean isWrite() {
 		return isWrite;
 	}

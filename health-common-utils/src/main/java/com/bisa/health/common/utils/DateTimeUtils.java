@@ -35,4 +35,19 @@ public class DateTimeUtils {
 		Calendar cal = Calendar.getInstance(Locale.getDefault());
 		System.out.println(cal.get(Calendar.SECOND));
 	}
+	
+	/**
+	 * 当前服务器时间
+	 * 
+	 * @return
+	 */
+	public static Long currentGmtTime() {
+		Calendar cal = Calendar.getInstance(Locale.getDefault());
+		int zoneOffset = cal.get(Calendar.ZONE_OFFSET);
+		int dstOffset = cal.get(Calendar.DST_OFFSET);
+		cal.add(Calendar.MILLISECOND, -((zoneOffset + dstOffset)));
+		Long datetime = cal.getTimeInMillis();
+		
+		return datetime;
+	}
 }

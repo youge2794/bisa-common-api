@@ -15,7 +15,7 @@ import com.bisa.health.exce.bean.SysException;
  *
  */
 @Entity
-@Table(name="t_acl")
+@Table(name="sys_acl")
 public class Acl {
 
 	private int id;
@@ -40,26 +40,18 @@ public class Acl {
 	 */
 	private int aclState;
 	
-	/**
-	 * 主体应用ID
-	 */
-	private int pappid;
-	
-	/**
-	 * 资源应用ID
-	 */
-	private int rappid;
+
 
 	public void setControllerType() {
 		this.rtype = ControllerResources.RES_TYPE;
 	}
 
 	public void setUserType() {
-		this.ptype = Users.PRINCIPAL_TYPE;
+		this.ptype = UserAuths.PRINCIPAL_TYPE;
 	}
 
 	public void setRoleType() {
-		this.ptype = Role.PRINCIPAL_TYPE;
+		this.ptype = UserRole.PRINCIPAL_TYPE;
 	}
 	
 
@@ -176,30 +168,6 @@ public class Acl {
 		this.rid = rid;
 	}
 	
-
-	/**
-	 * 主体应用ID
-	 * @return
-	 */
-	public int getPappid() {
-		return pappid;
-	}
-
-	public void setPappid(int pappid) {
-		this.pappid = pappid;
-	}
-
-	/**
-	 * 资源应用ID
-	 * @return
-	 */
-	public int getRappid() {
-		return rappid;
-	}
-
-	public void setRappid(int rappid) {
-		this.rappid = rappid;
-	}
 
 	/**
 	 * 对方法的操作状态，存储的是一个4个字节的整数，其实就可以存储0-31位的操作

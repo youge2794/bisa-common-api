@@ -13,7 +13,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="t_controller_oper")
+@Table(name="sys_controller_oper")
 public class ControllerOper {
 	private int id;
 	private String sn;

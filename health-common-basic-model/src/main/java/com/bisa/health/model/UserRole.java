@@ -9,17 +9,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name="t_user_role")
+@Table(name="sys_user_role")
 public class UserRole {
 	private int id;
-	private int user_guid;
-	private int rid;
+	private String username;
+	private String name;
+	private int status;
+	private String sn;
+
+	public static final String PRINCIPAL_TYPE="role";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
@@ -29,20 +31,52 @@ public class UserRole {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public int getUser_guid() {
-		return user_guid;
+	public String getUsername() {
+		return username;
 	}
-	public void setUser_guid(int user_guid) {
-		this.user_guid = user_guid;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-	public int getRid() {
-		return rid;
+	public String getName() {
+		return name;
 	}
-	public void setRid(int rid) {
-		this.rid = rid;
+	public void setName(String name) {
+		this.name = name;
 	}
-
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public String getSn() {
+		return sn;
+	}
+	public void setSn(String sn) {
+		this.sn = sn;
+	}
+	
+	
+	public UserRole() {
+		super();
+	}
+	public UserRole(String username, String name) {
+		super();
+		this.username = username;
+		this.name = name;
+	}
+	public UserRole(String username, String name, int status, String sn) {
+		super();
+		this.username = username;
+		this.name = name;
+		this.status = status;
+		this.sn = sn;
+	}
+	@Override
+	public String toString() {
+		return "UserRole [id=" + id + ", username=" + username + ", name=" + name + ", status=" + status + ", sn=" + sn
+				+ "]";
+	}
 	
 	
 	
