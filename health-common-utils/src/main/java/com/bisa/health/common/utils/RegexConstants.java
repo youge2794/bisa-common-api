@@ -49,15 +49,7 @@ public interface RegexConstants {
      * 正则表达式：验证生日
      */
     public static final String REGEX_BIRTHDAY = "[0-9]{4}-[0-9]{2}-[0-9]{2}";
-    
-  public static void main(String[] args) {
-		String email = "kikiye_maggie@163.com";
-		String phone = "18682268349";
-		//System.out.println(email.matches(REGEX_EMAIL));
-		System.out.println(phone.matches("[1-9]{1}[0-9]{10}"));
-		phone = "08682268349";
-		System.out.println(phone.matches("[1-9]{1}[0-9]{10}"));
-	}
+
 }
 
 

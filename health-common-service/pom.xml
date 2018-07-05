@@ -43,6 +43,19 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.bisa.health.modules.model</groupId>
+			<artifactId>health-common-modules-model</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- 短信平台jar包 -->
+		<dependency>
+			<groupId>smssdk</groupId>
+			<artifactId>smssdk-tencent</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-osgi</artifactId>
 			<version>${hibernate.version}</version>

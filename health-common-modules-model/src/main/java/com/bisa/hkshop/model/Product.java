@@ -30,7 +30,6 @@ public class Product {
 	private int need_post;      //是否需要邮递  0-不需要邮递；2-需要邮递
 	
 	private int img_id;         //图片id
-	
 	private Date insertime;     //上架时间
 	private String lang;        //语言版本
 	

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 /**
  * 改版套餐表
  * @author Kiki Ye
@@ -21,6 +22,7 @@ public class Packages {
 	private String package_name;   //套餐名称
 	private String sub_title;  //套餐摘要
 	private int product_id;   //商品id
+	private String product_name;  //商品名称
 	private int amount;  //商品数量
 	private double fix_price;  //商品原价（固定价格）
 	private double discount_price;  //优惠价
@@ -28,6 +30,7 @@ public class Packages {
 	private int priority;   //优先级
 	private int need_post;  //是否需要邮递
 	private String main_pic;  //商品主图
+	
 	private Date insert_time;   //套餐上架时间
 
 	@Id
@@ -134,6 +137,14 @@ public class Packages {
 
 	public void setMain_pic(String main_pic) {
 		this.main_pic = main_pic;
+	}
+
+	public String getProduct_name() {
+		return product_name;
+	}
+
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
 	}
 
 	public Packages() {
