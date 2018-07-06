@@ -29,12 +29,6 @@
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.bisa.health.basic.model</groupId>
-			<artifactId>health-common-basic-model</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>com.bisa.health.basic</groupId>

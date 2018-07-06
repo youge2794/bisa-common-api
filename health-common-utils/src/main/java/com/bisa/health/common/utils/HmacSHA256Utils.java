@@ -8,11 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-26
- * <p>Version: 1.0
- */
+
 public class HmacSHA256Utils {
 
     public static String digest(String key, String content) {
@@ -50,8 +46,5 @@ public class HmacSHA256Utils {
         return digest(key, s.toString());
     }
 
-    public static void main(String[] args) {
-    	String result = digest("185822685521234","185822685521234");
-    	System.out.println(result);
-	}
+  
 }

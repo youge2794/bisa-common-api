@@ -14,6 +14,8 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.util.regex.Pattern;
 
+import com.bisa.health.connon.constant.DateTimeConstant;
+
 /**
  * @author Shengzhao Li
  */
@@ -50,6 +52,49 @@ public abstract class DateUtils {
 		return date.format(DateTimeFormatter.ofPattern(pattern, Locale.SIMPLIFIED_CHINESE));
 	}
 
+	/**
+	 * 获取服务器的年份
+	 * @return
+	 */
+	public static int ServerYear() {
+		Calendar cal = Calendar.getInstance(Locale.getDefault());
+		return cal.get(Calendar.YEAR);
+
+	}
+	/**
+	 * 获取服务器的月份
+	 * @return
+	 */
+	public static int ServerMonth() {
+		Calendar cal = Calendar.getInstance(Locale.getDefault());
+		return cal.get(Calendar.MONTH)+1;
+	}
+	
+	/**
+	 * 获取服务器的天数
+	 * @return
+	 */
+	public static int ServerDay() {
+		Calendar cal = Calendar.getInstance(Locale.getDefault());
+		return cal.get(Calendar.DAY_OF_MONTH);
+	}
+
+	/**
+	 * 当前服务器时间
+	 * 
+	 * @return
+	 */
+	public static Long currentGmtTime() {
+		Calendar cal = Calendar.getInstance(Locale.getDefault());
+		int zoneOffset = cal.get(Calendar.ZONE_OFFSET);
+		int dstOffset = cal.get(Calendar.DST_OFFSET);
+		cal.add(Calendar.MILLISECOND, -((zoneOffset + dstOffset)));
+		Long datetime = cal.getTimeInMillis();
+		
+		return datetime;
+	}
+
+	
 	public static String year_month() {
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
@@ -77,13 +122,15 @@ public abstract class DateUtils {
 	public static String year_month_day(String milliTime) {
 
 		Date curDate = new Date(Long.parseLong(milliTime));
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
+		SimpleDateFormat sdf = new SimpleDateFormat(DateTimeConstant.DATETIME_FORMAT_SLASH);
 		String datetime = sdf.format(curDate);
 
 		datetime = splitDateTime(datetime.replaceAll("/", ""));
 
 		return datetime;
 	}
+	
+	
 
 	/**
 	 *  yyyy/MM/dd/HH/mm/ss  to  long time 
@@ -93,12 +140,11 @@ public abstract class DateUtils {
 	 */
 	public static long timeToLong(String curDate) {
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		SimpleDateFormat sdf = new SimpleDateFormat(DateTimeConstant.DATETIME_FORMAT_SLASH);
 		Date date = new Date();;
 		try {
 			date = sdf.parse(curDate);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		long dateSeconds = date.getTime();
@@ -115,7 +161,7 @@ public abstract class DateUtils {
 	public static String standardTime(Long milliTime) {
 
 		Date curDate = new Date(milliTime);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat(DateTimeConstant.DATETIME_FORMAT_DEFAULT);
 		String datetime = sdf.format(curDate);
 
 		return datetime;
@@ -173,7 +219,7 @@ public abstract class DateUtils {
 	 */
 	public static String getFormatEnDateTime(String time) {
 		// 获取时间值
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat(DateTimeConstant.DATETIME_FORMAT_DEFAULT);
 		Date date = null;
 		try {
 			date = sdf.parse(time);
@@ -196,7 +242,7 @@ public abstract class DateUtils {
 		TimeZone timeZone = TimeZone.getTimeZone(timeZoneStr);
 		Calendar cal = GregorianCalendar.getInstance(timeZone);
 
-		SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat outputFormat = new SimpleDateFormat(DateTimeConstant.DATETIME_FORMAT_DEFAULT);
 		outputFormat.setTimeZone(timeZone);
 		Date date = new Date(System.currentTimeMillis());
 
@@ -213,7 +259,7 @@ public abstract class DateUtils {
 	public static String convertUTimeStr(String timeZoneStr) {
 
 		TimeZone timeZone = TimeZone.getTimeZone(timeZoneStr);
-		SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat outputFormat = new SimpleDateFormat(DateTimeConstant.DATETIME_FORMAT_DEFAULT);
 		outputFormat.setTimeZone(timeZone);
 		Date date = new Date(System.currentTimeMillis());
 		return outputFormat.format(date);
@@ -225,7 +271,7 @@ public abstract class DateUtils {
 		TimeZone timeZone = TimeZone.getTimeZone(timeZoneStr);
 		Calendar cal = GregorianCalendar.getInstance(timeZone);
 
-		SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat outputFormat = new SimpleDateFormat(DateTimeConstant.DATETIME_FORMAT_DEFAULT);
 		outputFormat.setTimeZone(timeZone);
 		Date date = null;
 		try {
@@ -266,27 +312,21 @@ public abstract class DateUtils {
 	 * @return
 	 */
 	public static String gmtToUserTime(String timeZoneStr, String GTMDate) {
-
-		SimpleDateFormat format;
-		format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date result_date;
-		long result_time = 0;
-
-		if (null == GTMDate) {
-			return GTMDate;
-		} else {
-			try {
-				format.setTimeZone(TimeZone.getTimeZone("GMT00:00"));
-				result_date = format.parse(GTMDate);
-				result_time = result_date.getTime();
-				format.setTimeZone(TimeZone.getTimeZone(timeZoneStr));
-				return format.format(result_time);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		
+		SimpleDateFormat formatter = new SimpleDateFormat(DateTimeConstant.DATETIME_FORMAT_DEFAULT);
+		try{
+			TimeZone timeZone=TimeZone.getTimeZone(timeZoneStr);
+			Date date=formatter.parse(GTMDate);
+			long chineseMills = date.getTime() + timeZone.getRawOffset();
+			Date chineseDateTime = new Date(chineseMills);
+			SimpleDateFormat userSdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			return userSdf.format(chineseDateTime);
+		}catch (Exception e) {
+			return null;
 		}
-		return GTMDate;
+
 	}
+
 
 
 	/**
@@ -341,13 +381,5 @@ public abstract class DateUtils {
 		return p.matcher(date).matches();
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(gmtToUserTime("GMT+08","2018-1-31 16:56:30")); 
-		//getAreaTime("GMT-06",1511526535406l);//2017-11-24 20:28:55 to 2017-11-24 14:28:55
-		//getGMTtimeSeconds();
-		
-		String curDate = "20171025233208";
-		//System.out.println("timeToLong>>>" + timeToLong(curDate));
-	}
 
 }
