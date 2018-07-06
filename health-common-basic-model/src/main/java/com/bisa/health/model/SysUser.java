@@ -1,11 +1,16 @@
 package com.bisa.health.model;
 
+import java.io.Serializable;
 
+public class SysUser implements Serializable{
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7510295723998101672L;
 
-public class SysUser {
-	
-	
-	
+	public static final String SysUserKey="@SysUser";
 	
 	/**
 	 * Users id
@@ -243,6 +248,31 @@ public class SysUser {
 		this.verified = verified;
 	}
 
+	
+	public static SysUser getSysUser(UserAuths user,Users uinfo){
+		SysUser sysUser=new SysUser();
+		sysUser.setUid(uinfo.getId());
+		sysUser.setUaid(user.getId());
+		sysUser.setUsername(user.getUsername());
+		sysUser.setUser_guid(user.getUser_guid());
+		sysUser.setName(uinfo.getName());
+		sysUser.setSex(uinfo.getSex());
+		sysUser.setAge(uinfo.getAge());
+		sysUser.setWeight(uinfo.getWeight());
+		sysUser.setHeight(uinfo.getHeight());
+		sysUser.setSport_type(uinfo.getSport_type());
+		sysUser.setShape_type(uinfo.getShape_type());
+		sysUser.setUri_pic(uinfo.getUri_pic());
+		sysUser.setBirthday(uinfo.getBirthday());
+		sysUser.setArea_name(uinfo.getArea_name());
+		sysUser.setArea_code(uinfo.getArea_code());
+		sysUser.setTime_zone(uinfo.getTime_zone());
+		sysUser.setActivate(uinfo.getActivate());
+		sysUser.setL_type(user.getL_type());
+		sysUser.setVerified(user.getVerified());
+		return sysUser;
+	}
+	
 	@Override
 	public String toString() {
 		return "SysUser [uid=" + uid + ", uaid=" + uaid + ", username=" + username + ", user_guid=" + user_guid
