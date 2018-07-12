@@ -11,8 +11,6 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.inject.Inject;
-
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -367,6 +365,19 @@ public class BaseDao<T> implements IBaseDao<T> {
 		return this.listBySql(sql, null, clz, hasEntity);
 	}
 
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.konghao.baisc.dao.IBaseDao#listBySql(java.lang.String,
+	 * java.lang.Class, boolean)
+	 */
+	public <N extends Object> List<N> listBySql(String sql, Object[] arg,Class<?> clz) {
+		return this.listBySql(sql, arg, clz, true);
+	}
+
+	
+	
 
 	/*
 	 * (non-Javadoc)
@@ -492,19 +503,19 @@ public class BaseDao<T> implements IBaseDao<T> {
 
 
 
-	public List<T> listBySql(String sql, Object[] args, Class<?> clz) {
-		SQLQuery query = getSession().createSQLQuery(sql).addEntity(clz);
-		if (args != null)
-			setParameter(query, args);
-		List<T> t = query.list();
-		return t;
+	public T queryObjectBySql(String sql, Object[] args, Class<?> clz) {
+		return queryObjectBySql(sql,args,clz,true);
 	}
 
-
-	public T queryObjectBySql(String sql, Object[] args, Class<?> clz) {
-		SQLQuery query = getSession().createSQLQuery(sql).addEntity(clz);
+	public T queryObjectBySql(String sql, Object[] args, Class<?> clz, boolean hasEntity) {
+		SQLQuery query = getSession().createSQLQuery(sql);
 		if (args != null)
 			setParameter(query, args);
+		if (hasEntity) {
+			query.addEntity(clz);
+		} else {
+			query.setResultTransformer(Transformers.aliasToBean(clz));
+		}
 		List<T> t = query.list();
 		return t.isEmpty() ? null : t.get(0);
 	}
