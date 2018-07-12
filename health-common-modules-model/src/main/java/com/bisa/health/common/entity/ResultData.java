@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 public class ResultData<T> implements Serializable{
 
-
-
 	/**
 	 * 
 	 */

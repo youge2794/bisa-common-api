@@ -17,8 +17,6 @@ public class RandomUtils {
 		Random rand = new Random();
 		int randInt=rand.nextInt(1000);
 		return timeStr+randInt;
-		
-		
 	}
 	
 	/**
@@ -32,15 +30,12 @@ public class RandomUtils {
 		Random rand = new Random();
 		int randInt=rand.nextInt(1000);
 		return timeStr+guid+randInt;
-		
 	}
 	
 	//产生四位随机数
 		public static String randomUtil(){
 			String code =  null;
-			
 			code = ""+Math.round(Math.random()*9000+1000);
-			
 			return code;
 		}
 		

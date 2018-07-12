@@ -20,7 +20,6 @@ public class News {
 	private String news_subhead;	//副标题
 	private int read_quantity;	//阅读量
 	private String news_content;//新闻内容
-	private String lang; //类别
 
 	private String img_url;//新闻封面图
 	private Date release_time; //发布日期
@@ -82,12 +81,6 @@ public class News {
 	}
 	public void setNews_id(int news_id) {
 		this.news_id = news_id;
-	}
-	public String getLang() {
-		return lang;
-	}
-	public void setLang(String lang) {
-		this.lang = lang;
 	}
 	public News() {
 		super();

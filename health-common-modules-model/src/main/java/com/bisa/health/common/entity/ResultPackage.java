@@ -9,9 +9,6 @@ import java.io.Serializable;
  */
 public class ResultPackage<T> implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6573119910965825659L;
 	
 	private int user_guid;
