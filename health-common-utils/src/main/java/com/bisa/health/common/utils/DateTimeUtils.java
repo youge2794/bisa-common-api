@@ -6,6 +6,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,37 +21,74 @@ import com.bisa.health.connon.constant.DateTimeConstant;
 /**
  * @author Shengzhao Li
  */
-public abstract class DateUtils {
+public abstract class DateTimeUtils {
 
-	public static final String DEFAULT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
 	/**
 	 * Private constructor
 	 */
-	private DateUtils() {
+	private DateTimeUtils() {
 	}
 
 	public static LocalDateTime now() {
 		return LocalDateTime.now();
 	}
 
+	/**
+	 * 获取当前时间并格式化
+	 * @param dateTime
+	 * @param pattern
+	 * @return
+	 */
 	public static String toDateTime(LocalDateTime dateTime, String pattern) {
-		return dateTime.format(DateTimeFormatter.ofPattern(pattern, Locale.SIMPLIFIED_CHINESE));
+		return dateTime.format(DateTimeFormatter.ofPattern(pattern));
 	}
-
+	
+	/**
+	 * 获取当前时间并默认格式化
+	 * @param date
+	 * @return
+	 */
+	public static String toDateTime(LocalDateTime date) {
+		return toDateTime(date, DateTimeConstant.DATETIME_FORMAT_DEFAULT);
+	}
+	
+	public static String toDateTime(String pattern) {
+		return toDateTime(LocalDateTime.now(), pattern);
+	}
+	
+	/**
+	 * 获取当前时间并格式化
+	 * @param date
+	 * @return
+	 */
+	public static String toDateTime(Long milliseconds,String pattern) {
+		Date date=new Date(milliseconds);
+		return toDateTime(LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault()), pattern);
+	}
+	
+	/**
+	 * 获取当前时间并格式化
+	 * @param date
+	 * @return
+	 */
+	public static String toDateTime(Long milliseconds) {
+		Date date=new Date(milliseconds);
+		return toDateTime(LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault()), DateTimeConstant.DATETIME_FORMAT_DEFAULT);
+	}
 	public static Timestamp timestamp() {
 		return new Timestamp(System.currentTimeMillis());
 	}
 
-	public static String toDateTime(LocalDateTime date) {
-		return toDateTime(date, DEFAULT_DATE_TIME_FORMAT);
-	}
-
-	public static String toDateText(LocalDate date, String pattern) {
-		if (date == null || pattern == null) {
-			return null;
-		}
-		return date.format(DateTimeFormatter.ofPattern(pattern, Locale.SIMPLIFIED_CHINESE));
+	/**
+	 * 获得GMT零时区时间的毫秒数
+	 * 
+	 * @return
+	 */
+	public static Long getGMTtimeMilliseconds() {
+		TimeZone srcTimeZone = TimeZone.getDefault();
+		long cmgMillSeconds=System.currentTimeMillis()-(srcTimeZone.getRawOffset());
+		return cmgMillSeconds;
 	}
 
 	/**
@@ -94,102 +133,91 @@ public abstract class DateUtils {
 		return datetime;
 	}
 
-	
-	public static String year_month() {
+	/**
+	 * 以pattern连接年月
+	 * @param pattern
+	 * @return
+	 */
+	public static String YearMonth(String pattern) {
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH) + 1;
-		String path = year + "/" + month;
+		String path = year + pattern + month;
 		return path;
 	}
-
-	public static String year_month_day() {
+	/**
+	 * 以pattern连接年月日
+	 * @param pattern
+	 * @return
+	 */
+	public static String YearMonthDay(String pattern) {
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH) + 1;
 		int day = cal.get(Calendar.DAY_OF_MONTH);
 
-		String date = year + "/" + month + "/" + day;
+		String date = year + pattern + month + pattern + day;
 		return date;
 	}
 
-	/**
-	 * long time to yyyy/MM/dd/HH/mm/ss
-	 * 
-	 * @param milliTime
-	 * @return
-	 */
-	public static String year_month_day(String milliTime) {
 
-		Date curDate = new Date(Long.parseLong(milliTime));
-		SimpleDateFormat sdf = new SimpleDateFormat(DateTimeConstant.DATETIME_FORMAT_SLASH);
-		String datetime = sdf.format(curDate);
-
-		datetime = splitDateTime(datetime.replaceAll("/", ""));
-
-		return datetime;
-	}
-	
-	
 
 	/**
-	 *  yyyy/MM/dd/HH/mm/ss  to  long time 
-	 * 
-	 * @param milliTime
+	 * 把时间字符串按格式换算毫秒数
+	 * @param curDate
+	 * @param pattern
 	 * @return
 	 */
-	public static long timeToLong(String curDate) {
+	public static long timeToMilliseconds(String curDate,String pattern) {
 
-		SimpleDateFormat sdf = new SimpleDateFormat(DateTimeConstant.DATETIME_FORMAT_SLASH);
-		Date date = new Date();;
-		try {
-			date = sdf.parse(curDate);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		long dateSeconds = date.getTime();
-
-		return dateSeconds;
+		return LocalDateTime.parse(curDate, DateTimeFormatter.ofPattern(pattern))
+				.atZone(ZoneId.systemDefault())
+				.toInstant().toEpochMilli();
 	}
 	
 	/**
-	 * long time to yyyy-MM-dd HH:mm:ss
-	 * 
-	 * @param milliTime
+	 * 把时间字符串按默认(yyyy-MM-dd HH:mm:ss)格式换算毫秒数
+	 * @param curDate
+	 * @param pattern
 	 * @return
 	 */
-	public static String standardTime(Long milliTime) {
+	public static long timeToMilliseconds(String curDate) {
 
-		Date curDate = new Date(milliTime);
-		SimpleDateFormat sdf = new SimpleDateFormat(DateTimeConstant.DATETIME_FORMAT_DEFAULT);
-		String datetime = sdf.format(curDate);
-
-		return datetime;
+		return timeToMilliseconds(curDate,DateTimeConstant.DATETIME_FORMAT_DEFAULT);
 	}
 
+
 	/**
-	 * 20180101153257 20180101 to 2018/1/1/15/32/57 2018/1/1
 	 * 
+	 * 把默认格式默认(yyyy-MM-dd HH:mm:ss)来转换成默(yyyy/MM/dd/HH/mm/ss)或者(yyyy/MM/dd/)的格式
 	 * @param datetime
 	 * @return
 	 */
-	public static String splitDateTime(String datetime) {
-
+	public static String SplitDateTime(String datetime) {
 		String newDate = datetime;
+		if (datetime.length() == 19) {// yyyy-MM-dd  HH:mm:ss
+			String year = datetime.substring(0, 4);
+			String month = datetime.substring(5, 7);
+			String day = datetime.substring(8, 10);
+			String hour = datetime.substring(11,13);
+			String mins = datetime.substring(14, 16);
+			String seconds = datetime.substring(17, 19);
+			newDate = year + "/" + month + "/" + day + "/" + hour + "/" + mins + "/" + seconds;
+		}
 		if (datetime.length() == 14) {// yyyyMMddHHmmss
 			String year = datetime.substring(0, 4);
-			int month = Integer.parseInt(datetime.substring(4, 6));
-			int day = Integer.parseInt(datetime.substring(6, 8));
-			int hour = Integer.parseInt(datetime.substring(8, 10));
-			int mins = Integer.parseInt(datetime.substring(10, 12));
-			int seconds = Integer.parseInt(datetime.substring(12, 14));
+			String month = datetime.substring(4, 6);
+			String day = datetime.substring(6, 8);
+			String hour = datetime.substring(8, 10);
+			String mins = datetime.substring(10, 12);
+			String seconds = datetime.substring(12, 14);
 			newDate = year + "/" + month + "/" + day + "/" + hour + "/" + mins + "/" + seconds;
 		}
 
-		if (datetime.length() == 8) {// yyyyMMdd
+		if (datetime.length() == 8) {//yyyyMMdd
 			String year = datetime.substring(0, 4);
-			int month = Integer.parseInt(datetime.substring(4, 6));
-			int day = Integer.parseInt(datetime.substring(6, 8));
+			String month = datetime.substring(4, 6);
+			String day = datetime.substring(6, 8);
 
 			newDate = year + "/" + month + "/" + day;
 		}
@@ -197,65 +225,30 @@ public abstract class DateUtils {
 		return newDate;
 	}
 
-	/**
-	 * 获得GMT零时区时间的毫秒数
-	 * 
-	 * @return
-	 */
-	public static Long getGMTtimeSeconds() {
-		Calendar cal = Calendar.getInstance(Locale.getDefault());
-		int zoneOffset = cal.get(Calendar.ZONE_OFFSET);
-		int dstOffset = cal.get(Calendar.DST_OFFSET);
-		cal.add(Calendar.MILLISECOND, -(zoneOffset + dstOffset));
-		return cal.getTimeInMillis();
-	}
+	
 
 	/**
-	 * get global time
+	 * 把字符时间换算成GMT时间
 	 * 
 	 * @param time
 	 *            yyyy-MM-dd hh:mm:ss
 	 * @return 1/9/18 10:39 AM
 	 */
-	public static String getFormatEnDateTime(String time) {
-		// 获取时间值
-		SimpleDateFormat sdf = new SimpleDateFormat(DateTimeConstant.DATETIME_FORMAT_DEFAULT);
-		Date date = null;
-		try {
-			date = sdf.parse(time);
-		} catch (ParseException e) {
-			return time;
-		}
-		// date和time值按照short模式格式化输出
-		DateFormat shortDF = DateFormat.getDateTimeInstance(SimpleDateFormat.SHORT, SimpleDateFormat.SHORT, Locale.US);
-
-		String en_time = shortDF.format(date);
-
-		return en_time;
+	public static String FormatDateToGMTTimeStr(String time) {
+		
+		long milliseconds=timeToMilliseconds(time);
+		LocalDateTime dateFromBase = LocalDateTime.ofEpochSecond(milliseconds/1000, 0, ZoneOffset.UTC);
+		return dateFromBase.format(DateTimeFormatter.ofPattern(DateTimeConstant.DATETIME_FORMAT_DEFAULT));
 	}
+	
+	
+	
 
 	/**
-	 * 转换用户时区
+	 * 根据时区获取默认时间的时间
+	 * @param timeZoneStr
+	 * @return
 	 */
-	public static Calendar convertUTime(String timeZoneStr) {
-
-		TimeZone timeZone = TimeZone.getTimeZone(timeZoneStr);
-		Calendar cal = GregorianCalendar.getInstance(timeZone);
-
-		SimpleDateFormat outputFormat = new SimpleDateFormat(DateTimeConstant.DATETIME_FORMAT_DEFAULT);
-		outputFormat.setTimeZone(timeZone);
-		Date date = new Date(System.currentTimeMillis());
-
-		try {
-			date = outputFormat.parse(outputFormat.format(date));
-		} catch (ParseException e) {
-			return null;
-		}
-		cal.setTime(date);
-		return cal;
-
-	}
-
 	public static String convertUTimeStr(String timeZoneStr) {
 
 		TimeZone timeZone = TimeZone.getTimeZone(timeZoneStr);
@@ -265,12 +258,15 @@ public abstract class DateUtils {
 		return outputFormat.format(date);
 
 	}
-
+	/**
+	 * 根据时区获取默认时间的Calendar
+	 * @param timeZoneStr
+	 * @return
+	 */
 	public static Calendar convertUTime(String timeZoneStr, String dateTime) {
 
 		TimeZone timeZone = TimeZone.getTimeZone(timeZoneStr);
 		Calendar cal = GregorianCalendar.getInstance(timeZone);
-
 		SimpleDateFormat outputFormat = new SimpleDateFormat(DateTimeConstant.DATETIME_FORMAT_DEFAULT);
 		outputFormat.setTimeZone(timeZone);
 		Date date = null;
@@ -284,25 +280,6 @@ public abstract class DateUtils {
 
 	}
 	
-	/**
-	 * 
-	 * @param time_zone
-	 * @param gmt_seconds
-	 * @return area_time seconds
-	 */
-	public static Long getAreaTime(String time_zone, Long gmt_seconds) {
-
-		// gmt_seconds to Date
-
-		TimeZone srcTimeZone = TimeZone.getTimeZone("GMT");
-
-		TimeZone destTimeZone = TimeZone.getTimeZone(time_zone);
-
-		Long targetTime = gmt_seconds - srcTimeZone.getRawOffset() + destTimeZone.getRawOffset();
-
-		return targetTime;
-
-	}
 
 	/**
 	 * 将gmt时间转换成用户所在时区时间
@@ -311,48 +288,34 @@ public abstract class DateUtils {
 	 * @param dateTime "yyyy-MM-dd HH:mm:ss"
 	 * @return
 	 */
-	public static String gmtToUserTime(String timeZoneStr, String GTMDate) {
+	public static String GMTToUserTime(String timeZoneStr, String GTMDate) {
 		
-		SimpleDateFormat formatter = new SimpleDateFormat(DateTimeConstant.DATETIME_FORMAT_DEFAULT);
-		try{
-			TimeZone timeZone=TimeZone.getTimeZone(timeZoneStr);
-			Date date=formatter.parse(GTMDate);
-			long chineseMills = date.getTime() + timeZone.getRawOffset();
-			Date chineseDateTime = new Date(chineseMills);
-			SimpleDateFormat userSdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			return userSdf.format(chineseDateTime);
-		}catch (Exception e) {
-			return null;
-		}
-
+		TimeZone timeZone=TimeZone.getTimeZone(timeZoneStr);
+		long milliseconds=timeToMilliseconds(GTMDate)+(timeZone.getRawOffset()*2);
+		LocalDateTime dateFromBase = LocalDateTime.ofEpochSecond(milliseconds/1000, 0, ZoneOffset.UTC);
+		return dateFromBase.format(DateTimeFormatter.ofPattern(DateTimeConstant.DATETIME_FORMAT_DEFAULT));
+		
 	}
 
 
 
 	/**
-	 * @param time
-	 *            2005-12-15 09:41:30 or 2005-12-15
+	 * 将用户时间转换成GMT时间的指定格式
+	 * 
+	 * @param time 2005-12-15 09:41:30 or 2005-12-15
 	 * @return 15/12/2005 09:41:30 or 15/12/2005
 	 */
-	public static String strTimeToGlobalTime(String time) {
+	public static String StrTimeToGMTTime(String time) {
 
 		try {
-			if (time.contains(" ") && isDateTime(time)) {
-				// 2005-12-15 09:41:30
-				return getFormatEnDateTime(time);
-
-			} else if (isDate(time)) {
 				// 2005-12-15
 				String[] time_str = time.split("-");
 				if (time_str.length == 3) {
 					time = time_str[2] + "/" + time_str[1] + "/" + time_str[0];
 				}
 				return time;
-			} else {
-				return time;
-			}
+		
 		} catch (Exception e) {
-			e.printStackTrace();
 			return time;
 		}
 	}

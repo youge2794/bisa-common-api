@@ -1,17 +1,14 @@
 package com.bisa.health.common.app.service;
 
 import java.util.List;
-
-import com.bisa.health.app.model.Area;
+import com.bisa.health.app.model.Server;
 
 
 public interface IAreaService {
 
-	public List<Area> getAreaList();
+	public List<Server> getAreaList();
 	
-	public Area getAreaByCode(String area_code);
-	
-	public Area getAreaByAreaName(String area_name);
+	public Server getAreaByCode(String area_code);
 
-	public Area getAreaByPhoneCode(String selectpicker);
+	public Server getAreaByPhoneCode(String selectpicker);
 }
