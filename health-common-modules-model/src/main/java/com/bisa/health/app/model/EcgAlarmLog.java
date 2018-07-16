@@ -1,5 +1,7 @@
 package com.bisa.health.app.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +24,7 @@ public class EcgAlarmLog {
 	private String event_num;//联系人手机号
 	private String event_mail;//联系人邮箱
 	private int event_type;//事件类型 1-主动求救; 2-短暂停搏; 3-持续停搏
-	private String send_time;//发送时间
+	private Date send_time;//发送时间
 	private int sms_code;//短信发送返回码（200/400)
 	private String sms_msg;//短信发送返回异常信息
 	private int mail_code;//邮箱发送返回码（200/400)
@@ -64,14 +66,13 @@ public class EcgAlarmLog {
 	public void setEvent_type(int event_type) {
 		this.event_type = event_type;
 	}
-	@Column(length=50,nullable=false)
-	public String getSend_time() {
+	
+	public Date getSend_time() {
 		return send_time;
 	}
-	public void setSend_time(String send_time) {
+	public void setSend_time(Date send_time) {
 		this.send_time = send_time;
 	}
-	
 	public String getEvent_mail() {
 		return event_mail;
 	}

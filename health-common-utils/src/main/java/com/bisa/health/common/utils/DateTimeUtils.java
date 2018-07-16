@@ -33,7 +33,29 @@ public abstract class DateTimeUtils {
 	public static LocalDateTime now() {
 		return LocalDateTime.now();
 	}
+	
+	/**
+	 * 获取当前时间并格式化
+	 * @param dateTime
+	 * @param pattern
+	 * @return
+	 */
+	public static String toDateTime(Date date,String pattern) {
+		SimpleDateFormat sdf=new SimpleDateFormat(pattern);
+		return sdf.format(date);
+	}
 
+	
+	/**
+	 * 获取当前时间并格式化
+	 * @param dateTime
+	 * @param pattern
+	 * @return
+	 */
+	public static String toDateTime(Date date) {
+		SimpleDateFormat sdf=new SimpleDateFormat(DateTimeConstant.DATETIME_FORMAT_DEFAULT);
+		return sdf.format(date);
+	}
 	/**
 	 * 获取当前时间并格式化
 	 * @param dateTime
@@ -258,12 +280,14 @@ public abstract class DateTimeUtils {
 		return outputFormat.format(date);
 
 	}
+	
+	
 	/**
 	 * 根据时区获取默认时间的Calendar
 	 * @param timeZoneStr
 	 * @return
 	 */
-	public static Calendar convertUTime(String timeZoneStr, String dateTime) {
+	public static Calendar convertCalendar(String timeZoneStr, String dateTime) {
 
 		TimeZone timeZone = TimeZone.getTimeZone(timeZoneStr);
 		Calendar cal = GregorianCalendar.getInstance(timeZone);

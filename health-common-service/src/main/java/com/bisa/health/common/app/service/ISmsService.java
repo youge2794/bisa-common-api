@@ -17,7 +17,7 @@ public interface ISmsService {
 	/*
 	 * 发送给紧急联系人的短信
 	 */
-	public SmsSingleSenderResult addcontact_messege(String contact_phone,String contact_name,String time,int tempLate,String timeZ);
+	public SmsSingleSenderResult addcontact_messege(String contact_phone,String contact_name,int tempLate);
 	
 	/*
 	 * 发送密码短信

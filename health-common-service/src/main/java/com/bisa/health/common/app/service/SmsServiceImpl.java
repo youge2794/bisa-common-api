@@ -1,13 +1,9 @@
 package com.bisa.health.common.app.service;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
-
 import org.springframework.stereotype.Service;
-
+import com.bisa.health.common.utils.DateTimeUtils;
 import com.qcloud.sms.SmsSingleSender;
 import com.qcloud.sms.SmsSingleSenderResult;
 
@@ -69,9 +65,9 @@ public class SmsServiceImpl implements ISmsService{
 	    	SmsSingleSenderResult singleSenderResult;
 	    	 //指定模板单发
 	    	 //假设短信模板 id 为 1，模板内容为：测试短信，{1}，{2}，{3}，上学。
-	    	ArrayList params = new ArrayList();
+	    	ArrayList<String> params = new ArrayList<String>();
 	    	params.add(veri_code);
-	    	params.add(5);
+	    	params.add("5");
 	    	singleSenderResult = singleSender.sendWithParam(area_code, phone, tmplId, params, "", "", "");
 	    	return singleSenderResult;
     	} catch (Exception e) {
@@ -82,7 +78,7 @@ public class SmsServiceImpl implements ISmsService{
 	/*
 	 * 发送给紧急联系人的短信
 	 */
-	public SmsSingleSenderResult addcontact_messege(String contact_phone, String contact_name,String time,int tempLate,String timeZ) {
+	public SmsSingleSenderResult addcontact_messege(String contact_phone, String contact_name,int tempLate) {
 		SmsSingleSenderResult singleSenderResult = null;
 	    try {	
 	    		String[] phone = contact_phone.split("-");
@@ -119,21 +115,13 @@ public class SmsServiceImpl implements ISmsService{
 	    			}
 	    		}
 	    		
-	    		TimeZone timeZone = TimeZone.getTimeZone(timeZ);
-	    		Calendar calendar = Calendar.getInstance(Locale.getDefault());
-	    		calendar.setTimeZone(timeZone);
-	    		calendar.setTimeInMillis(Long.valueOf(time));
-	    		int zoneOffset = calendar.get(Calendar.ZONE_OFFSET);
-	    		int dstOffset = calendar.get(Calendar.DST_OFFSET);
-	    		calendar.add(Calendar.MILLISECOND, +(zoneOffset + dstOffset));
-	    		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    		 //初始化单发
 		    	SmsSingleSender singleSender = new SmsSingleSender(alarm_appid, alarm_appkey);
 		    	 //指定模板单发
 		    	 //假设短信模板 id 为 1，模板内容为：测试短信，{1}，{2}，{3}，上学。
 		    	ArrayList<String> params = new ArrayList<String>();
 		    	params.add(contact_name);
-		    	params.add(df.format(calendar.getTime()));
+		    	params.add(DateTimeUtils.toDateTime(LocalDateTime.now()));
 		    	singleSenderResult = singleSender.sendWithParam(phone[0], phone[1], tmplId, params, "", "", "");
 		    	return singleSenderResult;
 	    	} catch (Exception e) {
