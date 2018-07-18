@@ -86,4 +86,14 @@ public class UserAppraise {
 		this.appraise_two_time = appraise_two_time;
 	}
 
+	@Override
+	public String toString() {
+		return "UserAppraise [id=" + id + ", user_id=" + user_id + ", goods_number_id=" + goods_number_id
+				+ ", appraise_one=" + appraise_one + ", appraise_two=" + appraise_two + ", appraise_degree="
+				+ appraise_degree + ", appraise_one_time=" + appraise_one_time + ", appraise_two_time="
+				+ appraise_two_time + "]";
+	}
+	
+	
+
 }

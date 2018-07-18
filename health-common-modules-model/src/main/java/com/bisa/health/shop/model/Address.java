@@ -126,4 +126,14 @@ public class Address {
 		this.is_default = is_default;
 	}
 
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", user_id=" + user_id + ", consignee=" + consignee + ", phone=" + phone
+				+ ", country=" + country + ", province=" + province + ", city=" + city + ", county=" + county
+				+ ", town=" + town + ", detail_address=" + detail_address + ", address_label=" + address_label
+				+ ", is_default=" + is_default + "]";
+	}
+	
+	
+
 }

@@ -45,4 +45,12 @@ public class GoodsShopcar {
 	public void setCount(Integer count) {
 		this.count = count;
 	}
+
+	@Override
+	public String toString() {
+		return "GoodsShopcar [id=" + id + ", user_id=" + user_id + ", goods_number_id=" + goods_number_id + ", count="
+				+ count + "]";
+	}
+	
+	
 }

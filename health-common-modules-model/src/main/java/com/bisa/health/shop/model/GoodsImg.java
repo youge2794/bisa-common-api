@@ -45,4 +45,12 @@ public class GoodsImg {
 	public void setPosition(String position) {
 		this.position = position == null ? null : position.trim();
 	}
+
+	@Override
+	public String toString() {
+		return "GoodsImg [id=" + id + ", goods_number_id=" + goods_number_id + ", goods_img_url=" + goods_img_url
+				+ ", position=" + position + "]";
+	}
+	
+	
 }

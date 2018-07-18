@@ -47,4 +47,12 @@ public class Classify {
 		this.super_id = super_id;
 	}
 
+	@Override
+	public String toString() {
+		return "Classify [id=" + id + ", classify_name=" + classify_name + ", highest_super_id=" + highest_super_id
+				+ ", super_id=" + super_id + "]";
+	}
+	
+	
+
 }

@@ -102,5 +102,12 @@ public class Active {
 	public void setAccount(String account) {
 		this.account = account;
 	}
+	@Override
+	public String toString() {
+		return "Active [id=" + id + ", user_guid=" + user_guid + ", guid=" + guid + ", active_code=" + active_code
+				+ ", start_time=" + start_time + ", active_time=" + active_time + ", active_life=" + active_life
+				+ ", active_statu=" + active_statu + ", service_name=" + service_name + ", service_guid=" + service_guid
+				+ ", service_number=" + service_number + ", account=" + account + "]";
+	}
 	
 }

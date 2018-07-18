@@ -132,4 +132,15 @@ public class Goods {
 		this.appraise_number = appraise_number;
 	}
 
+	@Override
+	public String toString() {
+		return "Goods [id=" + id + ", classify_id=" + classify_id + ", goods_name=" + goods_name + ", goods_number="
+				+ goods_number + ", title=" + title + ", description=" + description + ", goods_price=" + goods_price
+				+ ", store_number=" + store_number + ", need_post=" + need_post + ", putaway_time=" + putaway_time
+				+ ", sold_out_time=" + sold_out_time + ", sales_number=" + sales_number + ", appraise_number="
+				+ appraise_number + "]";
+	}
+
+	
+	
 }

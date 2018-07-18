@@ -67,4 +67,10 @@ public class OrderGoods {
 		this.preferential_price = preferential_price;
 	}
 
+	@Override
+	public String toString() {
+		return "OrderGoods [id=" + id + ", order_id=" + order_id + ", goods_number_id=" + goods_number_id + ", count="
+				+ count + ", goods_price=" + goods_price + ", preferential_price=" + preferential_price + "]";
+	}
+
 }

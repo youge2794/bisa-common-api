@@ -190,4 +190,15 @@ public class Order {
 		this.create_time = create_time;
 	}
 
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", order_no=" + order_no + ", user_id=" + user_id + ", consignee=" + consignee
+				+ ", phone=" + phone + ", detail_address=" + detail_address + ", tra_status=" + tra_status
+				+ ", pay_type=" + pay_type + ", pay_time=" + pay_time + ", deliver_goods_time=" + deliver_goods_time
+				+ ", receive_goods_time=" + receive_goods_time + ", after_sale_apply=" + after_sale_apply
+				+ ", total_price=" + total_price + ", post_price=" + post_price + ", preferential_price="
+				+ preferential_price + ", actual_payment=" + actual_payment + ", logistics_number=" + logistics_number
+				+ ", logistics_name=" + logistics_name + ", create_time=" + create_time + "]";
+	}
+
 }

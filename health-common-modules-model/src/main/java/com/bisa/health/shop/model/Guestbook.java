@@ -136,7 +136,12 @@ public class Guestbook {
 		this.reply_content = reply_content;
 		this.reply_name = reply_name;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "Guestbook [id=" + id + ", name=" + name + ", phone=" + phone + ", mail=" + mail + ", title=" + title
+				+ ", message_type=" + message_type + ", message=" + message + ", message_time=" + message_time
+				+ ", handle_way=" + handle_way + ", handle_time=" + handle_time + ", handle_status=" + handle_status
+				+ ", reply_content=" + reply_content + ", reply_name=" + reply_name + "]";
+	}
 	
 }

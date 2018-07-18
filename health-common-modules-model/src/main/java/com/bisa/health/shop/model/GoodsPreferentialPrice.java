@@ -13,6 +13,8 @@ public class GoodsPreferentialPrice {
 	private Integer classify_id; 	 	//商品分类编号
 	private String goods_number_id;		//商品编号
 
+	private Integer count;   //套餐内单品数量
+
 	private String goods_name;			//商品名字
 	private BigDecimal goods_price;			//单价  1000
 	private BigDecimal preferential_price;	//优惠价格  800
@@ -66,5 +68,22 @@ public class GoodsPreferentialPrice {
 	public void setPreferential_price(BigDecimal preferential_price) {
 		this.preferential_price = preferential_price;
 	}
+
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+	@Override
+	public String toString() {
+		return "GoodsPreferentialPrice [id=" + id + ", classify_id=" + classify_id + ", goods_number_id="
+				+ goods_number_id + ", goods_name=" + goods_name + ", goods_price=" + goods_price
+				+ ", preferential_price=" + preferential_price + "]";
+	}
+	
+	
 
 }
