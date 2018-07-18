@@ -1,7 +1,9 @@
 package com.bisa.health.app.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,6 +28,19 @@ public class EcgReport implements Serializable{
 	private String pdf_bucKey;   //oss pdf 的bucket_key
 	private String ecg_bucKey;   //oss zip 心电数据的bucket_key
 	private int pre_consume; //预消费数量
+	private String name;
+	private int sex;
+	private int age;
+	private int height;
+	private int weight;
+	private String address;
+	private String phone;
+	private String hou_num;
+	private String bed_num;
+	private String birthday;
+	private String idCard;
+
+	
 
 	
 	@Id//设置主键
@@ -95,12 +110,81 @@ public class EcgReport implements Serializable{
 	public void setCreate_time(Date create_time) {
 		this.create_time = create_time;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getSex() {
+		return sex;
+	}
+	public void setSex(int sex) {
+		this.sex = sex;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public int getHeight() {
+		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	public int getWeight() {
+		return weight;
+	}
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getHou_num() {
+		return hou_num;
+	}
+	public void setHou_num(String hou_num) {
+		this.hou_num = hou_num;
+	}
+	public String getBed_num() {
+		return bed_num;
+	}
+	public void setBed_num(String bed_num) {
+		this.bed_num = bed_num;
+	}
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+	public String getIdCard() {
+		return idCard;
+	}
+	public void setIdCard(String idCard) {
+		this.idCard = idCard;
+	}
 	@Override
 	public String toString() {
 		return "EcgReport [id=" + id + ", report_number=" + report_number + ", user_guid=" + user_guid
 				+ ", report_type=" + report_type + ", report_status=" + report_status + ", start_time=" + start_time
 				+ ", create_time=" + create_time + ", pdf_bucKey=" + pdf_bucKey + ", ecg_bucKey=" + ecg_bucKey
-				+ ", pre_consume=" + pre_consume + "]";
+				+ ", pre_consume=" + pre_consume + ", name=" + name + ", sex=" + sex + ", age=" + age + ", height="
+				+ height + ", weight=" + weight + ", address=" + address + ", phone=" + phone + ", hou_num=" + hou_num
+				+ ", bed_num=" + bed_num + ", birthday=" + birthday + ", idCard=" + idCard + "]";
 	}
+	
 
 }
