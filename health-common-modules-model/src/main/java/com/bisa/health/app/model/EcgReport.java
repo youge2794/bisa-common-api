@@ -1,9 +1,7 @@
 package com.bisa.health.app.model;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.TimeZone;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,26 +20,24 @@ public class EcgReport implements Serializable{
 	private String report_number;//报告编码(唯一编码)八位
 	private	int user_guid;   //	用户唯一编码
 	private	int	report_type;   //	报告类型(10-15min;11-24hour)
-	private	int	report_status;   //	报告状态（1-未被查看 2-已被查看  3-报告生成中 4-待上传数据 5-已上传数据 6-失效报告）
+	private	int	report_status;   //0-待上传数据 1-未被查看 2-已被查看  3-报告生成中 5-已上传数据 6-失效报告
 	private Date start_time;  //起始时间（第一段数据finished_time?
 	private	Date create_time;   //	报告创建时间
 	private String pdf_bucKey;   //oss pdf 的bucket_key
 	private String ecg_bucKey;   //oss zip 心电数据的bucket_key
 	private int pre_consume; //预消费数量
-	private String name;
-	private int sex;
+	private String name;   //姓名
+	private int sex;   //性别 0-男；1-女；
 	private int age;
 	private int height;
 	private int weight;
 	private String address;
 	private String phone;
-	private String hou_num;
-	private String bed_num;
-	private String birthday;
-	private String idCard;
-
-	
-
+	private String hou_num;  //病房号
+	private String bed_num;  //病床号
+	private String birthday;   //生日
+	private String idCard;  //身份证号
+	private String dev_no;  //设备号
 	
 	@Id//设置主键
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//设置自增
@@ -51,7 +47,6 @@ public class EcgReport implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	
 	
 	public int getPre_consume() {
 		return pre_consume;
@@ -176,6 +171,12 @@ public class EcgReport implements Serializable{
 	public void setIdCard(String idCard) {
 		this.idCard = idCard;
 	}
+	public String getDev_no() {
+		return dev_no;
+	}
+	public void setDev_no(String dev_no) {
+		this.dev_no = dev_no;
+	}
 	@Override
 	public String toString() {
 		return "EcgReport [id=" + id + ", report_number=" + report_number + ", user_guid=" + user_guid
@@ -183,8 +184,7 @@ public class EcgReport implements Serializable{
 				+ ", create_time=" + create_time + ", pdf_bucKey=" + pdf_bucKey + ", ecg_bucKey=" + ecg_bucKey
 				+ ", pre_consume=" + pre_consume + ", name=" + name + ", sex=" + sex + ", age=" + age + ", height="
 				+ height + ", weight=" + weight + ", address=" + address + ", phone=" + phone + ", hou_num=" + hou_num
-				+ ", bed_num=" + bed_num + ", birthday=" + birthday + ", idCard=" + idCard + "]";
+				+ ", bed_num=" + bed_num + ", birthday=" + birthday + ", idCard=" + idCard + ", dev_no=" + dev_no + "]";
 	}
-	
 
 }

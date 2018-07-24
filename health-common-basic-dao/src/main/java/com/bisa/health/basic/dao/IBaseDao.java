@@ -31,8 +31,5 @@ public interface IBaseDao<T> {
 	 */
 	public T load(int id);
 	
-	
-
-	
 }
 

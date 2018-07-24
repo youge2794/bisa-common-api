@@ -19,13 +19,13 @@ import org.hibernate.transform.Transformers;
 
 import com.bisa.health.basic.entity.Pager;
 import com.bisa.health.basic.entity.PagerQueryParam;
+import com.bisa.health.basic.entity.SystemContext;
 
 
 /**
  * @author Administrator
  *
  */
-@SuppressWarnings("unchecked")
 public class BaseDao<T> implements IBaseDao<T> {
 
 	private SessionFactory sessionFactory;
@@ -58,7 +58,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 * 
 	 * @see org.konghao.baisc.dao.IBaseDao#add(java.lang.Object)
 	 */
-	@Override
+	//@Override
 	public T add(T t) {
 		
 		getSession().save(t);
@@ -70,7 +70,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 * 
 	 * @see org.konghao.baisc.dao.IBaseDao#update(java.lang.Object)
 	 */
-	@Override
+	//@Override
 	public void update(T t) {
 		getSession().update(t);
 	}
@@ -80,7 +80,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 * 
 	 * @see org.konghao.baisc.dao.IBaseDao#delete(int)
 	 */
-	@Override
+	//@Override
 	public void delete(int id) {
 		getSession().delete(this.load(id));
 	}
@@ -90,7 +90,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 * 
 	 * @see org.konghao.baisc.dao.IBaseDao#load(int)
 	 */
-	@Override
+	//@Override
 	public T load(int id) {
 
 		return (T) getSession().load(getClz(), id);
@@ -123,6 +123,17 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 */
 	public List<T> list(String hql) {
 		return this.list(hql, null);
+	}
+	
+	private String initSort(String hql) {
+		String order = SystemContext.getOrder();
+		String sort = SystemContext.getSort();
+		if(sort!=null&&!"".equals(sort.trim())) {
+			hql+=" order by "+sort;
+			if(!"desc".equals(order)) hql+=" asc";
+			else hql+=" desc";
+		}
+		return hql;
 	}
 
 	private String initSort(String hql, PagerQueryParam pageParam) {
@@ -218,6 +229,17 @@ public class BaseDao<T> implements IBaseDao<T> {
 	public Pager<T> find(String hql) {
 		return this.find(hql, null);
 	}
+	
+	@SuppressWarnings("rawtypes")
+	private void setPagers(Query query,Pager pages) {
+		Integer pageSize = SystemContext.getPageSize();
+		Integer pageOffset = SystemContext.getPageOffset();
+		if(pageOffset==null||pageOffset<0) pageOffset = 0;
+		if(pageSize==null||pageSize<0) pageSize = 15;
+		pages.setOffset(pageOffset);
+		pages.setSize(pageSize);
+		query.setFirstResult(pageOffset).setMaxResults(pageSize);
+	}
 
 	@SuppressWarnings("rawtypes")
 	private void setPagers(Query query, Pager pages,PagerQueryParam pageParam) {
@@ -233,7 +255,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 	}
 
 	private String getCountHql(String hql, boolean isHql) {
-		String e = hql.substring(hql.indexOf("from"));
+		String e = hql.substring(hql.toLowerCase().indexOf("from"));
 		String c = "select count(1) " + e;
 		if (isHql)
 			c = c.replaceAll("fetch", "");
@@ -420,6 +442,10 @@ public class BaseDao<T> implements IBaseDao<T> {
 			boolean hasEntity) {
 		return this.findBySql(sql, args, null, clz, pageParam, hasEntity);
 	}
+	
+	public <N extends Object>Pager<N> findBySql(String sql, Object[] args, Class<?> clz, boolean hasEntity) {
+		return this.findBySql(sql, args, null, clz, null, hasEntity);
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -427,10 +453,10 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 * @see org.konghao.baisc.dao.IBaseDao#findBySql(java.lang.String,
 	 * java.lang.Object, java.lang.Class, boolean)
 	 */
-	public <N extends Object> Pager<N> findBySql(String sql, Object arg, Class<?> clz, boolean hasEntity) {
-		return this.findBySql(sql, new Object[] { arg }, clz, hasEntity);
+	public <N extends Object>Pager<N> findBySql(String sql, Object arg, Class<?> clz, boolean hasEntity) {
+		return this.findBySql(sql, new Object[]{arg}, clz, hasEntity);
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -440,7 +466,7 @@ public class BaseDao<T> implements IBaseDao<T> {
 	public <N extends Object> Pager<N> findBySql(String sql, Class<?> clz, boolean hasEntity) {
 		return this.findBySql(sql, null, clz, hasEntity);
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -449,8 +475,12 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 */
 	public <N extends Object> Pager<N> findBySql(String sql, Object[] args, Map<String, Object> alias, Class<?> clz,
 			PagerQueryParam pageParam, boolean hasEntity) {
-
-		sql = initSort(sql, pageParam);
+			
+		if(pageParam == null){
+			sql = initSort(sql);
+		}else{
+			sql = initSort(sql, pageParam);
+		}
 
 		String cq = getCountHql(sql, false);
 		SQLQuery sq = getSession().createSQLQuery(sql);
@@ -461,7 +491,11 @@ public class BaseDao<T> implements IBaseDao<T> {
 		setParameter(cquery, args);
 	
 		Pager<N> pages = new Pager<N>();
-		setPagers(sq, pages,pageParam);
+		if(pageParam == null){
+			setPagers(sq, pages);
+		}else{
+			setPagers(sq, pages,pageParam);
+		}
 		if (hasEntity) {
 			sq.addEntity(clz);
 		} else {

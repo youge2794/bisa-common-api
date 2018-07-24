@@ -50,8 +50,17 @@ public class PagerQueryParam {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
-
-	
-	
+	public PagerQueryParam(int offset, int size, String sort, String order, String key, String keyword) {
+		super();
+		this.offset = offset;
+		this.size = size;
+		this.sort = sort;
+		this.order = order;
+		this.key = key;
+		this.keyword = keyword;
+	}
+	public PagerQueryParam() {
+		super();
+	}
 	
 }

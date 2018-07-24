@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class GoodsShopcar {
 	private Integer id;
 	private Integer user_id;		//用户id
-	private String goods_number_id; //商品编号
+	private Integer classify_id;  //商品编号
 	private Integer count;			// 商品的数量
 	@Id
 	@GeneratedValue
@@ -26,16 +26,16 @@ public class GoodsShopcar {
 		return user_id;
 	}
 
+	public Integer getClassify_id() {
+		return classify_id;
+	}
+
+	public void setClassify_id(Integer classify_id) {
+		this.classify_id = classify_id;
+	}
+
 	public void setUser_id(Integer user_id) {
 		this.user_id = user_id;
-	}
-
-	public String getGoods_number_id() {
-		return goods_number_id;
-	}
-
-	public void setGoods_number_id(String goods_number_id) {
-		this.goods_number_id = goods_number_id;
 	}
 
 	public Integer getCount() {
@@ -48,9 +48,8 @@ public class GoodsShopcar {
 
 	@Override
 	public String toString() {
-		return "GoodsShopcar [id=" + id + ", user_id=" + user_id + ", goods_number_id=" + goods_number_id + ", count="
-				+ count + "]";
+		return "GoodsShopcar [id=" + id + ", user_id=" + user_id + ", classify_id=" + classify_id + ", count=" + count
+				+ "]";
 	}
-	
-	
+
 }

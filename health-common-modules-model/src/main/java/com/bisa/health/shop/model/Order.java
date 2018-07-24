@@ -19,7 +19,7 @@ public class Order {
 	
 	private String detail_address;   // 详细地址
 	
-	private String tra_status;		 //交易状态（1：未支付，2：待发货，3：待收货  4:待评价  5：待追评
+	private String tra_status;		 //交易状态（0:取消，1：未支付，2：待发货，3：待收货  4:待评价  5：待追评
 	private String pay_type;		 //1 支付宝   2 微信  3 银联
 	private Date pay_time;			 //支付时间
 	private Date deliver_goods_time; //发货时间
