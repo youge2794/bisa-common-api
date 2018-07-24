@@ -84,6 +84,20 @@ public abstract class DateUtils {
 
 		return datetime;
 	}
+	
+	/**
+	 * long time to yyyy/MM/dd/HH/mm
+	 * 
+	 * @param milliTime
+	 * @return
+	 */
+	public static String year_to_minutes(String milliTime) {
+
+		Date curDate = new Date(Long.parseLong(milliTime));
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd/HH/mm");
+		String datetime = sdf.format(curDate);
+		return datetime;
+	}
 
 	/**
 	 *  yyyy/MM/dd/HH/mm/ss  to  long time 
