@@ -1,5 +1,7 @@
 package com.bisa.health.shop.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,7 +9,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="s_goods_img")
-public class GoodsImg {
+public class GoodsImg implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6982202429029890618L;
+	
 	private Integer id;
 	private String goods_number_id;	//商品编号
 	private String goods_img_url;	// 商品图片地址

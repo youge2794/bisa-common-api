@@ -1,5 +1,6 @@
 package com.bisa.helath.pay.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,20 +15,26 @@ import javax.persistence.Table;
 public class Trade {
 	
 	private int id;
-	private String trade_no;  //交易编号
-	private String order_guid;  //订单的guid
-	private String price;  //价格
-	private int user_guid;  //用户的唯一标识
-	private String guid;  //当前区域服务器内的唯一id
-	private int status;  //交易的状态 未付款；已付款
-	private int pay_type; //付款的方式（1001:微信支付,1002:支付宝支付）
-	private Date start_time;
 	
-	private int trade_guid;//	策略id,用于分表
-	private String refund_price;   //退款金额：  (String)
-	private String year;  //年：   (String)
-	private String month;   // 月：(String)
-	private String day;    // 日： (String)
+	private String order_no;          //订单编号
+	
+	private Integer user_guid;       //用户编号
+	
+	private BigDecimal price;         //付款的价格
+
+	private Integer pay_location;    //1 电脑网页端  2 安卓手机 3 ios手机 4 电脑客户端
+	
+	private Integer pay_type;        //1 微信  2 支付宝  3 银联   4 visa
+	
+	private Integer pay_status;      //交易状态( 0:关闭订单 1：未支付，2：待发货，3：待收货 4:待评价 5：待追评 6 追评完成 7 退款成功  8 退款失败) 
+
+	private BigDecimal refund_price;//退款金额
+	
+	private Date refund_time;       //退款时间
+
+	private Date create_time;       //创建时间(付款的时间)
+
+	private Integer trade_guid;     //策略id,用于分表
 	
 	@Id
 	@GeneratedValue
@@ -37,83 +44,72 @@ public class Trade {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getTrade_no() {
-		return trade_no;
+	public String getOrder_no() {
+		return order_no;
 	}
-	public void setTrade_no(String trade_no) {
-		this.trade_no = trade_no;
+	public void setOrder_no(String order_no) {
+		this.order_no = order_no;
 	}
-	public String getOrder_guid() {
-		return order_guid;
-	}
-	public void setOrder_guid(String order_guid) {
-		this.order_guid = order_guid;
-	}
-	public String getPrice() {
-		return price;
-	}
-	public void setPrice(String price) {
-		this.price = price;
-	}
-	public int getUser_guid() {
+	public Integer getUser_guid() {
 		return user_guid;
 	}
-	public void setUser_guid(int user_guid) {
+	public void setUser_guid(Integer user_guid) {
 		this.user_guid = user_guid;
 	}
-	public String getGuid() {
-		return guid;
+	public BigDecimal getPrice() {
+		return price;
 	}
-	public void setGuid(String guid) {
-		this.guid = guid;
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
-	public int getStatus() {
-		return status;
+	public Integer getPay_location() {
+		return pay_location;
 	}
-	public void setStatus(int status) {
-		this.status = status;
+	public void setPay_location(Integer pay_location) {
+		this.pay_location = pay_location;
 	}
-	public int getPay_type() {
+	public Integer getPay_type() {
 		return pay_type;
 	}
-	public void setPay_type(int pay_type) {
+	public void setPay_type(Integer pay_type) {
 		this.pay_type = pay_type;
 	}
-	public Date getStart_time() {
-		return start_time;
+	public Integer getPay_status() {
+		return pay_status;
 	}
-	public void setStart_time(Date start_time) {
-		this.start_time = start_time;
-	} //创建时间
-	public int getTrade_guid() {
-		return trade_guid;
+	public void setPay_status(Integer pay_status) {
+		this.pay_status = pay_status;
 	}
-	public void setTrade_guid(int trade_guid) {
-		this.trade_guid = trade_guid;
-	}
-	public String getRefund_price() {
+	public BigDecimal getRefund_price() {
 		return refund_price;
 	}
-	public void setRefund_price(String refund_price) {
+	public void setRefund_price(BigDecimal refund_price) {
 		this.refund_price = refund_price;
 	}
-	public String getYear() {
-		return year;
+	public Date getRefund_time() {
+		return refund_time;
 	}
-	public void setYear(String year) {
-		this.year = year;
+	public void setRefund_time(Date refund_time) {
+		this.refund_time = refund_time;
 	}
-	public String getMonth() {
-		return month;
+	public Date getCreate_time() {
+		return create_time;
 	}
-	public void setMonth(String month) {
-		this.month = month;
+	public void setCreate_time(Date create_time) {
+		this.create_time = create_time;
 	}
-	public String getDay() {
-		return day;
+	public Integer getTrade_guid() {
+		return trade_guid;
 	}
-	public void setDay(String day) {
-		this.day = day;
+	public void setTrade_guid(Integer trade_guid) {
+		this.trade_guid = trade_guid;
+	}
+	@Override
+	public String toString() {
+		return "Trade [id=" + id + ", order_no=" + order_no + ", user_guid=" + user_guid + ", price=" + price
+				+ ", pay_location=" + pay_location + ", pay_type=" + pay_type + ", pay_status=" + pay_status
+				+ ", refund_price=" + refund_price + ", refund_time=" + refund_time + ", create_time=" + create_time
+				+ ", trade_guid=" + trade_guid + "]";
 	}
 	
 }

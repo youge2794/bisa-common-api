@@ -1,5 +1,6 @@
 package com.bisa.health.shop.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -10,7 +11,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="s_goods")
-public class Goods {
+public class Goods implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4256398755051915154L;
 	private Integer id;
 	private Integer classify_id;    //商品分类编号
 	private String goods_name;      //商品名字
@@ -141,6 +146,4 @@ public class Goods {
 				+ appraise_number + "]";
 	}
 
-	
-	
 }

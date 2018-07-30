@@ -1,5 +1,7 @@
 package com.bisa.health.shop.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -7,7 +9,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="s_classify")
-public class Classify {
+public class Classify implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8538977431012879661L;
+	
 	private Integer id;
 	private String classify_name;      //分类名称
 	private Integer highest_super_id;   //顶级分类编号

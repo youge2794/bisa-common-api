@@ -1,5 +1,6 @@
 package com.bisa.health.shop.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -10,7 +11,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="s_order")
-public class Order {
+public class Order implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2150540282786645128L;
+	
 	private Integer id;
 	private String order_no;         //订单号
 	private Integer user_id;		 //买家id
@@ -19,13 +25,13 @@ public class Order {
 	
 	private String detail_address;   // 详细地址
 	
-	private String tra_status;		 //交易状态（0:取消，1：未支付，2：待发货，3：待收货  4:待评价  5：待追评
-	private String pay_type;		 //1 支付宝   2 微信  3 银联
+	private Integer tra_status;		 //交易状态（0:取消，1：未支付，2：待发货，3：待收货  4:待评价  5：待追评
+	private Integer pay_type;		 //枚举类PayType  1 微信  2 支付宝  3 银联  4visa
 	private Date pay_time;			 //支付时间
 	private Date deliver_goods_time; //发货时间
 	private Date receive_goods_time; //收货时间
 	
-	private String after_sale_apply; //1 可以申请售后, 2  售后处理中
+	private Integer after_sale_apply; //1 可以申请售后, 2  售后处理中
 	private BigDecimal total_price;		 //订单商品总价(不包含 邮费的价格) 2000
 	private BigDecimal post_price;		 //邮费                          			 100
 	
@@ -94,22 +100,6 @@ public class Order {
 		this.actual_payment = actual_payment;
 	}
 
-	public String getTra_status() {
-		return tra_status;
-	}
-
-	public void setTra_status(String tra_status) {
-		this.tra_status = tra_status;
-	}
-
-	public String getPay_type() {
-		return pay_type;
-	}
-
-	public void setPay_type(String pay_type) {
-		this.pay_type = pay_type;
-	}
-
 	public Date getPay_time() {
 		return pay_time;
 	}
@@ -132,14 +122,6 @@ public class Order {
 
 	public void setReceive_goods_time(Date receive_goods_time) {
 		this.receive_goods_time = receive_goods_time;
-	}
-
-	public String getAfter_sale_apply() {
-		return after_sale_apply;
-	}
-
-	public void setAfter_sale_apply(String after_sale_apply) {
-		this.after_sale_apply = after_sale_apply;
 	}
 
 	public BigDecimal getTotal_price() {
@@ -188,6 +170,30 @@ public class Order {
 
 	public void setCreate_time(Date create_time) {
 		this.create_time = create_time;
+	}
+
+	public Integer getTra_status() {
+		return tra_status;
+	}
+
+	public void setTra_status(Integer tra_status) {
+		this.tra_status = tra_status;
+	}
+
+	public Integer getPay_type() {
+		return pay_type;
+	}
+
+	public void setPay_type(Integer pay_type) {
+		this.pay_type = pay_type;
+	}
+
+	public Integer getAfter_sale_apply() {
+		return after_sale_apply;
+	}
+
+	public void setAfter_sale_apply(Integer after_sale_apply) {
+		this.after_sale_apply = after_sale_apply;
 	}
 
 	@Override

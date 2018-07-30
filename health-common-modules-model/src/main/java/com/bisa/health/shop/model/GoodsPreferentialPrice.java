@@ -1,5 +1,6 @@
 package com.bisa.health.shop.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
@@ -8,7 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
 @Table(name="s_goods_preferential_price")
-public class GoodsPreferentialPrice {
+public class GoodsPreferentialPrice implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6928121695837409247L;
 	private Integer id;
 	private Integer classify_id; 	 	//商品分类编号
 	private String goods_number_id;		//商品编号

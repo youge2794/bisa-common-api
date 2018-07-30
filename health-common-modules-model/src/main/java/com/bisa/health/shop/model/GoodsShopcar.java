@@ -45,6 +45,18 @@ public class GoodsShopcar {
 	public void setCount(Integer count) {
 		this.count = count;
 	}
+	
+	public GoodsShopcar() {
+		super();
+	}
+	
+	public GoodsShopcar(Integer id, Integer user_id, Integer classify_id, Integer count) {
+		super();
+		this.id = id;
+		this.user_id = user_id;
+		this.classify_id = classify_id;
+		this.count = count;
+	}
 
 	@Override
 	public String toString() {

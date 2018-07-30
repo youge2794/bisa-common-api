@@ -1,5 +1,6 @@
 package com.bisa.health.shop.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
@@ -9,7 +10,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="s_order_goods")
-public class OrderGoods {
+public class OrderGoods implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4394092941703621156L;
 	private Integer id;
 	private Integer order_id;        //订单id
 	private String goods_number_id;  //商品编号

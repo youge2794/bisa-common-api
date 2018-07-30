@@ -26,7 +26,7 @@ public class Address {
 	private String detail_address;   // 详细地址
 
 	private String address_label;   // 标签(家，公司，其他)
-	private String is_default; 		// 是否是默认地址
+	private String is_default; 		// 是否是默认地址 0-不是默认； 1-默认
 
 	@Id
 	@GeneratedValue
