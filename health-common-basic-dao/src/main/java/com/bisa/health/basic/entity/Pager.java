@@ -1,8 +1,14 @@
 package com.bisa.health.basic.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Pager<T>  {
+public class Pager<T>  implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8185575249328113787L;
 
 	private int size;
 

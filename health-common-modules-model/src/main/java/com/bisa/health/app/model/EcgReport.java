@@ -1,6 +1,7 @@
 package com.bisa.health.app.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -177,6 +178,26 @@ public class EcgReport implements Serializable{
 	public void setDev_no(String dev_no) {
 		this.dev_no = dev_no;
 	}
+	
+	public int year(){
+		Calendar cal = Calendar.getInstance();
+	 	cal.setTime(this.getStart_time());
+        int year = cal.get(Calendar.YEAR);//获取年份
+        return year;
+	}
+	public int month(){
+		Calendar cal = Calendar.getInstance();
+	 	cal.setTime(this.getStart_time());
+        int month=cal.get(Calendar.MONTH)+1;//获取月份
+        return month;
+	}
+	public int day(){
+		Calendar cal = Calendar.getInstance();
+	 	cal.setTime(this.getStart_time());
+        int day=cal.get(Calendar.DATE);//获取日
+        return day;
+	}
+	
 	@Override
 	public String toString() {
 		return "EcgReport [id=" + id + ", report_number=" + report_number + ", user_guid=" + user_guid

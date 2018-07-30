@@ -1,5 +1,8 @@
 package com.bisa.health.app.model;
 
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Table;
 
+import com.bisa.health.data.bind.CustomDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 /**
  * 平安钟 发送警报记录类
  * @author Administrator
@@ -17,7 +23,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="e_ecg_alarmlog",indexes={@Index(columnList="user_guid")})
-public class EcgAlarmLog {
+public class EcgAlarmLog implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3749857139103610190L;
 	private int id;
 	private int user_guid;
 	private String event_name;//联系人姓名
@@ -66,7 +76,7 @@ public class EcgAlarmLog {
 	public void setEvent_type(int event_type) {
 		this.event_type = event_type;
 	}
-	
+	@JsonSerialize(using = CustomDateSerializer.class)
 	public Date getSend_time() {
 		return send_time;
 	}
@@ -106,6 +116,26 @@ public class EcgAlarmLog {
 	}
 	public EcgAlarmLog() {
 		super();
+	}
+	
+	
+	public int year(){
+		Calendar cal = Calendar.getInstance();
+	 	cal.setTime(this.getSend_time());
+        int year = cal.get(Calendar.YEAR);//获取年份
+        return year;
+	}
+	public int month(){
+		Calendar cal = Calendar.getInstance();
+	 	cal.setTime(this.getSend_time());
+        int month=cal.get(Calendar.MONTH)+1;//获取月份
+        return month;
+	}
+	public int day(){
+		Calendar cal = Calendar.getInstance();
+	 	cal.setTime(this.getSend_time());
+        int day=cal.get(Calendar.DATE);//获取日
+        return day;
 	}
 	
 }
