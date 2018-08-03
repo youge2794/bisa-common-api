@@ -21,6 +21,7 @@ public class ResultData<T> implements Serializable{
 	 */
 	private long timestamp;
 	
+	private String token;
 	
 	private T data;
 
@@ -59,6 +60,15 @@ public class ResultData<T> implements Serializable{
 		return data;
 	}
 
+	public String getToken() {
+		return token;
+	}
+
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 
 	public void setData(T data) {
 		this.data = data;
@@ -69,6 +79,8 @@ public class ResultData<T> implements Serializable{
 		super();
 		
 	}
+	
+	
 	
 	@Override
 	public String toString() {
