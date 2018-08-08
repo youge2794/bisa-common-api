@@ -16,10 +16,14 @@ public class ResultData<T> implements Serializable{
 	 * error msg
 	 */
 	private String message;
+
+	
 	/**
 	 * 登入时间戳gmt时间
 	 */
 	private long timestamp;
+
+	
 	
 	private String token;
 	
@@ -81,7 +85,8 @@ public class ResultData<T> implements Serializable{
 	}
 	
 	
-	
+
+
 	@Override
 	public String toString() {
 		return "ResultData [code=" + code + ", message=" + message + ", timestamp=" + timestamp + ", data=" + data

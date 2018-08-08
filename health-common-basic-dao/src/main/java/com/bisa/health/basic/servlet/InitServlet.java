@@ -4,6 +4,9 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+import com.bisa.health.basic.context.BeanFactoryContext;
+
 
 public class InitServlet extends HttpServlet {
 
@@ -13,6 +16,8 @@ public class InitServlet extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
+		wc = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+		BeanFactoryContext.setWc(wc);
 
 	}
 
