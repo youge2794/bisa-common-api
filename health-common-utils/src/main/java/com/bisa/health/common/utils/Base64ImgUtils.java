@@ -13,6 +13,7 @@ import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 
 import sun.misc.BASE64Decoder;
+import org.apache.commons.codec.binary.Base64;
 
 /**
  * Base64位上传图片处理工具类
@@ -21,6 +22,26 @@ import sun.misc.BASE64Decoder;
  *
  */
 public class Base64ImgUtils {
+	
+	 
+	/**
+	 * base64字符串转byte[]
+	 * @param base64Str
+	 * @return
+	 */
+	public static byte[] base64String2Byte(String base64Str){
+		return Base64.decodeBase64(base64Str);
+	}
+	
+	/**
+	 * byte[]转base64
+	 * @param b
+	 * @return
+	 */
+	public static String byte2Base64String(byte[] b){
+		return Base64.encodeBase64String(b);
+	}	
+
 
 	/**
 	 * 获取随机文件名
@@ -84,6 +105,7 @@ public class Base64ImgUtils {
 		try {
 			ByteArrayInputStream byteInput = new ByteArrayInputStream(imageByte);
 			Image img = ImageIO.read(byteInput);
+			if(img == null) System.out.println("图片未加载成功");
 			// 判断图片格式是否正确
 			if (img.getWidth(null) == -1) {
 				return inByte;
