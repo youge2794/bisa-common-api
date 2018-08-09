@@ -1,6 +1,5 @@
 package com.bisa.health.shop.enumerate;
 
-
 /**
  * 售后处理状态
  * @author Administrator
@@ -8,46 +7,49 @@ package com.bisa.health.shop.enumerate;
  */
 public enum AfterSalesStatus {
 	/**
-	 * 待审核
+	 * 订单未完成
 	 */
-	PENDING_REVIEW(10,"PENDING_REVIEW"),  
+	unable(0, "unable"),
 	/**
-	 * 待寄回
+	 * 待服务
 	 */
-	SEND_BACK(20, "SEND_BACK"),
+	able(1, "able"),
 	/**
 	 * 服务中
 	 */
-	IN_SERVICE(21, "IN_SERVICE"),  
+	in_service(2, "in_service"),
 	/**
 	 * 已完成 
 	 */
-	COMPLETED(30, "COMPLETED"),  
+	completed(4, "completed"),
 	/**
 	 * 已取消
 	 */
-	CANCELLED(40, "CANCELLED"),
+	cancelled(5, "cancelled"),
 	/**
 	 * 已关闭
 	 */
-	CLOSED(50, "CLOSED"); 
-	
+	closed(6, "closed");
+
 	private int value;
 	private String name;
-	
+
 	public int getValue() {
 		return value;
 	}
+
 	public void setValue(int value) {
 		this.value = value;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	private AfterSalesStatus(int value, String name) {
 		this.value = value;
 		this.name = name;
