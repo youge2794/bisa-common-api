@@ -36,6 +36,8 @@ public class Trade {
 
 	private Integer trade_guid;     //策略id,用于分表
 	
+	private String trade_no;        //交易流水号
+	
 	@Id
 	@GeneratedValue
 	public int getId() {
@@ -104,12 +106,23 @@ public class Trade {
 	public void setTrade_guid(Integer trade_guid) {
 		this.trade_guid = trade_guid;
 	}
+	
+	public String getTrade_no() {
+		return trade_no;
+	}
+	public void setTrade_no(String trade_no) {
+		this.trade_no = trade_no;
+	}
+	
+	public Trade() {
+		super();
+	}
 	@Override
 	public String toString() {
 		return "Trade [id=" + id + ", order_no=" + order_no + ", user_guid=" + user_guid + ", price=" + price
 				+ ", pay_location=" + pay_location + ", pay_type=" + pay_type + ", pay_status=" + pay_status
 				+ ", refund_price=" + refund_price + ", refund_time=" + refund_time + ", create_time=" + create_time
-				+ ", trade_guid=" + trade_guid + "]";
+				+ ", trade_guid=" + trade_guid + ", trade_no=" + trade_no + "]";
 	}
 	
 }

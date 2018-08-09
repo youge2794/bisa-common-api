@@ -20,8 +20,8 @@ public class ServiceActive {
 	
 	private int id;
 	private int userGuid;   //拥有者的user_guid
-	private String cardNumber; //激活卡号
-	private String activeCode; //激活码
+	private String cardNumber; //激活卡号20位(BHS+时间+3位随机数）   前期可以生成随机卡号；后期有需要可以改成批量顺序卡号
+	private String activeCode; //激活码8位  随机数字
 	private int status; //是否使用；0-未使用；1-已使用（已激活）
 	private int count; //服务次数（激活卡面值）
 	private int time; //充值时间，最低单位/月（如1个月，6个月等）
@@ -30,6 +30,9 @@ public class ServiceActive {
 	private int remark;  //备注类型
 	private String account;//激活账号（服务使用者的账号，手机号或邮箱）
 	private Date activeTime;  //使用时间
+	
+	//private Date creatTime; //创建时间
+	//private int cardType;  //卡的类型，后期可扩展，多类卡型。
 	
 	@Id
 	@GeneratedValue
