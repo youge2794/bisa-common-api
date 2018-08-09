@@ -3,11 +3,10 @@ package com.bisa.health.app.enumerate;
 
 public enum ServiceType {
 	
-	COUNT(0,"COUNT"),
-	TIMING(1,"TIMING");
+	COUNT(0),
+	TIMING(1);
 	
     private int value;  
-    private String name;  
 
     public int getValue() {  
         return value;  
@@ -17,17 +16,10 @@ public enum ServiceType {
         this.value = value;  
     }  
 
-    public String getName() {  
-        return name;  
-    }  
 
-    public void setName(String name) {  
-        this.name = name;  
-    }  
 
-    private ServiceType(int value, String name) {  
+    private ServiceType(int value) {  
         this.setValue(value);  
-        this.setName(name);  
     }  
     
     public static ServiceType getByValue(int value) {  

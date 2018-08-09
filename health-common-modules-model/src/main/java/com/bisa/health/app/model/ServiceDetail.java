@@ -5,11 +5,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Table;
+
+import com.bisa.health.app.enumerate.ServiceType;
 
 @Entity
 @Table(name="e_service_detail",indexes={@Index(columnList="user_guid")})
@@ -24,7 +28,7 @@ public class ServiceDetail implements Serializable{
 	
 	private int user_guid;
 	
-	private int service_type;  //服务类型 0为计数 1为计时
+	private ServiceType service_type;  //服务类型 0为计数 1为计时
 		
 	private Date finished_time;
 	
@@ -58,14 +62,7 @@ public class ServiceDetail implements Serializable{
 		this.product_id = product_id;
 	}
 
-	public int getService_type() {
-		return service_type;
-	}
 
-	public void setService_type(int service_type) {
-		this.service_type = service_type;
-	}
-	
 	public Date getFinished_time() {
 		
 		return finished_time;
@@ -89,12 +86,22 @@ public class ServiceDetail implements Serializable{
 	public void setIs_active(int is_active) {
 		this.is_active = is_active;
 	}
+	
+	
+	@Enumerated(EnumType.ORDINAL)
+	public ServiceType getService_type() {
+		return service_type;
+	}
+
+	public void setService_type(ServiceType service_type) {
+		this.service_type = service_type;
+	}
 
 	public ServiceDetail() {
 		super();
 	}
 
-	public ServiceDetail(int user_guid, int service_type, Date finished_time, int is_active, int count) {
+	public ServiceDetail(int user_guid, ServiceType service_type, Date finished_time, int is_active, int count) {
 		super();
 		this.user_guid = user_guid;
 		this.service_type = service_type;
@@ -106,8 +113,11 @@ public class ServiceDetail implements Serializable{
 	@Override
 	public String toString() {
 		return "ServiceDetail [id=" + id + ", user_guid=" + user_guid + ", service_type=" + service_type
-				+ ", finished_time=" + finished_time + ", is_active=" + is_active + ", count=" + count + "]";
+				+ ", finished_time=" + finished_time + ", is_active=" + is_active + ", count=" + count + ", product_id="
+				+ product_id + "]";
 	}
+
+
 
 	
 

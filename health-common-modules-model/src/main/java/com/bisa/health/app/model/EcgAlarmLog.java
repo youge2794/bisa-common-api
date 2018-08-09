@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Table;
 
-import com.bisa.health.basic.data.bind.CustomDateSerializer;
+import com.bisa.health.entity.bind.CustomDateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**

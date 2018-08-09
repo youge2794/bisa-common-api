@@ -43,19 +43,7 @@ public class Event {
 	private String eventIII_name;
 	private String eventIII_num;
 	private String eventIII_mail;
-	//the forth contact
-	/*
-	private int eventIV_type;
-	private String eventIV_name;
-	private String eventIV_num;
-	*/
 	
-	//the fifth contact
-	/*
-	private int eventV_type;
-	private String eventV_name;
-	private String eventV_num;
-	*/
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getId() {

@@ -1,4 +1,4 @@
-package com.bisa.health.basic.data.bind;
+package com.bisa.health.entity.bind;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;

@@ -3,13 +3,12 @@ package com.bisa.health.app.enumerate;
 
 public enum ReportType {
 	
-	ALARM(9,"ALARM"),
-	MINUTE15(10,"MINUTE15"),
-	HOUR24(11,"HOUR24"), 
-	MINUTE(12,"MINUTE");
+	ALARM(9),
+	MINUTE15(10),
+	HOUR24(11), 
+	MINUTE(12);
 	
     private int value;  
-    private String name;  
 
     public int getValue() {  
         return value;  
@@ -19,17 +18,9 @@ public enum ReportType {
         this.value = value;  
     }  
 
-    public String getName() {  
-        return name;  
-    }  
 
-    public void setName(String name) {  
-        this.name = name;  
-    }  
-
-    private ReportType(int value, String name) {  
+    private ReportType(int value) {  
         this.setValue(value);  
-        this.setName(name);  
     }  
     
     public static ReportType getByValue(int value) {  

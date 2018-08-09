@@ -1,11 +1,16 @@
 package com.bisa.health.app.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Table;
+
+import com.bisa.health.entity.bind.CustomDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
 @Table(name="e_event_marker",indexes={@Index(columnList="dat_filename")})
@@ -14,7 +19,7 @@ public class EventMarker {
 	private int id;
 	private int user_guid;
 	private String dat_filename;
-	private String session_time;
+	private Date session_time;
 	private int position_start;
 	private int position_end;
 	private int marker_type;
@@ -42,11 +47,11 @@ public class EventMarker {
 		this.dat_filename = dat_filename;
 	}
 	
-	@Column(columnDefinition = "datetime")
-	public String getSession_time() {
+	@JsonSerialize(using = CustomDateSerializer.class)
+	public Date getSession_time() {
 		return session_time;
 	}
-	public void setSession_time(String session_time) {
+	public void setSession_time(Date session_time) {
 		this.session_time = session_time;
 	}
 	public int getMarker_type() {
