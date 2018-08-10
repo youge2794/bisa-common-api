@@ -6,6 +6,7 @@ import javax.validation.ConstraintValidatorContext;
 import com.bisa.health.app.constraints.ShapeConstraint;
 import com.bisa.health.app.enumerate.ShapeTypeEnum;
 
+
 public class ShapeValidator implements ConstraintValidator<ShapeConstraint, Enum<ShapeTypeEnum>> {
 
 	public void initialize(ShapeConstraint constraintAnnotation) {

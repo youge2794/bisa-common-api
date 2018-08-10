@@ -6,21 +6,23 @@ import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import com.bisa.health.app.validator.SexValidator;
+import com.bisa.health.app.validator.LoginTypeValidator;
 
 
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
 @Documented
-@Constraint(validatedBy = {SexValidator.class})
-public @interface SexConstraint {
-	String message() default "Invalid sex type";
+@Constraint(validatedBy = {LoginTypeValidator.class})
+public @interface LoginTypeConstraint {
+	String message() default "Invalid login type";
 
     Class<?>[] groups() default {};
 
