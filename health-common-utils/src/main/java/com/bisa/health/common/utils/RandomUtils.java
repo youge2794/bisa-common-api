@@ -7,7 +7,16 @@ import java.util.Random;
 public class RandomUtils {
 
 	/**
-	 * 已当前系统时间作为随机数 年月日秒和3个随机数
+	 * 20180808
+	 * @return
+	 */
+	public static String RandomOfDate() {
+		SimpleDateFormat userSdf = new SimpleDateFormat("yyyyMMdd");
+		String timeStr = userSdf.format(new Date());
+		return timeStr;
+	}
+	/**
+	 * 已当前系统时间作为随机数 年月日时分秒和3个随机数
 	 * 17位数字
 	 * 示例：20180808220620358
 	 * @return

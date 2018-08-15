@@ -2,6 +2,7 @@ package com.bisa.health.shop.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,9 +17,9 @@ public class GoodsImg implements Serializable{
 	private static final long serialVersionUID = 6982202429029890618L;
 	
 	private Integer id;
-	private String goods_number_id;	//商品编号
-	private String goods_img_url;	// 商品图片地址
-	private String position;		//位置
+	private String goodsNumber;	//商品编号
+	private String imgUrl;	// 商品图片地址
+	private Integer position;		//位置
 	@Id
 	@GeneratedValue
 	public Integer getId() {
@@ -28,36 +29,46 @@ public class GoodsImg implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public String getGoods_number_id() {
-		return goods_number_id;
+	@Column(name="goods_number")
+	public String getGoodsNumber() {
+		return goodsNumber;
 	}
 
-	public void setGoods_number_id(String goods_number_id) {
-		this.goods_number_id = goods_number_id;
+	public void setGoodsNumber(String goodsNumber) {
+		this.goodsNumber = goodsNumber;
+	}
+	@Column(name="img_url")
+	public String getImgUrl() {
+		return imgUrl;
 	}
 
-	public String getGoods_img_url() {
-		return goods_img_url;
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
-
-	public void setGoods_img_url(String goods_img_url) {
-		this.goods_img_url = goods_img_url;
-	}
-
-	public String getPosition() {
+	public Integer getPosition() {
 		return position;
 	}
 
-	public void setPosition(String position) {
-		this.position = position == null ? null : position.trim();
+	public void setPosition(Integer position) {
+		this.position = position;
+	}
+
+	public GoodsImg() {
+		super();
+	}
+
+	public GoodsImg(Integer id, String goodsNumber, String imgUrl, Integer position) {
+		super();
+		this.id = id;
+		this.goodsNumber = goodsNumber;
+		this.imgUrl = imgUrl;
+		this.position = position;
 	}
 
 	@Override
 	public String toString() {
-		return "GoodsImg [id=" + id + ", goods_number_id=" + goods_number_id + ", goods_img_url=" + goods_img_url
-				+ ", position=" + position + "]";
+		return "GoodsImg [id=" + id + ", goodsNumber=" + goodsNumber + ", imgUrl=" + imgUrl + ", position=" + position
+				+ "]";
 	}
-	
 	
 }

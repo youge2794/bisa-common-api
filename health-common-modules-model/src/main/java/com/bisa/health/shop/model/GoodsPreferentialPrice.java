@@ -3,6 +3,7 @@ package com.bisa.health.shop.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,14 +16,12 @@ public class GoodsPreferentialPrice implements Serializable{
 	 */
 	private static final long serialVersionUID = -6928121695837409247L;
 	private Integer id;
-	private Integer classify_id; 	 	//商品分类编号
-	private String goods_number_id;		//商品编号
-
+	private Integer classifyId; 	 	//商品分类编号
+	private String goodsNumber;		//商品编号
 	private Integer count;   //套餐内单品数量
-
-	private String goods_name;			//商品名字
-	private BigDecimal goods_price;			//单价  1000
-	private BigDecimal preferential_price;	//优惠价格  800
+	private String goodsName;			//商品名字
+	private BigDecimal goodsPrice;			//单价  1000
+	private BigDecimal preferentialPrice;	//优惠价格  800
 	
 	@Id
 	@GeneratedValue
@@ -33,45 +32,21 @@ public class GoodsPreferentialPrice implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public Integer getClassify_id() {
-		return classify_id;
+	@Column(name="classify_id")
+	public Integer getClassifyId() {
+		return classifyId;
 	}
 
-	public void setClassify_id(Integer classify_id) {
-		this.classify_id = classify_id;
+	public void setClassifyId(Integer classifyId) {
+		this.classifyId = classifyId;
+	}
+	@Column(name="goods_number")
+	public String getGoodsNumber() {
+		return goodsNumber;
 	}
 
-	public String getGoods_number_id() {
-		return goods_number_id;
-	}
-
-	public void setGoods_number_id(String goods_number_id) {
-		this.goods_number_id = goods_number_id;
-	}
-
-	public String getGoods_name() {
-		return goods_name;
-	}
-
-	public void setGoods_name(String goods_name) {
-		this.goods_name = goods_name;
-	}
-
-	public BigDecimal getGoods_price() {
-		return goods_price;
-	}
-
-	public void setGoods_price(BigDecimal goods_price) {
-		this.goods_price = goods_price;
-	}
-
-	public BigDecimal getPreferential_price() {
-		return preferential_price;
-	}
-
-	public void setPreferential_price(BigDecimal preferential_price) {
-		this.preferential_price = preferential_price;
+	public void setGoodsNumber(String goodsNumber) {
+		this.goodsNumber = goodsNumber;
 	}
 
 	public Integer getCount() {
@@ -81,14 +56,52 @@ public class GoodsPreferentialPrice implements Serializable{
 	public void setCount(Integer count) {
 		this.count = count;
 	}
+	@Column(name="goods_name")
+	public String getGoodsName() {
+		return goodsName;
+	}
+
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
+	@Column(name="goods_price")
+	public BigDecimal getGoodsPrice() {
+		return goodsPrice;
+	}
+
+	public void setGoodsPrice(BigDecimal goodsPrice) {
+		this.goodsPrice = goodsPrice;
+	}
+	@Column(name="preferential_price")
+	public BigDecimal getPreferentialPrice() {
+		return preferentialPrice;
+	}
+
+	public void setPreferentialPrice(BigDecimal preferentialPrice) {
+		this.preferentialPrice = preferentialPrice;
+	}
+
+	public GoodsPreferentialPrice() {
+		super();
+	}
+
+	public GoodsPreferentialPrice(Integer id, Integer classifyId, String goodsNumber, Integer count, String goodsName,
+			BigDecimal goodsPrice, BigDecimal preferentialPrice) {
+		super();
+		this.id = id;
+		this.classifyId = classifyId;
+		this.goodsNumber = goodsNumber;
+		this.count = count;
+		this.goodsName = goodsName;
+		this.goodsPrice = goodsPrice;
+		this.preferentialPrice = preferentialPrice;
+	}
 
 	@Override
 	public String toString() {
-		return "GoodsPreferentialPrice [id=" + id + ", classify_id=" + classify_id + ", goods_number_id="
-				+ goods_number_id + ", goods_name=" + goods_name + ", goods_price=" + goods_price
-				+ ", preferential_price=" + preferential_price + "]";
+		return "GoodsPreferentialPrice [id=" + id + ", classifyId=" + classifyId + ", goodsNumber=" + goodsNumber
+				+ ", count=" + count + ", goodsName=" + goodsName + ", goodsPrice=" + goodsPrice
+				+ ", preferentialPrice=" + preferentialPrice + "]";
 	}
-	
-	
 
 }

@@ -19,6 +19,15 @@
 	</properties>
 
 	<dependencies>
+		<!-- 邮件  start-->
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		<!-- 邮件 end -->
+		
 		<dependency>
 			<groupId>org.jdom</groupId>
 			<artifactId>jdom</artifactId>
@@ -39,8 +48,6 @@
 			<artifactId>commons-codec</artifactId>
 			<version>1.9</version>
 		</dependency>
-
-
 
 		<dependency>
 			<groupId>javax.servlet</groupId>

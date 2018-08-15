@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,20 +18,20 @@ public class Goods implements Serializable{
 	 */
 	private static final long serialVersionUID = -4256398755051915154L;
 	private Integer id;
-	private Integer classify_id;    //商品分类编号
-	private String goods_name;      //商品名字
-	private String goods_number;	//商品编号
+	private Integer classifyId;    //商品分类编号
+	private String goodsName;      //商品名字
+	private String goodsNumber;	//商品编号
 	
 	private String title;  			//商品大标题
 	private String description;		//商品描述
-	private BigDecimal goods_price;		//单价
-	private Integer store_number;   //商品库存数量
-	private String need_post;		//0-不需要邮递；1-需要邮递
+	private BigDecimal goodsPrice;		//单价
+	private Integer storeNumber;   //商品库存数量
+	private Integer needPost;		//0-不需要邮递；1-需要邮递
 	
-	private Date putaway_time;		//上架时间
-	private Date sold_out_time;		//下架时间
-	private Integer sales_number;	//销量
-	private Integer appraise_number;//评论数量
+	private Date putawayTime;		//上架时间
+	private Date soldoutTime;		//下架时间
+	private Integer salesNumber;	//销量
+	private Integer appraiseNumber;//评论数量
 	@Id
 	@GeneratedValue
 	public Integer getId() {
@@ -40,29 +41,29 @@ public class Goods implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public Integer getClassify_id() {
-		return classify_id;
+	@Column(name="classify_id")
+	public Integer getClassifyId() {
+		return classifyId;
 	}
 
-	public void setClassify_id(Integer classify_id) {
-		this.classify_id = classify_id;
+	public void setClassifyId(Integer classifyId) {
+		this.classifyId = classifyId;
+	}
+	@Column(name="goods_name")
+	public String getGoodsName() {
+		return goodsName;
 	}
 
-	public String getGoods_name() {
-		return goods_name;
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
+	@Column(name="goods_number")
+	public String getGoodsNumber() {
+		return goodsNumber;
 	}
 
-	public void setGoods_name(String goods_name) {
-		this.goods_name = goods_name;
-	}
-
-	public String getGoods_number() {
-		return goods_number;
-	}
-
-	public void setGoods_number(String goods_number) {
-		this.goods_number = goods_number;
+	public void setGoodsNumber(String goodsNumber) {
+		this.goodsNumber = goodsNumber;
 	}
 
 	public String getTitle() {
@@ -80,70 +81,93 @@ public class Goods implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public BigDecimal getGoods_price() {
-		return goods_price;
+	@Column(name="goods_price")
+	public BigDecimal getGoodsPrice() {
+		return goodsPrice;
 	}
 
-	public void setGoods_price(BigDecimal goods_price) {
-		this.goods_price = goods_price;
+	public void setGoodsPrice(BigDecimal goodsPrice) {
+		this.goodsPrice = goodsPrice;
+	}
+	@Column(name="store_number")
+	public Integer getStoreNumber() {
+		return storeNumber;
 	}
 
-	public Integer getStore_number() {
-		return store_number;
+	public void setStoreNumber(Integer storeNumber) {
+		this.storeNumber = storeNumber;
+	}
+	@Column(name="need_post")
+	public Integer getNeedPost() {
+		return needPost;
 	}
 
-	public void setStore_number(Integer store_number) {
-		this.store_number = store_number;
+	public void setNeedPost(Integer needPost) {
+		this.needPost = needPost;
+	}
+	@Column(name="putaway_time")
+	public Date getPutawayTime() {
+		return putawayTime;
 	}
 
-	public String getNeed_post() {
-		return need_post;
+	public void setPutawayTime(Date putawayTime) {
+		this.putawayTime = putawayTime;
+	}
+	@Column(name="soldout_time")
+	public Date getSoldoutTime() {
+		return soldoutTime;
 	}
 
-	public void setNeed_post(String need_post) {
-		this.need_post = need_post;
+	public void setSoldoutTime(Date soldoutTime) {
+		this.soldoutTime = soldoutTime;
+	}
+	@Column(name="sales_number")
+	public Integer getSalesNumber() {
+		return salesNumber;
 	}
 
-	public Date getPutaway_time() {
-		return putaway_time;
+	public void setSalesNumber(Integer salesNumber) {
+		this.salesNumber = salesNumber;
+	}
+	@Column(name="appraise_number")
+	public Integer getAppraiseNumber() {
+		return appraiseNumber;
 	}
 
-	public void setPutaway_time(Date putaway_time) {
-		this.putaway_time = putaway_time;
+	public void setAppraiseNumber(Integer appraiseNumber) {
+		this.appraiseNumber = appraiseNumber;
 	}
 
-	public Date getSold_out_time() {
-		return sold_out_time;
+	public Goods() {
+		super();
 	}
 
-	public void setSold_out_time(Date sold_out_time) {
-		this.sold_out_time = sold_out_time;
-	}
-
-	public Integer getSales_number() {
-		return sales_number;
-	}
-
-	public void setSales_number(Integer sales_number) {
-		this.sales_number = sales_number;
-	}
-
-	public Integer getAppraise_number() {
-		return appraise_number;
-	}
-
-	public void setAppraise_number(Integer appraise_number) {
-		this.appraise_number = appraise_number;
+	public Goods(Integer id, Integer classifyId, String goodsName, String goodsNumber, String title, String description,
+			BigDecimal goodsPrice, Integer storeNumber, Integer needPost, Date putawayTime, Date soldoutTime,
+			Integer salesNumber, Integer appraiseNumber) {
+		super();
+		this.id = id;
+		this.classifyId = classifyId;
+		this.goodsName = goodsName;
+		this.goodsNumber = goodsNumber;
+		this.title = title;
+		this.description = description;
+		this.goodsPrice = goodsPrice;
+		this.storeNumber = storeNumber;
+		this.needPost = needPost;
+		this.putawayTime = putawayTime;
+		this.soldoutTime = soldoutTime;
+		this.salesNumber = salesNumber;
+		this.appraiseNumber = appraiseNumber;
 	}
 
 	@Override
 	public String toString() {
-		return "Goods [id=" + id + ", classify_id=" + classify_id + ", goods_name=" + goods_name + ", goods_number="
-				+ goods_number + ", title=" + title + ", description=" + description + ", goods_price=" + goods_price
-				+ ", store_number=" + store_number + ", need_post=" + need_post + ", putaway_time=" + putaway_time
-				+ ", sold_out_time=" + sold_out_time + ", sales_number=" + sales_number + ", appraise_number="
-				+ appraise_number + "]";
+		return "Goods [id=" + id + ", classifyId=" + classifyId + ", goodsName=" + goodsName + ", goodsNumber="
+				+ goodsNumber + ", title=" + title + ", description=" + description + ", goodsPrice=" + goodsPrice
+				+ ", storeNumber=" + storeNumber + ", needPost=" + needPost + ", putawayTime=" + putawayTime
+				+ ", soldoutTime=" + soldoutTime + ", salesNumber=" + salesNumber + ", appraiseNumber=" + appraiseNumber
+				+ "]";
 	}
-
+	
 }

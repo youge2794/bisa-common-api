@@ -42,7 +42,11 @@ public enum PayStatus {
 	/**
 	 * 退款失败
 	 */
-	refund_failure(8, "REFUND_FAILURE");
+	refund_failure(8, "REFUND_FAILURE"),
+	/**
+	 * 等待退款
+	 */
+	refunding(9, "refunding");
 
 	private int value;
 	private String name;

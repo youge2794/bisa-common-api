@@ -2,6 +2,7 @@ package com.bisa.health.shop.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,9 +17,9 @@ public class Classify implements Serializable{
 	private static final long serialVersionUID = -8538977431012879661L;
 	
 	private Integer id;
-	private String classify_name;      //分类名称
-	private Integer highest_super_id;   //顶级分类编号
-	private Integer super_id; 		   //父分类编号
+	private String classifyName;      //分类名称
+	private Integer highestSuperId;   //顶级分类编号
+	private Integer superId; 		   //父分类编号
 
 	@Id
 	@GeneratedValue
@@ -29,37 +30,48 @@ public class Classify implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public String getClassify_name() {
-		return classify_name;
+	@Column(name="classify_name")
+	public String getClassifyName() {
+		return classifyName;
 	}
 
-	public void setClassify_name(String classify_name) {
-		this.classify_name = classify_name;
+	public void setClassifyName(String classifyName) {
+		this.classifyName = classifyName;
+	}
+	@Column(name="highest_super_id")
+	public Integer getHighestSuperId() {
+		return highestSuperId;
 	}
 
-	public Integer getHighest_super_id() {
-		return highest_super_id;
+	public void setHighestSuperId(Integer highestSuperId) {
+		this.highestSuperId = highestSuperId;
+	}
+	@Column(name="super_id")
+	public Integer getSuperId() {
+		return superId;
 	}
 
-	public void setHighest_super_id(Integer highest_super_id) {
-		this.highest_super_id = highest_super_id;
+	public void setSuperId(Integer superId) {
+		this.superId = superId;
 	}
 
-	public Integer getSuper_id() {
-		return super_id;
+	public Classify() {
+		super();
 	}
 
-	public void setSuper_id(Integer super_id) {
-		this.super_id = super_id;
+	public Classify(Integer id, String classifyName, Integer highestSuperId, Integer superId) {
+		super();
+		this.id = id;
+		this.classifyName = classifyName;
+		this.highestSuperId = highestSuperId;
+		this.superId = superId;
 	}
 
 	@Override
 	public String toString() {
-		return "Classify [id=" + id + ", classify_name=" + classify_name + ", highest_super_id=" + highest_super_id
-				+ ", super_id=" + super_id + "]";
+		return "Classify [id=" + id + ", classifyName=" + classifyName + ", highestSuperId=" + highestSuperId
+				+ ", superId=" + superId + "]";
 	}
-	
 	
 
 }
