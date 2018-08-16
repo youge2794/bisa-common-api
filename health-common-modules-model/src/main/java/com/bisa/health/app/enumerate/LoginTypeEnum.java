@@ -2,10 +2,12 @@ package com.bisa.health.app.enumerate;
 
 
 public enum LoginTypeEnum{
+	 PWD(4),
 	 PHONE(1),
-	 WECHAT(2),
 	 EMAIL(3),
-	 PWD(4);
+	 WECHAT(2);
+
+	
 	    
 	 private int value;
 	 
