@@ -5,7 +5,7 @@ public enum LoginTypeEnum{
 	 PHONE(1),
 	 WECHAT(2),
 	 EMAIL(3),
-	 WEIBO(4);
+	 PWD(4);
 	    
 	 private int value;
 	 
