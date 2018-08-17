@@ -4,6 +4,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import com.bisa.health.app.constraints.ServiceTypeConstraint;
 import com.bisa.health.app.enumerate.ServiceType;
+
 public class ServiceTypeValidator implements ConstraintValidator<ServiceTypeConstraint, Enum<ServiceType>> {
 
 	public void initialize(ServiceTypeConstraint constraintAnnotation) {
@@ -17,8 +18,4 @@ public class ServiceTypeValidator implements ConstraintValidator<ServiceTypeCons
 		
 		return false;
 	}
-
-
-
-
 }

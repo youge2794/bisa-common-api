@@ -21,5 +21,4 @@ public enum RoleTypeEnum{
 	        return null;  
 	}
 	
-	
 }

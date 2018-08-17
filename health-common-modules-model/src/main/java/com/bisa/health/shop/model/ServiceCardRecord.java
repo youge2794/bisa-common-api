@@ -31,7 +31,7 @@ public class ServiceCardRecord {
 	private Date activeTime;  //使用时间，激活时间
 	private Date createTime; //创建时间，购买时间
 	private Integer cardStatus; //是否使用；0-未使用；1-已使用（已激活）
-	
+	private Integer orderGoodsId;  //关联订单详情及激活卡， 便于售后处理
 	@Id
 	@GeneratedValue
 	public Integer getId() {
@@ -128,12 +128,22 @@ public class ServiceCardRecord {
 	public void setCardStatus(Integer cardStatus) {
 		this.cardStatus = cardStatus;
 	}
+	
+	@Column(name="order_goods_id")
+	public Integer getOrderGoodsId() {
+		return orderGoodsId;
+	}
+	public void setOrderGoodsId(Integer orderGoodsId) {
+		this.orderGoodsId = orderGoodsId;
+	}
+	
 	public ServiceCardRecord() {
 		super();
 	}
+	
 	public ServiceCardRecord(Integer id, Integer userGuid, String cardName, String cardNumber, String activeCode,
 			Integer cardType, Integer classifyId, Integer count, String account, Date activeTime, Date createTime,
-			Integer cardStatus) {
+			Integer cardStatus, Integer orderGoodsId) {
 		super();
 		this.id = id;
 		this.userGuid = userGuid;
@@ -147,13 +157,16 @@ public class ServiceCardRecord {
 		this.activeTime = activeTime;
 		this.createTime = createTime;
 		this.cardStatus = cardStatus;
+		this.orderGoodsId = orderGoodsId;
 	}
+	
 	@Override
 	public String toString() {
 		return "ServiceCardRecord [id=" + id + ", userGuid=" + userGuid + ", cardName=" + cardName + ", cardNumber="
 				+ cardNumber + ", activeCode=" + activeCode + ", cardType=" + cardType + ", classifyId=" + classifyId
 				+ ", count=" + count + ", account=" + account + ", activeTime=" + activeTime + ", createTime="
-				+ createTime + ", cardStatus=" + cardStatus + "]";
+				+ createTime + ", cardStatus=" + cardStatus + ", orderGoodsId=" + orderGoodsId + "]";
 	}
+	
 	
 }

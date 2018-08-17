@@ -363,13 +363,28 @@ public abstract class DateUtils {
 		return p.matcher(date).matches();
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(gmtToUserTime("GMT+08","2018-1-31 16:56:30")); 
-		//getAreaTime("GMT-06",1511526535406l);//2017-11-24 20:28:55 to 2017-11-24 14:28:55
-		//getGMTtimeSeconds();
-		
-		String curDate = "20171025233208";
-		//System.out.println("timeToLong>>>" + timeToLong(curDate));
+	/**
+	 * 日期加减
+	 * Calendar.MONTH, count
+	 * @param unit
+	 * @param count
+	 * @return
+	 */
+	public static Date getCalendarFinishedTime(int unit, int count){
+		Calendar calendar = Calendar.getInstance();//得到Calendar实例
+		calendar.add(unit, count);   //日期加减
+		return calendar.getTime();//得到时间赋给Data
 	}
+	
+	/**
+	 * Date转Calendar
+	 * @param date
+	 * @return
+	 */
+	public static Calendar dataToCalendar(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar;
+    }
 
 }

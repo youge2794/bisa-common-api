@@ -1,10 +1,9 @@
 package com.bisa.health.app.enumerate;
 
-
 public enum ServiceType {
 	
-	COUNT(0),
-	TIMING(1);
+	COUNT(4),
+	TIMING(5);
 	
     private int value;  
 
@@ -16,16 +15,14 @@ public enum ServiceType {
         this.value = value;  
     }  
 
-
-
     private ServiceType(int value) {  
         this.setValue(value);  
     }  
     
     public static ServiceType getByValue(int value) {  
-        for (ServiceType reportType : values()) {  
-            if (reportType.getValue() == value) {  
-                return reportType;  
+        for (ServiceType serviceType : values()) {  
+            if (serviceType.getValue() == value) {  
+                return serviceType;  
             }  
         }  
         return null;  
