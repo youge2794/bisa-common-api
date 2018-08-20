@@ -9,9 +9,9 @@ import com.bisa.health.basic.dao.BaseDao;
 public class ServiceDetailDaoImpl extends BaseDao<ServiceDetail> implements IServiceDetailDao {
 
 	@Override
-	public ServiceDetail getServiceDetailByGuidAndClassifyId(int userGuid, int classifyId, int serviceType) {
+	public ServiceDetail selectServiceDetailByGuidAndClassifyId(int userGuid, int classifyId, int serviceType) {
 		String sql = "SELECT id, user_guid, service_type, finished_time, is_active, count, classify_id, version FROM e_service_detail WHERE user_guid = ? AND classify_id = ? AND service_type = ?";
-		return super.queryObjectBySql(sql, new Object[]{userGuid, classifyId, serviceType}, ServiceDetail.class);
+		return super.selectObjectBySql(sql, new Object[]{userGuid, classifyId, serviceType}, ServiceDetail.class);
 	}
 
 	@Override

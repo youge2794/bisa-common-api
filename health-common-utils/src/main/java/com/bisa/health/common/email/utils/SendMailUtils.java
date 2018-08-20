@@ -7,6 +7,28 @@ package com.bisa.health.common.email.utils;
  */
 public class SendMailUtils {
 	
+	private SendMailUtils() {}
+	
+	//单例模式-饿汉模式：加载类时比较慢，但运行时获取对象的速度比较快，线程安全
+	private static SendMailUtils instance = new SendMailUtils();
+	
+	public static SendMailUtils getInstance(){
+         return instance;
+    }
+	
+	//单例模式-懒汉模式：加载类时比较快，但运行时获取对象的速度比较慢，线程不安全
+	/*
+	private static SendMailUtils instance;
+	
+	public static synchronized SendMailUtils getInstance(){
+		if(instance == null){
+			return new SendMailUtils();
+		}
+		return instance;
+	}
+	*/
+	
+	
 	/**
 	 * 发送收件人邮箱和验证码，发送验证码邮件
 	 * @param username
@@ -79,6 +101,10 @@ public class SendMailUtils {
 		  return false; 
 		 }
 		return true;
+	}
+	
+	public static void main(String[] args) {
+		SendMailUtils.getInstance().sendCodeByMail("380075669@qq.com", "1234");
 	}
 	
 }

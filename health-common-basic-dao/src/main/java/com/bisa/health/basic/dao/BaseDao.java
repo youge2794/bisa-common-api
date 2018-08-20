@@ -536,7 +536,13 @@ public class BaseDao<T> implements IBaseDao<T> {
 	 */
 
 
-
+	/**
+	 * 获取持久状态的对象， 可直接set执行update
+	 * @param sql
+	 * @param args
+	 * @param clz
+	 * @return
+	 */
 	public T queryObjectBySql(String sql, Object[] args, Class<?> clz) {
 		return queryObjectBySql(sql,args,clz,true);
 	}
@@ -553,13 +559,42 @@ public class BaseDao<T> implements IBaseDao<T> {
 		List<T> t = query.list();
 		return t.isEmpty() ? null : t.get(0);
 	}
-
+	
+	/**
+	 * 获取托管状态的对象， 不可直接set执行update
+	 * @param sql
+	 * @param args
+	 * @param clz
+	 * @return
+	 */
+	public T selectObjectBySql(String sql, Object[] args, Class<?> clz){
+		return selectObjectBySql(sql,args,clz,true);
+	}
+	
+	public T selectObjectBySql(String sql, Object[] args, Class<?> clz, boolean hasEntity){
+		SQLQuery query = getSession().createSQLQuery(sql);
+		if (args != null)
+			setParameter(query, args);
+		if (hasEntity) {
+			query.addEntity(clz);
+		} else {
+			query.setResultTransformer(Transformers.aliasToBean(clz));
+		}
+		List<T> t = query.list();
+		
+		if(!t.isEmpty()){
+			T _t = t.get(0);
+			this.getSession().evict(_t); //托管状态
+			return _t;
+		}else{
+			return null;
+		}
+	}
 	
 	public int queryBySql(String sql, Object[] args) {
 		SQLQuery query = getSession().createSQLQuery(sql);
 		if (args != null)
 			setParameter(query, args);
-		
 		return query.executeUpdate();
 	}
 
@@ -586,7 +621,4 @@ public class BaseDao<T> implements IBaseDao<T> {
 	public int deleteBySql(String sql,Object[] args) {
 		return queryBySql(sql,args);
 	}
-
-
-	
 }

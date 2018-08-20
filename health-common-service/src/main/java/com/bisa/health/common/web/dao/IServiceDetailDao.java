@@ -7,7 +7,7 @@ public interface IServiceDetailDao {
 	/**
 	 * 根据类别和用户id获得服务细节
 	 */
-	public ServiceDetail getServiceDetailByGuidAndClassifyId(int userGuid, int classifyId, int serviceType);
+	public ServiceDetail selectServiceDetailByGuidAndClassifyId(int userGuid, int classifyId, int serviceType);
 
 	public int addServiceDetail(ServiceDetail serviceDetail);
 	
