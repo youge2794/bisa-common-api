@@ -18,8 +18,8 @@ public class ServiceDetailServiceImpl implements IServiceDetailService {
 	private IServiceDetailDao serviceDetailDao;
 
 	@Override
-	public ServiceDetail getServiceDetailByGuidAndClassifyId(int userGuid, int classifyId, int serviceType) {
-		return serviceDetailDao.getServiceDetailByGuidAndClassifyId(userGuid, classifyId, serviceType);
+	public ServiceDetail selectServiceDetailByGuidAndClassifyId(int userGuid, int classifyId, int serviceType) {
+		return serviceDetailDao.selectServiceDetailByGuidAndClassifyId(userGuid, classifyId, serviceType);
 	}
 
 	@Override
@@ -55,9 +55,9 @@ public class ServiceDetailServiceImpl implements IServiceDetailService {
 			}else{
 				return false;
 			}
-			
-			serviceDetail.setVersion(serviceDetail.getVersion() + 1);
-			result = serviceDetailDao.updateServiceDetail(serviceDetail, serviceDetail.getVersion());
+			int version = serviceDetail.getVersion();
+			serviceDetail.setVersion(version + 1);
+			result = serviceDetailDao.updateServiceDetail(serviceDetail, version);
 		}
 		
 		return result >= 1 ? true : false;
