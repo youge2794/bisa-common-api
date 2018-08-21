@@ -7,6 +7,15 @@ package com.bisa.health.common.email.utils;
  */
 public class SendMailUtils {
 	
+	
+	 private static SendMailUtils instance;
+	    private SendMailUtils() {}
+	    public static synchronized SendMailUtils getInstance() {
+	        if (instance == null) {
+	            instance = new SendMailUtils();
+	        }
+	        return instance;
+	    }
 	/**
 	 * 发送收件人邮箱和验证码，发送验证码邮件
 	 * @param username

@@ -2,7 +2,7 @@ package com.bisa.health.app.enumerate;
 
 public enum RedisKey {
 
-	COMMON_CODE("sms_"), BIND_PHONE_CODE("sms_bind_"), BIND_EMAIL_CODE("email_bind_");
+	COMMON_CODE("sms_"),BIND_EMAIL_CODE("email_bind_");
 
 	private String value;
 
