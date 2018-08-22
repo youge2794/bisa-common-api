@@ -25,7 +25,7 @@ public class MailContent {
 	}
 
 	public static String sentVarifyUrlMail(String varify_url) {
-		String content = "尊敬的悉心用户，您好！\n您正在执行绑定邮箱操作，请点击以下这个链接：\n" + varify_url + "\n" + "请在有效时间内点击链接进行邮箱绑定。\n本邮件由系统自动发出，切勿直接回复！\n悉心呵护您的健康！";
+		String content = "尊敬的悉心用户，您好！\n您正在执行绑定邮箱操作，请点击以下这个链接：\n" +"<a href='"+varify_url+"'>验证邮箱</a>" + "\n" + "请在有效时间内点击链接进行邮箱绑定。\n本邮件由系统自动发出，切勿直接回复！\n悉心呵护您的健康！";
 		return content;
 	}
 	
