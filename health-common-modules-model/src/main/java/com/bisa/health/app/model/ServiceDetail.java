@@ -14,7 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 import com.bisa.health.app.enumerate.ServiceType;
+import com.bisa.health.entity.bind.GoodsClassifyConverter;
 import com.bisa.health.entity.bind.ServiceTypeConverter;
+import com.bisa.health.shop.enumerate.GoodsClassify;
 
 @Entity
 @Table(name="e_service_detail",indexes={@Index(columnList="user_guid")})
@@ -37,7 +39,7 @@ public class ServiceDetail implements Serializable{
 	
 	private int count;	//剩余次数
 	
-	private int classifyId;  //商品类别
+	private GoodsClassify classifyId;  //商品类别
 	
 	@Version
     private int version;	//乐观锁，版本控制
@@ -93,16 +95,18 @@ public class ServiceDetail implements Serializable{
 	}
 	
 	@Column(name="classify_id")
-	public int getClassifyId() {
+	@Convert(converter=GoodsClassifyConverter.class)
+	public GoodsClassify getClassifyId() {
 		return classifyId;
 	}
-	public void setClassifyId(int classifyId) {
+	public void setClassifyId(GoodsClassify classifyId) {
 		this.classifyId = classifyId;
 	}
 	
 	public int getVersion() {
 		return version;
 	}
+
 	public void setVersion(int version) {
 		this.version = version;
 	}
@@ -112,7 +116,7 @@ public class ServiceDetail implements Serializable{
 	}
 	
 	public ServiceDetail(int id, int userGuid, ServiceType serviceType, Date finishedTime, int isActive, int count,
-			int classifyId, int version) {
+			GoodsClassify classifyId, int version) {
 		super();
 		this.id = id;
 		this.userGuid = userGuid;
