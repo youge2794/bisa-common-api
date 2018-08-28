@@ -2,11 +2,11 @@ package com.bisa.health.app.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import com.bisa.health.app.constraints.ReportStatusConstraint;
+import com.bisa.health.app.constraints.ReportTypeConstraint;
 import com.bisa.health.app.enumerate.ReportType;
-public class ReportTypeValidator implements ConstraintValidator<ReportStatusConstraint, Enum<ReportType>> {
+public class ReportTypeValidator implements ConstraintValidator<ReportTypeConstraint, Enum<ReportType>> {
 
-	public void initialize(ReportStatusConstraint constraintAnnotation) {
+	public void initialize(ReportTypeConstraint constraintAnnotation) {
 		
 	}
 

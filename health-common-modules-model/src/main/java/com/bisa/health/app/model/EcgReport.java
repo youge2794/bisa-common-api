@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -14,10 +15,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.bisa.health.app.constraints.ReportStatusConstraint;
 import com.bisa.health.app.enumerate.ReportStatus;
 import com.bisa.health.app.enumerate.ReportType;
 import com.bisa.health.app.enumerate.SexTypeEnum;
 import com.bisa.health.entity.bind.CustomDateSerializer;
+import com.bisa.health.entity.bind.ReportStatusConverter;
+import com.bisa.health.entity.bind.ReportTypeConverter;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
@@ -182,14 +186,14 @@ public class EcgReport implements Serializable{
 	public void setSex(SexTypeEnum sex) {
 		this.sex = sex;
 	}
-	@Enumerated(EnumType.ORDINAL)
+	@Convert(converter=ReportTypeConverter.class)
 	public ReportType getReport_type() {
 		return report_type;
 	}
 	public void setReport_type(ReportType report_type) {
 		this.report_type = report_type;
 	}
-	@Enumerated(EnumType.ORDINAL)
+	@Convert(converter=ReportStatusConverter.class)
 	public ReportStatus getReport_status() {
 		return report_status;
 	}

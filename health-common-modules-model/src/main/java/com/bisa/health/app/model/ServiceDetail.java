@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Table;
 import javax.persistence.Version;
+
+import com.bisa.health.app.enumerate.ServiceType;
+import com.bisa.health.entity.bind.ServiceTypeConverter;
 
 @Entity
 @Table(name="e_service_detail",indexes={@Index(columnList="user_guid")})
@@ -25,7 +29,7 @@ public class ServiceDetail implements Serializable{
 	
 	private int userGuid;
 	
-	private int serviceType;  //服务类型 4为计数 5为计时
+	private ServiceType serviceType;  //服务类型 4为计数 5为计时
 		
 	private Date finishedTime;  //服务到期时间
 	
@@ -56,10 +60,11 @@ public class ServiceDetail implements Serializable{
 	}
 	
 	@Column(name="service_type")
-	public int getServiceType() {
+	@Convert(converter=ServiceTypeConverter.class)
+	public ServiceType getServiceType() {
 		return serviceType;
 	}
-	public void setServiceType(int serviceType) {
+	public void setServiceType(ServiceType serviceType) {
 		this.serviceType = serviceType;
 	}
 	
@@ -67,6 +72,7 @@ public class ServiceDetail implements Serializable{
 	public Date getFinishedTime() {
 		return finishedTime;
 	}
+	
 	public void setFinishedTime(Date finishedTime) {
 		this.finishedTime = finishedTime;
 	}
@@ -105,7 +111,7 @@ public class ServiceDetail implements Serializable{
 		super();
 	}
 	
-	public ServiceDetail(int id, int userGuid, int serviceType, Date finishedTime, int isActive, int count,
+	public ServiceDetail(int id, int userGuid, ServiceType serviceType, Date finishedTime, int isActive, int count,
 			int classifyId, int version) {
 		super();
 		this.id = id;
