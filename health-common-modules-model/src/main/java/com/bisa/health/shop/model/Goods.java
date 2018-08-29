@@ -20,7 +20,7 @@ public class Goods implements Serializable{
 	private Integer id;
 	private Integer classifyId;    //商品分类编号
 	private String goodsName;      //商品名字
-	private String goodsNumber;	//商品编号
+	private String goodsNumber;	//商品编号(uuid)
 	
 	private String title;  			//商品大标题
 	private String description;		//商品描述
@@ -32,6 +32,9 @@ public class Goods implements Serializable{
 	private Date soldoutTime;		//下架时间
 	private Integer salesNumber;	//销量
 	private Integer appraiseNumber;//评论数量
+	
+	private String imgUrl;  //主图
+	
 	@Id
 	@GeneratedValue
 	public Integer getId() {
@@ -117,25 +120,32 @@ public class Goods implements Serializable{
 	public Date getSoldoutTime() {
 		return soldoutTime;
 	}
-
 	public void setSoldoutTime(Date soldoutTime) {
 		this.soldoutTime = soldoutTime;
 	}
+	
 	@Column(name="sales_number")
 	public Integer getSalesNumber() {
 		return salesNumber;
 	}
-
 	public void setSalesNumber(Integer salesNumber) {
 		this.salesNumber = salesNumber;
 	}
+	
 	@Column(name="appraise_number")
 	public Integer getAppraiseNumber() {
 		return appraiseNumber;
 	}
-
 	public void setAppraiseNumber(Integer appraiseNumber) {
 		this.appraiseNumber = appraiseNumber;
+	}
+	
+	@Column(name="img_url")
+	public String getImgUrl() {
+		return imgUrl;
+	}
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 	public Goods() {
@@ -144,7 +154,7 @@ public class Goods implements Serializable{
 
 	public Goods(Integer id, Integer classifyId, String goodsName, String goodsNumber, String title, String description,
 			BigDecimal goodsPrice, Integer storeNumber, Integer needPost, Date putawayTime, Date soldoutTime,
-			Integer salesNumber, Integer appraiseNumber) {
+			Integer salesNumber, Integer appraiseNumber, String imgUrl) {
 		super();
 		this.id = id;
 		this.classifyId = classifyId;
@@ -159,6 +169,7 @@ public class Goods implements Serializable{
 		this.soldoutTime = soldoutTime;
 		this.salesNumber = salesNumber;
 		this.appraiseNumber = appraiseNumber;
+		this.imgUrl = imgUrl;
 	}
 
 	@Override
@@ -167,7 +178,7 @@ public class Goods implements Serializable{
 				+ goodsNumber + ", title=" + title + ", description=" + description + ", goodsPrice=" + goodsPrice
 				+ ", storeNumber=" + storeNumber + ", needPost=" + needPost + ", putawayTime=" + putawayTime
 				+ ", soldoutTime=" + soldoutTime + ", salesNumber=" + salesNumber + ", appraiseNumber=" + appraiseNumber
-				+ "]";
+				+ ", imgUrl=" + imgUrl + "]";
 	}
 	
 }

@@ -18,7 +18,6 @@ public class Classify implements Serializable{
 	
 	private Integer id;
 	private String classifyName;      //分类名称
-	private Integer highestSuperId;   //顶级分类编号
 	private Integer superId; 		   //父分类编号
 
 	@Id
@@ -38,14 +37,6 @@ public class Classify implements Serializable{
 	public void setClassifyName(String classifyName) {
 		this.classifyName = classifyName;
 	}
-	@Column(name="highest_super_id")
-	public Integer getHighestSuperId() {
-		return highestSuperId;
-	}
-
-	public void setHighestSuperId(Integer highestSuperId) {
-		this.highestSuperId = highestSuperId;
-	}
 	@Column(name="super_id")
 	public Integer getSuperId() {
 		return superId;
@@ -59,19 +50,16 @@ public class Classify implements Serializable{
 		super();
 	}
 
-	public Classify(Integer id, String classifyName, Integer highestSuperId, Integer superId) {
+	public Classify(Integer id, String classifyName, Integer superId) {
 		super();
 		this.id = id;
 		this.classifyName = classifyName;
-		this.highestSuperId = highestSuperId;
 		this.superId = superId;
 	}
 
 	@Override
 	public String toString() {
-		return "Classify [id=" + id + ", classifyName=" + classifyName + ", highestSuperId=" + highestSuperId
-				+ ", superId=" + superId + "]";
+		return "Classify [id=" + id + ", classifyName=" + classifyName + ", superId=" + superId + "]";
 	}
-	
 
 }
