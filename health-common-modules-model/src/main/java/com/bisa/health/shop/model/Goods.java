@@ -26,8 +26,9 @@ public class Goods implements Serializable{
 	private String description;		//商品描述
 	private BigDecimal goodsPrice;		//单价
 	private Integer storeNumber;   //商品库存数量
-	private Integer needPost;		//0-不需要邮递；1-需要邮递
+	private Integer needPost;		//0-不需要邮递；1-需要邮递  //可删！！！！！！！
 	
+	private Integer goodsStatus;   // 0售罄，1销售中，2下架
 	private Date putawayTime;		//上架时间
 	private Date soldoutTime;		//下架时间
 	private Integer salesNumber;	//销量
@@ -148,13 +149,22 @@ public class Goods implements Serializable{
 		this.imgUrl = imgUrl;
 	}
 
+	@Column(name="goods_status")
+	public Integer getGoodsStatus() {
+		return goodsStatus;
+	}
+
+	public void setGoodsStatus(Integer goodsStatus) {
+		this.goodsStatus = goodsStatus;
+	}
+
 	public Goods() {
 		super();
 	}
 
 	public Goods(Integer id, Integer classifyId, String goodsName, String goodsNumber, String title, String description,
-			BigDecimal goodsPrice, Integer storeNumber, Integer needPost, Date putawayTime, Date soldoutTime,
-			Integer salesNumber, Integer appraiseNumber, String imgUrl) {
+			BigDecimal goodsPrice, Integer storeNumber, Integer needPost, Integer goodsStatus, Date putawayTime,
+			Date soldoutTime, Integer salesNumber, Integer appraiseNumber, String imgUrl) {
 		super();
 		this.id = id;
 		this.classifyId = classifyId;
@@ -165,6 +175,7 @@ public class Goods implements Serializable{
 		this.goodsPrice = goodsPrice;
 		this.storeNumber = storeNumber;
 		this.needPost = needPost;
+		this.goodsStatus = goodsStatus;
 		this.putawayTime = putawayTime;
 		this.soldoutTime = soldoutTime;
 		this.salesNumber = salesNumber;
@@ -176,9 +187,9 @@ public class Goods implements Serializable{
 	public String toString() {
 		return "Goods [id=" + id + ", classifyId=" + classifyId + ", goodsName=" + goodsName + ", goodsNumber="
 				+ goodsNumber + ", title=" + title + ", description=" + description + ", goodsPrice=" + goodsPrice
-				+ ", storeNumber=" + storeNumber + ", needPost=" + needPost + ", putawayTime=" + putawayTime
-				+ ", soldoutTime=" + soldoutTime + ", salesNumber=" + salesNumber + ", appraiseNumber=" + appraiseNumber
-				+ ", imgUrl=" + imgUrl + "]";
+				+ ", storeNumber=" + storeNumber + ", needPost=" + needPost + ", goodsStatus=" + goodsStatus
+				+ ", putawayTime=" + putawayTime + ", soldoutTime=" + soldoutTime + ", salesNumber=" + salesNumber
+				+ ", appraiseNumber=" + appraiseNumber + ", imgUrl=" + imgUrl + "]";
 	}
 	
 }
