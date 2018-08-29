@@ -24,14 +24,15 @@ public class ServiceCardRecord {
 	private String cardName; //卡名称
 	private String cardNumber; //BHA+年月日+递增+CN，共20位，如"BISA20180810100000CN"
 	private String activeCode; //激活码8位  随机数字
-	private Integer cardType; //卡类型（次数型；时限型）
-	private Integer classifyId; //类别，存储父级类别，比如悉心铃或24小时报告的类别
+	private Integer classifyId; //卡类型（次数型；时限型）
+	private String goodsNumber; //商品编号（24小时报告；悉心铃）
 	private Integer count; //（激活卡面值）次数/月份
 	private String account;//激活账号（服务使用者的账号，手机号或邮箱）
 	private Date activeTime;  //使用时间，激活时间
 	private Date createTime; //创建时间，购买时间
 	private Integer cardStatus; //是否使用；0-未使用；1-已使用（已激活）
 	private Integer orderGoodsId;  //关联订单详情及激活卡， 便于售后处理
+	
 	@Id
 	@GeneratedValue
 	public Integer getId() {
@@ -71,14 +72,6 @@ public class ServiceCardRecord {
 	}
 	public void setActiveCode(String activeCode) {
 		this.activeCode = activeCode;
-	}
-	
-	@Column(name="card_type")
-	public Integer getCardType() {
-		return cardType;
-	}
-	public void setCardType(Integer cardType) {
-		this.cardType = cardType;
 	}
 	
 	@Column(name="classify_id")
@@ -137,12 +130,18 @@ public class ServiceCardRecord {
 		this.orderGoodsId = orderGoodsId;
 	}
 	
+	@Column(name="goods_number")
+	public String getGoodsNumber() {
+		return goodsNumber;
+	}
+	public void setGoodsNumber(String goodsNumber) {
+		this.goodsNumber = goodsNumber;
+	}
 	public ServiceCardRecord() {
 		super();
 	}
-	
 	public ServiceCardRecord(Integer id, Integer userGuid, String cardName, String cardNumber, String activeCode,
-			Integer cardType, Integer classifyId, Integer count, String account, Date activeTime, Date createTime,
+			Integer classifyId, String goodsNumber, Integer count, String account, Date activeTime, Date createTime,
 			Integer cardStatus, Integer orderGoodsId) {
 		super();
 		this.id = id;
@@ -150,8 +149,8 @@ public class ServiceCardRecord {
 		this.cardName = cardName;
 		this.cardNumber = cardNumber;
 		this.activeCode = activeCode;
-		this.cardType = cardType;
 		this.classifyId = classifyId;
+		this.goodsNumber = goodsNumber;
 		this.count = count;
 		this.account = account;
 		this.activeTime = activeTime;
@@ -159,14 +158,12 @@ public class ServiceCardRecord {
 		this.cardStatus = cardStatus;
 		this.orderGoodsId = orderGoodsId;
 	}
-	
 	@Override
 	public String toString() {
 		return "ServiceCardRecord [id=" + id + ", userGuid=" + userGuid + ", cardName=" + cardName + ", cardNumber="
-				+ cardNumber + ", activeCode=" + activeCode + ", cardType=" + cardType + ", classifyId=" + classifyId
-				+ ", count=" + count + ", account=" + account + ", activeTime=" + activeTime + ", createTime="
-				+ createTime + ", cardStatus=" + cardStatus + ", orderGoodsId=" + orderGoodsId + "]";
+				+ cardNumber + ", activeCode=" + activeCode + ", classifyId=" + classifyId + ", goodsNumber="
+				+ goodsNumber + ", count=" + count + ", account=" + account + ", activeTime=" + activeTime
+				+ ", createTime=" + createTime + ", cardStatus=" + cardStatus + ", orderGoodsId=" + orderGoodsId + "]";
 	}
-	
 	
 }

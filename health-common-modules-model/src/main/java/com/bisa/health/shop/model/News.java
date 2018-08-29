@@ -84,4 +84,25 @@ public class News {
 	public News() {
 		super();
 	}
+	public News(int id, int news_id, String news_title, String news_subhead, int read_quantity, String news_content,
+			String img_url, Date release_time, String author) {
+		super();
+		this.id = id;
+		this.news_id = news_id;
+		this.news_title = news_title;
+		this.news_subhead = news_subhead;
+		this.read_quantity = read_quantity;
+		this.news_content = news_content;
+		this.img_url = img_url;
+		this.release_time = release_time;
+		this.author = author;
+	}
+	@Override
+	public String toString() {
+		return "News [id=" + id + ", news_id=" + news_id + ", news_title=" + news_title + ", news_subhead="
+				+ news_subhead + ", read_quantity=" + read_quantity + ", news_content=" + news_content + ", img_url="
+				+ img_url + ", release_time=" + release_time + ", author=" + author + "]";
+	}
+	
+	
 }

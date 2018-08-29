@@ -21,8 +21,8 @@ public class ServiceCard {
 	private String cardName; //卡名称
 	private String cardNumber; //BHA+年月日+递增+CN，共20位，如"BISA20180810100000CN"
 	private String activeCode; //激活码8位  随机数字
-	private int classifyId;  //类别
-	private int cardType; //卡类型（次数型；时限型）
+	private Integer classifyId; //卡类型（次数型；时限型）
+	private String goodsNumber; //商品编号（24小时报告；悉心铃）
 	private int count; //（面值）次数/月份
 	private int cardStatus; //是否使用；0-未使用；1-已使用
 	
@@ -63,6 +63,7 @@ public class ServiceCard {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	
 	@Column(name="card_name")
 	public String getCardName() {
 		return cardName;
@@ -70,39 +71,42 @@ public class ServiceCard {
 	public void setCardName(String cardName) {
 		this.cardName = cardName;
 	}
-	@Column(name="card_type")
-	public int getCardType() {
-		return cardType;
-	}
-	public void setCardType(int cardType) {
-		this.cardType = cardType;
-	}
+	
 	@Column(name="classify_id")
-	public int getClassifyId() {
+	public Integer getClassifyId() {
 		return classifyId;
 	}
-	public void setClassifyId(int classifyId) {
+	public void setClassifyId(Integer classifyId) {
 		this.classifyId = classifyId;
 	}
+	
+	@Column(name="goods_number")
+	public String getGoodsNumber() {
+		return goodsNumber;
+	}
+	public void setGoodsNumber(String goodsNumber) {
+		this.goodsNumber = goodsNumber;
+	}
+	
 	public ServiceCard() {
 		super();
 	}
-	public ServiceCard(int id, String cardName, String cardNumber, String activeCode, int classifyId, int cardType,
-			int count, int cardStatus) {
+	public ServiceCard(int id, String cardName, String cardNumber, String activeCode, Integer classifyId,
+			String goodsNumber, int count, int cardStatus) {
 		super();
 		this.id = id;
 		this.cardName = cardName;
 		this.cardNumber = cardNumber;
 		this.activeCode = activeCode;
 		this.classifyId = classifyId;
-		this.cardType = cardType;
+		this.goodsNumber = goodsNumber;
 		this.count = count;
 		this.cardStatus = cardStatus;
 	}
 	@Override
 	public String toString() {
 		return "ServiceCard [id=" + id + ", cardName=" + cardName + ", cardNumber=" + cardNumber + ", activeCode="
-				+ activeCode + ", classifyId=" + classifyId + ", cardType=" + cardType + ", count=" + count
+				+ activeCode + ", classifyId=" + classifyId + ", goodsNumber=" + goodsNumber + ", count=" + count
 				+ ", cardStatus=" + cardStatus + "]";
 	}
 	
