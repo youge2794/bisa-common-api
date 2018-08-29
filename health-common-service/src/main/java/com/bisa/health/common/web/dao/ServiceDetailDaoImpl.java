@@ -2,6 +2,7 @@ package com.bisa.health.common.web.dao;
 
 import org.springframework.stereotype.Repository;
 
+import com.bisa.health.app.enumerate.ServiceType;
 import com.bisa.health.app.model.ServiceDetail;
 import com.bisa.health.basic.dao.BaseDao;
 
@@ -9,7 +10,7 @@ import com.bisa.health.basic.dao.BaseDao;
 public class ServiceDetailDaoImpl extends BaseDao<ServiceDetail> implements IServiceDetailDao {
 
 	@Override
-	public ServiceDetail selectServiceDetailByGuidAndClassifyId(int userGuid, int classifyId, int serviceType) {
+	public ServiceDetail selectServiceDetailByGuidAndClassifyId(int userGuid, int classifyId, ServiceType serviceType) {
 		String sql = "SELECT id, user_guid, service_type, finished_time, is_active, count, classify_id, version FROM e_service_detail WHERE user_guid = ? AND classify_id = ? AND service_type = ?";
 		return super.queryObjectBySql(sql, new Object[]{userGuid, classifyId, serviceType}, ServiceDetail.class);
 	}

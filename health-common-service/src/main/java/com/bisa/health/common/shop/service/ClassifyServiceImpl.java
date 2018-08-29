@@ -22,7 +22,7 @@ public class ClassifyServiceImpl implements IClassifyService {
 	}
 
 	@Override
-	@Cacheable(value="spring-defaultCache",key="'package_classify:'+#classify_id")
+	@Cacheable(value="spring-defaultCache",key="'single_classify:'+#classify_id")
 	public Classify selectPackageByClassifyId(Integer classify_id) {
 		return classifyDao.selectPackageByClassifyId(classify_id);
 	}
@@ -34,13 +34,13 @@ public class ClassifyServiceImpl implements IClassifyService {
 	}
 
 	@Override
-	@Cacheable(value="spring-defaultCache",key="'packages_classifys:'+#classify_id")
+	@Cacheable(value="spring-defaultCache",key="'fitting_classifys:'+#classify_id")
 	public List<Classify> selectPackagesClassifys(Integer classify_id) {
 		return classifyDao.selectListClassifysBySuperIdAndHighId(GoodsClassify.PACKAGES.getValue(), classify_id);
 	}
 
 	@Override
-	@Cacheable(value="spring-defaultCache",key="'classify:'+#id")
+	@Cacheable(value="spring-defaultCache",key="'single_classify:'+#id")
 	public Classify selectClassifyById(Integer id) {
 		return classifyDao.selectClassifyById(id);
 	}

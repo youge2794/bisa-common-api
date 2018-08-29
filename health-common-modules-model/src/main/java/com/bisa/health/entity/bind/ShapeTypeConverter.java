@@ -8,6 +8,8 @@ import com.bisa.health.app.enumerate.ShapeTypeEnum;
 public class ShapeTypeConverter implements AttributeConverter<ShapeTypeEnum, Integer>{
 
 	public Integer convertToDatabaseColumn(ShapeTypeEnum attribute) {
+		if(attribute==null)
+			return ShapeTypeEnum.COMMON.getValue();
 		return attribute.getValue();
 	}
 

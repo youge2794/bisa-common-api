@@ -39,7 +39,7 @@ public class ServiceDetail implements Serializable{
 	
 	private int count;	//剩余次数
 	
-	private GoodsClassify classifyId;  //商品类别
+	private int classifyId;  //商品类别
 	
 	@Version
     private int version;	//乐观锁，版本控制
@@ -95,11 +95,10 @@ public class ServiceDetail implements Serializable{
 	}
 	
 	@Column(name="classify_id")
-	@Convert(converter=GoodsClassifyConverter.class)
-	public GoodsClassify getClassifyId() {
+	public int getClassifyId() {
 		return classifyId;
 	}
-	public void setClassifyId(GoodsClassify classifyId) {
+	public void setClassifyId(int classifyId) {
 		this.classifyId = classifyId;
 	}
 	
@@ -116,7 +115,7 @@ public class ServiceDetail implements Serializable{
 	}
 	
 	public ServiceDetail(int id, int userGuid, ServiceType serviceType, Date finishedTime, int isActive, int count,
-			GoodsClassify classifyId, int version) {
+			int classifyId, int version) {
 		super();
 		this.id = id;
 		this.userGuid = userGuid;
