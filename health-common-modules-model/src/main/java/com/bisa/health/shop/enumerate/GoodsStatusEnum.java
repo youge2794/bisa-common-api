@@ -1,20 +1,26 @@
 package com.bisa.health.shop.enumerate;
+/**
+ * 商品状态
+ * @author Administrator
+ *
+ */
+public enum GoodsStatusEnum {
 
-
-public enum AddressStatus {
-	
 	/**
-	 * 有效
+	 * 售罄0
 	 */
-	VALID(10, "VALID"),
+	sale_out(0, ""),
 	/**
-	 * 无效
+	 * 销售中
 	 */
-	INVALID(20, "INVALID");
+	in_sale(1, ""),
+	/**
+	 * 下架
+	 */
+	invalid(2, "");
 	
 	private int value;
 	private String name;
-	
 	public int getValue() {
 		return value;
 	}
@@ -27,18 +33,19 @@ public enum AddressStatus {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	private AddressStatus(int value, String name) {
+
+	private GoodsStatusEnum(int value, String name) {
 		this.value = value;
 		this.name = name;
 	}
 
-	public static AddressStatus getByValue(int value) {
-		for (AddressStatus status : values()) {
+	public static GoodsStatusEnum getByValue(int value) {
+		for (GoodsStatusEnum status : values()) {
 			if (status.getValue() == value) {
 				return status;
 			}
 		}
 		return null;
 	}
+
 }
