@@ -1,16 +1,16 @@
 package com.bisa.health.common.web.dao;
 
+import java.util.List;
 import com.bisa.health.app.enumerate.ServiceType;
 import com.bisa.health.app.model.ServiceDetail;
 
 public interface IServiceDetailDao {
 	
-	/**
-	 * 根据类别和用户id获得服务细节
-	 */
-	public ServiceDetail selectServiceDetailByGuidAndClassifyId(int userGuid, int classifyId, ServiceType serviceType);
-
-	public int addServiceDetail(ServiceDetail serviceDetail);
+	public int saveAndUpServiceDetail(ServiceDetail serviceDetail);
 	
-	public int updateServiceDetail(ServiceDetail serviceDetail, int version);
+	public List<ServiceDetail> lsitByUserguid(int userGuid);
+	
+	public List<ServiceDetail> listByUserguidAndCategory(int userGuid, ServiceType serviceType);
+	
+	
 }

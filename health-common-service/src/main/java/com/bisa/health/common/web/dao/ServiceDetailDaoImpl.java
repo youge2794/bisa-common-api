@@ -1,33 +1,34 @@
 package com.bisa.health.common.web.dao;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.bisa.health.app.enumerate.ServiceType;
+import com.bisa.health.app.model.ServiceCategory;
 import com.bisa.health.app.model.ServiceDetail;
 import com.bisa.health.basic.dao.BaseDao;
+
 
 @Repository
 public class ServiceDetailDaoImpl extends BaseDao<ServiceDetail> implements IServiceDetailDao {
 
 	@Override
-	public ServiceDetail selectServiceDetailByGuidAndClassifyId(int userGuid, int classifyId, ServiceType serviceType) {
-		String sql = "SELECT id, user_guid, service_type, finished_time, is_active, count, classify_id, version FROM e_service_detail WHERE user_guid = ? AND classify_id = ? AND service_type = ?";
-		return super.queryObjectBySql(sql, new Object[]{userGuid, classifyId, serviceType}, ServiceDetail.class);
+	public int saveAndUpServiceDetail(ServiceDetail serviceDetail) {
+		this.getSession().saveOrUpdate(serviceDetail);
+		return 1;
 	}
 
 	@Override
-	public int addServiceDetail(ServiceDetail serviceDetail) {
-		String sql = "INSERT INTO e_service_detail(user_guid, service_type, finished_time, is_active, count, classify_id, version)"
-				+ " VALUES (?, ?, ?, ?, ?, ?, ?)";
-		return super.addBySql(sql, new Object[]{serviceDetail.getUserGuid(), serviceDetail.getServiceType(), serviceDetail.getFinishedTime(),
-				serviceDetail.getIsActive(), serviceDetail.getCount(), serviceDetail.getClassifyId(), serviceDetail.getVersion()});
+	public List<ServiceDetail> lsitByUserguid(int userGuid) {
+		String sql="SELECT * FROM e_service WHERE user_guid=?";
+		return this.listBySql(sql, new Object[]{userGuid}, ServiceDetail.class);
 	}
 
 	@Override
-	public int updateServiceDetail(ServiceDetail serviceDetail, int version) {
-		super.getSession().evict(serviceDetail);
-		String sql = "UPDATE e_service_detail SET finished_time = ?, is_active = ?, count = ?, version = ? WHERE id = ? AND version = ?";
-		return super.updateBySql(sql, new Object[]{serviceDetail.getFinishedTime(), serviceDetail.getIsActive(), serviceDetail.getCount(), serviceDetail.getVersion(), serviceDetail.getId(), version});
+	public List<ServiceDetail> listByUserguidAndCategory(int userGuid, ServiceType serviceType) {
+		String sql="SELECT * FROM e_service WHERE user_guid=? and service_type=?";
+		return this.listBySql(sql, new Object[]{userGuid,serviceType}, ServiceDetail.class);
 	}
-
+	
 }
