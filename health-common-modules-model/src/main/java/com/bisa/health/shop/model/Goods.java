@@ -36,6 +36,8 @@ public class Goods implements Serializable{
 	
 	private String imgUrl;  //主图
 	
+	private Integer parentId;  //商品父类id
+	
 	@Id
 	@GeneratedValue
 	public Integer getId() {
@@ -157,6 +159,15 @@ public class Goods implements Serializable{
 	public void setGoodsStatus(Integer goodsStatus) {
 		this.goodsStatus = goodsStatus;
 	}
+	
+	@Column(name="parent_id")
+	public Integer getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
 
 	public Goods() {
 		super();
@@ -164,7 +175,7 @@ public class Goods implements Serializable{
 
 	public Goods(Integer id, Integer classifyId, String goodsName, String goodsNumber, String title, String description,
 			BigDecimal goodsPrice, Integer storeNumber, Integer needPost, Integer goodsStatus, Date putawayTime,
-			Date soldoutTime, Integer salesNumber, Integer appraiseNumber, String imgUrl) {
+			Date soldoutTime, Integer salesNumber, Integer appraiseNumber, String imgUrl, Integer parentId) {
 		super();
 		this.id = id;
 		this.classifyId = classifyId;
@@ -181,6 +192,7 @@ public class Goods implements Serializable{
 		this.salesNumber = salesNumber;
 		this.appraiseNumber = appraiseNumber;
 		this.imgUrl = imgUrl;
+		this.parentId = parentId;
 	}
 
 	@Override
@@ -189,7 +201,7 @@ public class Goods implements Serializable{
 				+ goodsNumber + ", title=" + title + ", description=" + description + ", goodsPrice=" + goodsPrice
 				+ ", storeNumber=" + storeNumber + ", needPost=" + needPost + ", goodsStatus=" + goodsStatus
 				+ ", putawayTime=" + putawayTime + ", soldoutTime=" + soldoutTime + ", salesNumber=" + salesNumber
-				+ ", appraiseNumber=" + appraiseNumber + ", imgUrl=" + imgUrl + "]";
+				+ ", appraiseNumber=" + appraiseNumber + ", imgUrl=" + imgUrl + ", parentId=" + parentId + "]";
 	}
-	
+
 }
