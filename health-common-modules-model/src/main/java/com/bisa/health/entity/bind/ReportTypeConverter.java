@@ -13,6 +13,9 @@ public class ReportTypeConverter implements AttributeConverter<ReportType, Integ
 	}
 
 	public ReportType convertToEntityAttribute(Integer dbData) {
+		if(dbData==null){
+			return null;
+		}
 		return ReportType.getByValue(dbData);
 	}
 

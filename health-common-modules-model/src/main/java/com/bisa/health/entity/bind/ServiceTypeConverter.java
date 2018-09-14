@@ -13,6 +13,9 @@ public class ServiceTypeConverter implements AttributeConverter<ServiceType, Int
 	}
 
 	public ServiceType convertToEntityAttribute(Integer dbData) {
+		if(dbData==null){
+			return null;
+		}
 		return ServiceType.getByValue(dbData);
 	}
 

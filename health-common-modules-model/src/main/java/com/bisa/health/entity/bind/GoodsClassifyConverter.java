@@ -13,6 +13,9 @@ public class GoodsClassifyConverter implements AttributeConverter<GoodsClassify,
 	}
 
 	public GoodsClassify convertToEntityAttribute(Integer dbData) {
+		if(dbData==null){
+			return null;
+		}
 		return GoodsClassify.getByValue(dbData);
 	}
 

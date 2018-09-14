@@ -13,6 +13,9 @@ public class LoginTypeConverter implements AttributeConverter<LoginTypeEnum, Int
 	}
 
 	public LoginTypeEnum convertToEntityAttribute(Integer dbData) {
+		if(dbData==null){
+			return null;
+		}
 		return LoginTypeEnum.getByValue(dbData);
 	}
 
