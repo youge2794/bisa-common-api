@@ -3,11 +3,17 @@ package com.bisa.health.shop.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 订单细节
+ * @author Administrator
+ *
+ */
 @Entity
 @Table(name="s_order_goods")
 public class OrderGoods implements Serializable{
@@ -16,12 +22,17 @@ public class OrderGoods implements Serializable{
 	 */
 	private static final long serialVersionUID = 4394092941703621156L;
 	private Integer id;
-	private Integer order_id;        //订单id
-	private String goods_number_id;  //商品编号
+	private Integer orderId;        //订单id
+	private String goodsNumber;  //商品编号 
 	
 	private Integer count;			 //购买的商品数量
-	private BigDecimal goods_price;		 //(下单时间的价格，不会根据变价而改动)单价  1000
-	private BigDecimal preferential_price; //(下单时间的价格，不会根据变价而改动)优惠价格  800
+	private BigDecimal goodsPrice;		 //(下单时间的价格，不会根据变价而改动)单价  1000
+	private BigDecimal discountPrice; //(下单时间的价格，不会根据变价而改动)优惠价格  800
+	
+	private Integer goodsType;  //商品类型（单品/套餐）
+	private String goodsName; //商品名称
+	private String imgUrl;  //商品图片
+	
 	@Id
 	@GeneratedValue
 	public Integer getId() {
@@ -32,20 +43,22 @@ public class OrderGoods implements Serializable{
 		this.id = id;
 	}
 
-	public Integer getOrder_id() {
-		return order_id;
+	@Column(name="order_id")
+	public Integer getOrderId() {
+		return orderId;
 	}
 
-	public void setOrder_id(Integer order_id) {
-		this.order_id = order_id;
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
 	}
 
-	public String getGoods_number_id() {
-		return goods_number_id;
+	@Column(name="goods_number")
+	public String getGoodsNumber() {
+		return goodsNumber;
 	}
 
-	public void setGoods_number_id(String goods_number_id) {
-		this.goods_number_id = goods_number_id;
+	public void setGoodsNumber(String goodsNumber) {
+		this.goodsNumber = goodsNumber;
 	}
 
 	public Integer getCount() {
@@ -56,26 +69,75 @@ public class OrderGoods implements Serializable{
 		this.count = count;
 	}
 
-	public BigDecimal getGoods_price() {
-		return goods_price;
+	@Column(name="goods_price")
+	public BigDecimal getGoodsPrice() {
+		return goodsPrice;
 	}
 
-	public void setGoods_price(BigDecimal goods_price) {
-		this.goods_price = goods_price;
+	public void setGoodsPrice(BigDecimal goodsPrice) {
+		this.goodsPrice = goodsPrice;
+	}
+	
+	@Column(name="discount_price")
+	public BigDecimal getDiscountPrice() {
+		return discountPrice;
 	}
 
-	public BigDecimal getPreferential_price() {
-		return preferential_price;
+	public void setDiscountPrice(BigDecimal discountPrice) {
+		this.discountPrice = discountPrice;
 	}
 
-	public void setPreferential_price(BigDecimal preferential_price) {
-		this.preferential_price = preferential_price;
+	@Column(name="goods_type")
+	public Integer getGoodsType() {
+		return goodsType;
+	}
+
+	public void setGoodsType(Integer goodsType) {
+		this.goodsType = goodsType;
+	}
+	
+	@Column(name="goods_name")
+	public String getGoodsName() {
+		return goodsName;
+	}
+
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
+
+	@Column(name="img_url")
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public OrderGoods() {
+		super();
+	}
+
+	public OrderGoods(Integer id, Integer orderId, String goodsNumber, String goodsName, String imgUrl, Integer count,
+			BigDecimal goodsPrice, BigDecimal discountPrice, Integer goodsType) {
+		super();
+		this.id = id;
+		this.orderId = orderId;
+		this.goodsNumber = goodsNumber;
+		this.goodsName = goodsName;
+		this.imgUrl = imgUrl;
+		this.count = count;
+		this.goodsPrice = goodsPrice;
+		this.discountPrice = discountPrice;
+		this.goodsType = goodsType;
 	}
 
 	@Override
 	public String toString() {
-		return "OrderGoods [id=" + id + ", order_id=" + order_id + ", goods_number_id=" + goods_number_id + ", count="
-				+ count + ", goods_price=" + goods_price + ", preferential_price=" + preferential_price + "]";
+		return "OrderGoods [id=" + id + ", orderId=" + orderId + ", goodsNumber=" + goodsNumber + ", goodsName="
+				+ goodsName + ", imgUrl=" + imgUrl + ", count=" + count + ", goodsPrice=" + goodsPrice
+				+ ", discountPrice=" + discountPrice + ", goodsType=" + goodsType + "]";
 	}
+
 
 }

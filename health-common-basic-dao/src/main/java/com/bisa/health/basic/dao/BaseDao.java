@@ -606,6 +606,14 @@ public class BaseDao<T> implements IBaseDao<T> {
 		long total = ((BigInteger) query.uniqueResult()).longValue();
 		return total;
 	}
+	
+	public long queryIntegerTotal(String sql, Object[] args){
+		SQLQuery query = getSession().createSQLQuery(sql);
+		if (args != null)
+			setParameter(query, args);
+		long total = ((Integer) query.uniqueResult()).longValue();
+		return total;
+	}
 
 
 	public int addBySql(String sql,Object[] args) {

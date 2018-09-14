@@ -9,10 +9,19 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+<<<<<<< HEAD
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+=======
+/**
+ * 发邮件工具类
+ * @author Administrator
+ *
+ */
+public class MailUtil {
+>>>>>>> 92350751b4a43efe759c21b89c74e307c23be18a
 
 
 public class MailUtil {
@@ -28,8 +37,7 @@ public class MailUtil {
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.port", port);
 		// 如果使用ssl，则去掉使用25端口的配置，进行如下配置,
-		// props.put("mail.smtp.socketFactory.class",
-		// "javax.net.ssl.SSLSocketFactory");
+		// props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		// props.put("mail.smtp.socketFactory.port", "465");
 		// props.put("mail.smtp.port", "465");
 		// 发件人的账号
@@ -55,9 +63,6 @@ public class MailUtil {
 			// 设置发件人
 			InternetAddress address_from = new InternetAddress(from);
 			message.setFrom(address_from);
-			// Address[] a = new Address[1];
-			// a[0] = new InternetAddress("***");
-			// message.setReplyTo(a);
 			// 设置收件人
 			InternetAddress to = new InternetAddress(username);
 			message.setRecipient(MimeMessage.RecipientType.TO, to);
@@ -67,13 +72,17 @@ public class MailUtil {
 			message.setContent(content, "text/html;charset=UTF-8");
 			// 发送邮件
 			Transport.send(message);
-			
 			return true;
+			
 		} catch (MessagingException e) {
+<<<<<<< HEAD
 			logger.error(e.getMessage());
 			return false;
+=======
+			// 在这里处理message内容， 格式是固定的
+			System.out.println(e.getMessage());
+>>>>>>> 92350751b4a43efe759c21b89c74e307c23be18a
 		}
 	
 	}
-
 }

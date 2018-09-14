@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -40,7 +41,10 @@ public class Order implements Serializable{
 	
 	private String logistics_number; //物流单号
 	private String logistics_name;	 //物流公司名
+	private String logisticsAccount;	 //物流公司付费账号
 	private Date create_time;		 //订单创建时间
+	
+	private String orderEmail;		//发送账单邮箱
 	
 	@Id
 	@GeneratedValue
@@ -195,6 +199,57 @@ public class Order implements Serializable{
 	public void setAfter_sale_apply(Integer after_sale_apply) {
 		this.after_sale_apply = after_sale_apply;
 	}
+	
+	@Column(name="order_email")
+	public String getOrderEmail() {
+		return orderEmail;
+	}
+
+	public void setOrderEmail(String orderEmail) {
+		this.orderEmail = orderEmail;
+	}
+	
+	@Column(name="logistics_account")
+	public String getLogisticsAccount() {
+		return logisticsAccount;
+	}
+
+	public void setLogisticsAccount(String logisticsAccount) {
+		this.logisticsAccount = logisticsAccount;
+	}
+
+	public Order() {
+		super();
+	}
+
+	public Order(Integer id, String order_no, Integer user_id, String consignee, String phone, String detail_address,
+			Integer tra_status, Integer pay_type, Date pay_time, Date deliver_goods_time, Date receive_goods_time,
+			Integer after_sale_apply, BigDecimal total_price, BigDecimal post_price, BigDecimal preferential_price,
+			BigDecimal actual_payment, String logistics_number, String logistics_name, String logisticsAccount,
+			Date create_time, String orderEmail) {
+		super();
+		this.id = id;
+		this.order_no = order_no;
+		this.user_id = user_id;
+		this.consignee = consignee;
+		this.phone = phone;
+		this.detail_address = detail_address;
+		this.tra_status = tra_status;
+		this.pay_type = pay_type;
+		this.pay_time = pay_time;
+		this.deliver_goods_time = deliver_goods_time;
+		this.receive_goods_time = receive_goods_time;
+		this.after_sale_apply = after_sale_apply;
+		this.total_price = total_price;
+		this.post_price = post_price;
+		this.preferential_price = preferential_price;
+		this.actual_payment = actual_payment;
+		this.logistics_number = logistics_number;
+		this.logistics_name = logistics_name;
+		this.logisticsAccount = logisticsAccount;
+		this.create_time = create_time;
+		this.orderEmail = orderEmail;
+	}
 
 	@Override
 	public String toString() {
@@ -204,7 +259,8 @@ public class Order implements Serializable{
 				+ ", receive_goods_time=" + receive_goods_time + ", after_sale_apply=" + after_sale_apply
 				+ ", total_price=" + total_price + ", post_price=" + post_price + ", preferential_price="
 				+ preferential_price + ", actual_payment=" + actual_payment + ", logistics_number=" + logistics_number
-				+ ", logistics_name=" + logistics_name + ", create_time=" + create_time + "]";
+				+ ", logistics_name=" + logistics_name + ", logisticsAccount=" + logisticsAccount + ", create_time="
+				+ create_time + ", orderEmail=" + orderEmail + "]";
 	}
-
+	
 }

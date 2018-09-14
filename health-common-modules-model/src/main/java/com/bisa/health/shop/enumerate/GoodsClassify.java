@@ -6,38 +6,37 @@ package com.bisa.health.shop.enumerate;
  *
  */
 public enum GoodsClassify {
+	
 	/**
-	 * 主商品
+	 * 心电仪
 	 */
-	MAIN(1, "MAIN"), 
+	ECG(1, "ECG"),
 	/**
-	 * 配件商品（实体）
+	 * 摄像头
 	 */
-	FITTING(2, "FITTING"), 
+	CAMERA(2, "CAMERA"),
+	/**
+	 * 血压计
+	 */
+	BLOOD(3, "BLOOD"),
+
+	/**
+	 * 配件
+	 */
+	FITTING(4, "FITTING"), 
 	/**
 	 * 虚拟商品（服务）
 	 */
-	VIRTUAL(3, "VIRTUAL"),
+	VIRTUAL(5, "VIRTUAL"),
 	/**
 	 * 虚拟商品-次数型
 	 */
-	COUNT(4, "COUNT"),
+	COUNT(10, "COUNT"),
 	/**
 	 * 虚拟商品-时限型
 	 */
-	TIME(5, "TIME"),
-	/**
-	 * 套餐
-	 */
-	PACKAGES(6, "PACKAGES");
+	TIME(11, "TIME");
 	
-	//主打商品
-	/*
-	ECG(100, "ECG"),  //心电仪
-	BLUE_SENSOR(101, "BLUE_SENSOR"),   //蓝色电极片
-	CAMERA(110, "CAMERA"),  //摄像头
-	BLOOD(120, "BLOOD");	//血压计
-	*/
 	private int value;
 	private String name;
 	

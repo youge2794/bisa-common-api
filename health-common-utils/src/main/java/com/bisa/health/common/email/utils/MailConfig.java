@@ -4,7 +4,7 @@ package com.bisa.health.common.email.utils;
  * @author Administrator
  *
  */
-public class MailContent {
+public class MailConfig {
 	
 	public static final String FROM = "v1.bisa.email@bisahealth.com";
 	
