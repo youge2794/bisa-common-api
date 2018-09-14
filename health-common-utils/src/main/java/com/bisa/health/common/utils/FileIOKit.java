@@ -13,7 +13,7 @@ import java.nio.channels.FileLock;
 public class FileIOKit {
 	
 	
-	public boolean is_file_status(File file) {
+	public static boolean IsFileStatus(File file) {
 
 		FileLock outlock = null;
 		FileChannel fout = null;

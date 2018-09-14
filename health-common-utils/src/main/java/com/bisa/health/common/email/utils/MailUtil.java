@@ -10,8 +10,15 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class MailUtil {
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+
+
+public class MailUtil {
+	
+	private static Logger logger = LogManager.getFormatterLogger(MailUtil.class);
+	
 	public boolean sendMailBySSL(String host, String port, String from, String password, String username,
 			String subject, String content) {
 		// 配置发送邮件的环境属性
@@ -63,11 +70,10 @@ public class MailUtil {
 			
 			return true;
 		} catch (MessagingException e) {
-			String err = e.getMessage();
-			// 在这里处理message内容， 格式是固定的
-			System.out.println(err);
+			logger.error(e.getMessage());
+			return false;
 		}
-		return false;
+	
 	}
 
 }
