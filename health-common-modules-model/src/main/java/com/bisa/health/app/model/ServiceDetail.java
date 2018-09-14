@@ -2,6 +2,7 @@ package com.bisa.health.app.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,13 +11,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.bisa.health.app.enumerate.ActivateEnum;
 import com.bisa.health.app.enumerate.ServiceType;
 
 @Entity
-@Table(name="e_service_detail",indexes={@Index(columnList="user_guid")})
+@Table(name="e_service",indexes={@Index(columnList="user_guid")})
 public class ServiceDetail implements Serializable{
 
 	/**
@@ -36,7 +43,7 @@ public class ServiceDetail implements Serializable{
 	
 	private ServiceType serviceType; //服务类型
 	
-	private String serviceToken; //服务编号；服务类别
+	private ServiceCategory category; //服务类别
 	
 	
 	@Version
@@ -95,12 +102,14 @@ public class ServiceDetail implements Serializable{
 		this.serviceType = serviceType;
 	}
 	
-	@Column(name="service_token")
-	public String getServiceToken() {
-		return serviceToken;
+	@Cascade(value={CascadeType.PERSIST,CascadeType.MERGE,CascadeType.SAVE_UPDATE})
+	@ManyToOne
+	@JoinColumn(name="sid")
+	public ServiceCategory getCategory() {
+		return category;
 	}
-	public void setServiceToken(String serviceToken) {
-		this.serviceToken = serviceToken;
+	public void setCategory(ServiceCategory category) {
+		this.category = category;
 	}
 	public int getVersion() {
 		return version;
@@ -113,23 +122,15 @@ public class ServiceDetail implements Serializable{
 	public ServiceDetail() {
 		super();
 	}
-	public ServiceDetail(int id, int userGuid, Date finishedTime, ActivateEnum isActive, int count,
-			ServiceType serviceType, String serviceToken, int version) {
-		super();
-		this.id = id;
-		this.userGuid = userGuid;
-		this.finishedTime = finishedTime;
-		this.isActive = isActive;
-		this.count = count;
-		this.serviceType = serviceType;
-		this.serviceToken = serviceToken;
-		this.version = version;
-	}
-	@Override
-	public String toString() {
-		return "ServiceDetail [id=" + id + ", userGuid=" + userGuid + ", finishedTime=" + finishedTime + ", isActive="
-				+ isActive + ", count=" + count + ", serviceType=" + serviceType + ", serviceToken=" + serviceToken
-				+ ", version=" + version + "]";
+	
+	
+	public static ServiceDetail byCategory(List<ServiceDetail> list,String name){
+		for(ServiceDetail serviceDetail : list){
+			if(name.equals(serviceDetail.category.getName())){
+				return serviceDetail;
+			}
+		}
+		return null;
 	}
 	
 }

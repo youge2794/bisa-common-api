@@ -15,6 +15,9 @@ public class SportTypeConverter implements AttributeConverter<SportTypeEnum, Int
 	}
 
 	public SportTypeEnum convertToEntityAttribute(Integer dbData) {
+		if(dbData==null){
+			return null;
+		}
 		return SportTypeEnum.getByValue(dbData);
 	}
 

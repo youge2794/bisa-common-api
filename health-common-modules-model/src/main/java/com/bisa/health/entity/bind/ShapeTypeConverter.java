@@ -14,6 +14,9 @@ public class ShapeTypeConverter implements AttributeConverter<ShapeTypeEnum, Int
 	}
 
 	public ShapeTypeEnum convertToEntityAttribute(Integer dbData) {
+		if(dbData==null){
+			return null;
+		}
 		return ShapeTypeEnum.getByValue(dbData);
 	}
 

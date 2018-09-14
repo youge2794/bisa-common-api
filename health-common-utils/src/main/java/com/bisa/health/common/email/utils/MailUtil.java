@@ -9,21 +9,14 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-<<<<<<< HEAD
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-=======
 /**
  * 发邮件工具类
  * @author Administrator
  *
  */
-public class MailUtil {
->>>>>>> 92350751b4a43efe759c21b89c74e307c23be18a
-
-
 public class MailUtil {
 	
 	private static Logger logger = LogManager.getFormatterLogger(MailUtil.class);
@@ -75,13 +68,10 @@ public class MailUtil {
 			return true;
 			
 		} catch (MessagingException e) {
-<<<<<<< HEAD
+
 			logger.error(e.getMessage());
 			return false;
-=======
-			// 在这里处理message内容， 格式是固定的
-			System.out.println(e.getMessage());
->>>>>>> 92350751b4a43efe759c21b89c74e307c23be18a
+
 		}
 	
 	}
