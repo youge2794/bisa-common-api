@@ -26,7 +26,7 @@ public class Goods implements Serializable{
 	private String description;		//商品描述
 	private BigDecimal goodsPrice;		//单价
 	private Integer storeNumber;   //商品库存数量
-	private Integer needPost;		//0-不需要邮递；1-需要邮递  //可删！！！！！！！
+	private Integer needPost;		//0-不需要邮递；1-需要邮递  
 	
 	private Integer goodsStatus;   // 0售罄，1销售中，2下架
 	private Date putawayTime;		//上架时间
@@ -103,6 +103,7 @@ public class Goods implements Serializable{
 	public void setStoreNumber(Integer storeNumber) {
 		this.storeNumber = storeNumber;
 	}
+	
 	@Column(name="need_post")
 	public Integer getNeedPost() {
 		return needPost;
@@ -111,6 +112,7 @@ public class Goods implements Serializable{
 	public void setNeedPost(Integer needPost) {
 		this.needPost = needPost;
 	}
+	
 	@Column(name="putaway_time")
 	public Date getPutawayTime() {
 		return putawayTime;

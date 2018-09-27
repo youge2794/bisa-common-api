@@ -27,8 +27,8 @@ public class ServiceCategoryServiceImpl implements IServiceCategoryService{
 	}
 
 	@Override
-	public List<ServiceCategory> lsit() {
-		return categoryDao.lsit();
+	public List<ServiceCategory> listServiceCategory() {
+		return categoryDao.listServiceCategory();
 	}
 	
 }

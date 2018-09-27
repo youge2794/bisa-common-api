@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.bisa.health.app.enumerate.ServiceType;
-import com.bisa.health.app.model.ServiceCategory;
 import com.bisa.health.app.model.ServiceDetail;
 import com.bisa.health.basic.dao.BaseDao;
 
@@ -21,14 +20,20 @@ public class ServiceDetailDaoImpl extends BaseDao<ServiceDetail> implements ISer
 
 	@Override
 	public List<ServiceDetail> lsitByUserguid(int userGuid) {
-		String sql="SELECT * FROM e_service WHERE user_guid=?";
+		String sql = "SELECT * FROM e_service WHERE user_guid=?";
 		return this.listBySql(sql, new Object[]{userGuid}, ServiceDetail.class);
 	}
 
 	@Override
 	public List<ServiceDetail> listByUserguidAndCategory(int userGuid, ServiceType serviceType) {
-		String sql="SELECT * FROM e_service WHERE user_guid=? and service_type=?";
+		String sql = "SELECT * FROM e_service WHERE user_guid=? and service_type=?";
 		return this.listBySql(sql, new Object[]{userGuid,serviceType}, ServiceDetail.class);
 	}
-	
+
+	@Override
+	public int updateServiceDetail(ServiceDetail serviceDetail, int version) {
+		String sql = "UPDATE e_service SET finished_time=?, is_active=?, count=?, version=? where version=?";
+		return super.updateBySql(sql, new Object[] {serviceDetail.getFinishedTime(), serviceDetail.getIsActive(), serviceDetail.getCount(), serviceDetail.getVersion(), version});
+	}
+
 }

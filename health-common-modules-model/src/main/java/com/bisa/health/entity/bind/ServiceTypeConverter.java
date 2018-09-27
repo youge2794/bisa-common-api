@@ -6,13 +6,13 @@ import javax.persistence.Converter;
 import com.bisa.health.app.enumerate.ServiceType;
 
 @Converter
-public class ServiceTypeConverter implements AttributeConverter<ServiceType, Integer>{
+public class ServiceTypeConverter implements AttributeConverter<ServiceType, String>{
 
-	public Integer convertToDatabaseColumn(ServiceType attribute) {
+	public String convertToDatabaseColumn(ServiceType attribute) {
 		return attribute.getValue();
 	}
 
-	public ServiceType convertToEntityAttribute(Integer dbData) {
+	public ServiceType convertToEntityAttribute(String dbData) {
 		return ServiceType.getByValue(dbData);
 	}
 
