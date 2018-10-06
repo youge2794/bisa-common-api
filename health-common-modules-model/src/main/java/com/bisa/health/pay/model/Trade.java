@@ -1,4 +1,4 @@
-package com.bisa.helath.pay.model;
+package com.bisa.health.pay.model;
 
 import java.math.BigDecimal;
 import java.util.Date;

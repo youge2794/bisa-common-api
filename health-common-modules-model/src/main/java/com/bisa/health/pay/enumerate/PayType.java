@@ -1,4 +1,4 @@
-package com.bisa.helath.pay.enumerate;
+package com.bisa.health.pay.enumerate;
 
 /**
  * 支付类型

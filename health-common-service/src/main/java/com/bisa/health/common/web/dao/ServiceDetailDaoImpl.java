@@ -32,8 +32,8 @@ public class ServiceDetailDaoImpl extends BaseDao<ServiceDetail> implements ISer
 
 	@Override
 	public int updateServiceDetail(ServiceDetail serviceDetail, int version) {
-		String sql = "UPDATE e_service SET finished_time=?, is_active=?, count=?, version=? where version=?";
-		return super.updateBySql(sql, new Object[] {serviceDetail.getFinishedTime(), serviceDetail.getIsActive(), serviceDetail.getCount(), serviceDetail.getVersion(), version});
+		String sql = "UPDATE e_service SET finished_time=?, count=?, version=? where version=?";
+		return super.updateBySql(sql, new Object[] {serviceDetail.getFinishedTime(), serviceDetail.getCount(), serviceDetail.getVersion(), version});
 	}
 
 }

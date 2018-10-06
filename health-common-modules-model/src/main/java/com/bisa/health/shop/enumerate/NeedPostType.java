@@ -1,18 +1,18 @@
 package com.bisa.health.shop.enumerate;
 
 /**
- * 快递 类型
+ * 是否需要邮递枚举
  * @author Administrator
  *
  */
 
 public enum NeedPostType {
 	/**
-	 * 不需要邮
+	 * 不需要邮递
 	 */
 	no_post(0, "NO_POST"),
 	/**
-	 * 要邮
+	 * 需要邮递
 	 */
 	need_post(1, "NEED_POST");
 

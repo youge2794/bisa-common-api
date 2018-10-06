@@ -7,29 +7,61 @@ package com.bisa.health.shop.enumerate;
  */
 public enum AfterSalesStatus {
 	/**
-	 * 订单未完成
+	 * 已付款(收货前的状态)
 	 */
-	unable(0, "unable"),
+	paid(0, "paid"),
 	/**
-	 * 待服务
+	 * 待申请
 	 */
-	able(1, "able"),
+	apply_for(1, "APPLY_FOR"),
 	/**
-	 * 服务中
+	 * 申请中
 	 */
-	in_service(2, "in_service"),
+	apply_for_ing(2, "APPLY_FOR_ING"),
 	/**
-	 * 已完成 
+	 * 客服审核  成功
 	 */
-	completed(4, "completed"),
+	service_success(3, "SERVICE_SUCCESS"),
 	/**
-	 * 已取消
+	 * 客服审核  失败
 	 */
-	cancelled(5, "cancelled"),
+	service_fail(4, "SERVICE_FAIL"),
 	/**
-	 * 已关闭
+	 * 物流 审核——>成功
 	 */
-	closed(6, "closed");
+	logistics_success(5, "LOGISTICS_SUCCESS"),
+	/**
+	 * 物流 审核失败
+	 */
+	logistics_fail(6, "LOGISTICS_FAIL"),
+	/**
+	 * 财务 审核-->成功
+	 */
+	finance_success(7, "FINANCE_SUCCESS"),
+	/**
+	 * 财务 审核失败
+	 */
+	finance_fail(8, "FINANCE_FAIL"),
+	/**
+	 * 退款  中(用不上)
+	 */
+	refund_ing(9, "REFUND_ING"),
+	/**
+	 * 退款成功--->(交易流水表的最后状态)
+	 */
+	refund_success(10, "REFUND_SUCCESS"),
+	/**
+	 * 退款失败
+	 */
+	refund_failure(11, "REFUND_FAILURE"),
+	/**
+	 * 已完成(流程结束了)(用户的最后状态)
+	 */
+	complete(12, "COMPLETE"),
+	/**
+	 * 已取消(用户发起的  取消)(用户的最后状态)
+	 */
+	cancel(13, "CANCEL");
 
 	private int value;
 	private String name;
