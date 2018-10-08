@@ -3,7 +3,7 @@ package com.bisa.health.app.validator;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import com.bisa.health.app.constraints.LoginTypeConstraint;
+import com.bisa.health.app.constraint.LoginTypeConstraint;
 import com.bisa.health.app.enumerate.LoginTypeEnum;
 
 

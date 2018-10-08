@@ -3,7 +3,7 @@ package com.bisa.health.app.validator;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import com.bisa.health.app.constraints.SexConstraint;
+import com.bisa.health.app.constraint.SexConstraint;
 import com.bisa.health.app.enumerate.SexTypeEnum;
 
 public class SexValidator implements ConstraintValidator<SexConstraint, Enum<SexTypeEnum>> {

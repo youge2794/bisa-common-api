@@ -1,4 +1,4 @@
-package com.bisa.health.app.constraints;
+package com.bisa.health.app.constraint;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
@@ -11,15 +11,16 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import com.bisa.health.app.validator.ServiceTypeValidator;
+
+import com.bisa.health.app.validator.SexValidator;
 
 
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
 @Documented
-@Constraint(validatedBy = {ServiceTypeValidator.class})
-public @interface ServiceTypeConstraint {
-	String message() default "Invalid shape type";
+@Constraint(validatedBy = {SexValidator.class})
+public @interface SexConstraint {
+	String message() default "Invalid sex type";
 
     Class<?>[] groups() default {};
 

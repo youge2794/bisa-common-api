@@ -1,4 +1,4 @@
-package com.bisa.health.app.constraints;
+package com.bisa.health.app.constraint;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.CONSTRUCTOR;

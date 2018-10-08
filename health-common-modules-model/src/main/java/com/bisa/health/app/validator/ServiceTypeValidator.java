@@ -2,7 +2,8 @@ package com.bisa.health.app.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import com.bisa.health.app.constraints.ServiceTypeConstraint;
+
+import com.bisa.health.app.constraint.ServiceTypeConstraint;
 import com.bisa.health.app.enumerate.ServiceType;
 
 public class ServiceTypeValidator implements ConstraintValidator<ServiceTypeConstraint, Enum<ServiceType>> {

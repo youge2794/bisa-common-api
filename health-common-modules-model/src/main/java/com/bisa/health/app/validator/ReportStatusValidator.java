@@ -3,7 +3,7 @@ package com.bisa.health.app.validator;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import com.bisa.health.app.constraints.ReportStatusConstraint;
+import com.bisa.health.app.constraint.ReportStatusConstraint;
 import com.bisa.health.app.enumerate.ReportStatus;
 
 public class ReportStatusValidator implements ConstraintValidator<ReportStatusConstraint, Enum<ReportStatus>> {

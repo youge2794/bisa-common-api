@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Table;
 
-import com.bisa.health.app.constraints.ServiceTypeConstraint;
+import com.bisa.health.app.constraint.ServiceTypeConstraint;
 import com.bisa.health.app.enumerate.ServiceType;
 
 /**
