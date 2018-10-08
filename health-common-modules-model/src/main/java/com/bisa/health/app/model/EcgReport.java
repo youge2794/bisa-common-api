@@ -14,8 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
-import com.bisa.health.app.constraints.ReportStatusConstraint;
 import com.bisa.health.app.enumerate.ReportStatus;
 import com.bisa.health.app.enumerate.ReportType;
 import com.bisa.health.app.enumerate.SexTypeEnum;
