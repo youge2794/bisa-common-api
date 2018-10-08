@@ -23,7 +23,7 @@ public class ServiceDetailServiceImpl implements IServiceDetailService {
 	}
 
 	@Override
-	public List<ServiceDetail> lsitByUserguid(int userGuid) {
+	public List<ServiceDetail> listByUserguid(int userGuid) {
 		return serviceDetailDao.lsitByUserguid(userGuid);
 	}
 
@@ -32,6 +32,9 @@ public class ServiceDetailServiceImpl implements IServiceDetailService {
 		return serviceDetailDao.listByUserguidAndCategory(userGuid, serviceType);
 	}
 
-	
-
+	@Override
+	public boolean updateServiceDetail(ServiceDetail serviceDetail, int version) {
+		int result = serviceDetailDao.updateServiceDetail(serviceDetail, version);
+		return result >= 1 ? true : false;
+	}
 }

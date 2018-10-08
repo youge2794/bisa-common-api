@@ -1,17 +1,21 @@
-package com.bisa.helath.pay.enumerate;
+package com.bisa.health.shop.enumerate;
 
-public enum PayLocation {
-	
-	/*1 电脑网页端  2 安卓手机 3 ios手机 4 电脑客户端*/
-	
-	web(1, "web"),
-	
-	android(2, "android"),
-	
-	ios(3, "ios"),
-	
-	pc(4, "pc");
-	
+/**
+ * 是否需要邮递枚举
+ * @author Administrator
+ *
+ */
+
+public enum NeedPostType {
+	/**
+	 * 不需要邮递
+	 */
+	no_post(0, "NO_POST"),
+	/**
+	 * 需要邮递
+	 */
+	need_post(1, "NEED_POST");
+
 	private int value;
 	private String name;
 
@@ -31,18 +35,17 @@ public enum PayLocation {
 		this.name = name;
 	}
 
-	private PayLocation(int value, String name) {
+	private NeedPostType(int value, String name) {
 		this.value = value;
 		this.name = name;
 	}
 
-	public static PayLocation getByValue(int value) {
-		for (PayLocation status : values()) {
+	public static NeedPostType getByValue(int value) {
+		for (NeedPostType status : values()) {
 			if (status.getValue() == value) {
 				return status;
 			}
 		}
 		return null;
 	}
-
 }

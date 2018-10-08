@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.Table;
 
+import com.bisa.health.app.constraints.ServiceTypeConstraint;
 import com.bisa.health.app.enumerate.ServiceType;
 
 /**
@@ -26,7 +27,10 @@ public class ServiceCard {
 	private String cardNumber; //BHA+年月日+递增+CN，共20位，如"BISA20180810100000CN"
 	private String activeCode; //激活码8位  随机数字
 	private String goodsNumber;  //商品编码（用于订单关联卡）
+	
+	@ServiceTypeConstraint
 	private ServiceType cardType; //卡类型（次数型；时限型）
+	
 	private String serviceToken; //服务编码(用于激活服务）
 	private int count; //（面值）次数/月份
 	private int cardStatus; //是否使用；0-未使用；1-已使用
@@ -39,6 +43,7 @@ public class ServiceCard {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	@Column(name="card_number")
 	public String getCardNumber() {
 		return cardNumber;
@@ -46,6 +51,7 @@ public class ServiceCard {
 	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
+	
 	@Column(name="active_code")
 	public String getActiveCode() {
 		return activeCode;
@@ -53,6 +59,7 @@ public class ServiceCard {
 	public void setActiveCode(String activeCode) {
 		this.activeCode = activeCode;
 	}
+	
 	@Column(name="card_status")
 	public int getCardStatus() {
 		return cardStatus;

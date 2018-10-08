@@ -11,6 +11,8 @@ public interface IServiceDetailDao {
 	public List<ServiceDetail> lsitByUserguid(int userGuid);
 	
 	public List<ServiceDetail> listByUserguidAndCategory(int userGuid, ServiceType serviceType);
+
+	public int updateServiceDetail(ServiceDetail serviceDetail, int version);
 	
 	
 }

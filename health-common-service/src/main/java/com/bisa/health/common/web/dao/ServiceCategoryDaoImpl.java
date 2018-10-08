@@ -23,9 +23,9 @@ public class ServiceCategoryDaoImpl extends BaseDao<ServiceCategory> implements 
 	}
 
 	@Override
-	public List<ServiceCategory> lsit() {
+	public List<ServiceCategory> listServiceCategory() {
 		String sql="SELECT * FROM e_service_category";
-		return this.listBySql(sql,null,ServiceCategory.class);
+		return super.listBySql(sql, ServiceCategory.class, true);
 	}
 
 }

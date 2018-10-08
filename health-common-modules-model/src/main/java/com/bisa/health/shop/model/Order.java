@@ -46,6 +46,8 @@ public class Order implements Serializable{
 	
 	private String orderEmail;		//发送账单邮箱
 	
+	private String payment_id; //賬單編號(这个是银联支付要的字段)
+	
 	@Id
 	@GeneratedValue
 	public Integer getId() {
@@ -217,6 +219,14 @@ public class Order implements Serializable{
 	public void setLogisticsAccount(String logisticsAccount) {
 		this.logisticsAccount = logisticsAccount;
 	}
+	
+	public String getPayment_id() {
+		return payment_id;
+	}
+
+	public void setPayment_id(String payment_id) {
+		this.payment_id = payment_id;
+	}
 
 	public Order() {
 		super();
@@ -226,7 +236,7 @@ public class Order implements Serializable{
 			Integer tra_status, Integer pay_type, Date pay_time, Date deliver_goods_time, Date receive_goods_time,
 			Integer after_sale_apply, BigDecimal total_price, BigDecimal post_price, BigDecimal preferential_price,
 			BigDecimal actual_payment, String logistics_number, String logistics_name, String logisticsAccount,
-			Date create_time, String orderEmail) {
+			Date create_time, String orderEmail, String payment_id) {
 		super();
 		this.id = id;
 		this.order_no = order_no;
@@ -249,6 +259,7 @@ public class Order implements Serializable{
 		this.logisticsAccount = logisticsAccount;
 		this.create_time = create_time;
 		this.orderEmail = orderEmail;
+		this.payment_id = payment_id;
 	}
 
 	@Override
@@ -260,7 +271,8 @@ public class Order implements Serializable{
 				+ ", total_price=" + total_price + ", post_price=" + post_price + ", preferential_price="
 				+ preferential_price + ", actual_payment=" + actual_payment + ", logistics_number=" + logistics_number
 				+ ", logistics_name=" + logistics_name + ", logisticsAccount=" + logisticsAccount + ", create_time="
-				+ create_time + ", orderEmail=" + orderEmail + "]";
+				+ create_time + ", orderEmail=" + orderEmail + ", payment_id=" + payment_id + "]";
 	}
+
 	
 }

@@ -6,6 +6,8 @@ import com.bisa.health.app.model.ServiceCategory;
 
 public interface IServiceCategoryService {
 	public ServiceCategory delete(ServiceCategory category);
+	
 	public ServiceCategory saveAndUpdate(ServiceCategory category);
-	public List<ServiceCategory> lsit();
+	
+	public List<ServiceCategory> listServiceCategory();
 }

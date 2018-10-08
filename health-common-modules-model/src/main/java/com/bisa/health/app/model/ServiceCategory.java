@@ -50,9 +50,9 @@ public class ServiceCategory {
 		super();
 	}
 	
-	public static ServiceCategory byCategory(List<ServiceCategory> list,String name){
+	public static ServiceCategory byCategory(List<ServiceCategory> list, String stoken){
 		for(ServiceCategory serviceCategory : list){
-			if(name.equals(serviceCategory.getName())){
+			if(stoken.equals(serviceCategory.getStoken())){
 				return serviceCategory;
 			}
 		}
