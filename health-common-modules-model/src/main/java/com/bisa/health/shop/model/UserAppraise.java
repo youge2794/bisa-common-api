@@ -1,5 +1,6 @@
 package com.bisa.health.shop.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.GeneratedValue;
