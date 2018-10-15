@@ -2,98 +2,91 @@ package com.bisa.health.common.entity;
 
 import java.io.Serializable;
 
-public class ResultData<T> implements Serializable{
+public class ResultData<T> implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5674813304197397731L;
-	/**
-	 * error code
-	 */
-	private int code;
-	/**
-	 * error msg
-	 */
-	private String message;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 5674813304197397731L;
+    /**
+     * error code
+     */
+    private int code;
+    /**
+     * error msg
+     */
+    private String message;
 
-	
-	/**
-	 * 登入时间戳gmt时间
-	 */
-	private long timestamp;
-
-	
-	
-	private String token;
-	
-	private T data;
+    /**
+     * 登入时间戳gmt时间
+     */
+    private long timestamp;
 
 
-	public int getCode() {
-		return code;
-	}
+    private String token;
+
+    private T data;
 
 
-	public void setCode(int code) {
-		this.code = code;
-	}
+    public int getCode() {
+        return code;
+    }
 
 
-	public String getMessage() {
-		return message;
-	}
+    public void setCode(int code) {
+        this.code = code;
+    }
 
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    public String getMessage() {
+        return message;
+    }
 
 
-	public long getTimestamp() {
-		return timestamp;
-	}
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
 
-	public void setTimestamp(long timestamp) {
-		this.timestamp = timestamp;
-	}
+    public long getTimestamp() {
+        return timestamp;
+    }
 
 
-	public T getData() {
-		return data;
-	}
-
-	public String getToken() {
-		return token;
-	}
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
 
 
-	public void setToken(String token) {
-		this.token = token;
-	}
+    public T getData() {
+        return data;
+    }
+
+    public String getToken() {
+        return token;
+    }
 
 
-	public void setData(T data) {
-		this.data = data;
-	}
+    public void setToken(String token) {
+        this.token = token;
+    }
 
 
-	public ResultData() {
-		super();
-		
-	}
-	
-	
+    public void setData(T data) {
+        this.data = data;
+    }
 
 
-	@Override
-	public String toString() {
-		return "ResultData [code=" + code + ", message=" + message + ", timestamp=" + timestamp + ", data=" + data
-				+ "]";
-	}
-	
+    public ResultData() {
+        super();
 
+    }
+
+    @Override
+    public String toString() {
+        return "ResultData [code=" + code + ", message=" + message + ", timestamp=" + timestamp + ", data=" + data
+                + "]";
+    }
 
 }
 
