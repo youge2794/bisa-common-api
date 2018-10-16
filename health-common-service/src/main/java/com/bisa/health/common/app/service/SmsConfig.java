@@ -35,6 +35,12 @@ public class SmsConfig {
 	
 	// 密码发送短信模板
 	public static final int PASSWORD = 99285;
-	
-	
+
+	//国内提示用户订单付款短信
+	public static final int INTERNAL_ORDER_PAYMENT = 12312;
+	//香港提示用户订单付款短信
+	public static final int Hongkong_ORDER_PAYMENT = 12312;
+	//國外提示用户订单付款短信
+	public static final int ABROAD_ORDER_PAYMENT = 12312;
+
 }

@@ -23,5 +23,10 @@ public interface ISmsService {
 	 * 发送密码短信
 	 */
 	public SmsSingleSenderResult sendPassword(String area_code,String phone,String passWord);
-	
+
+	/**
+	 *	提示用户订单付款短信
+	 */
+	public SmsSingleSenderResult sendUnpaidTips(String area_code,String phone,String order_no, String url);
+
 }
