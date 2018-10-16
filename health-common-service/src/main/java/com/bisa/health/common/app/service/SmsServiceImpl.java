@@ -215,11 +215,12 @@ public class SmsServiceImpl implements ISmsService {
             SmsSingleSender singleSender = new SmsSingleSender(alarm_appid, alarm_appkey);
             SmsSingleSenderResult singleSenderResult;
             //   https://hk-shop.bisahealth.com/user/orderDetail?order_no=201810121558001666209791  這個是訂單額地址
-            //尊敬的{1}用户，您好！您有个未支付的订单{2}，请尽快到{3}{2}查看，我们将在12小时后为您取消订单。
+            //尊敬的{1}用户，您好！您有个未支付的订单{2}，请尽快到{3}{4}查看，我们将在12小时后为您取消订单。
             ArrayList<String> params = new ArrayList<String>();
             params.add(phone);
             params.add(order_no);
             params.add(url);
+            params.add(order_no);
             singleSenderResult = singleSender.sendWithParam(area_code, phone, tmplId, params, "", "", "");
             return singleSenderResult;
         } catch (Exception e) {
