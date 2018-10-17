@@ -13,6 +13,7 @@ public class EmailTemplate {
 	private static final String confirm_order_subject = "悉心康健-訂單確認";
 	private static final String cancel_order_subject = "悉心康健-訂單取消";
 	private static final String shipping_order_subject = "悉心康健-訂單發貨";
+	private static final String timeout_order_subject = "悉心康健-訂單取消";
 	
 	private static EmailTemplate instance;
 
@@ -81,7 +82,9 @@ public class EmailTemplate {
 			return cancel_order_subject;
 		}else if (emailType ==4){
 			return commit_order_subject;
-		}
+		}else if (emailType ==5){
+			 return timeout_order_subject;
+		 }
 		return "";
 	}
 
@@ -100,6 +103,8 @@ public class EmailTemplate {
 			return "感謝您訂購碧莎產品，您的訂單已取消，取消原因：（主動取消訂單/缺貨或者無法配送/物流到付賬號有誤），您可以登入碧莎商城賬戶或點擊下面訂單資訊鏈接查看訂單資訊。";
 		}else if (emailType==4){
 			return "感謝您訂購碧莎產品，您的訂單已提交，請在12小時內支付，您可以登入碧莎商城賬戶或點擊下面訂單資訊鏈接查看訂單資訊。";
+		}else if (emailType==5){
+			return "感謝您訂購碧莎產品，您的訂單在12小時內未完成付款，系統已自動取消，您可以登入碧莎商城帳護或點擊下面訂單資訊鏈接查看訂單資訊。";
 		}
 		return "";
 	}
