@@ -1,5 +1,6 @@
 package com.bisa.health.common.email.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -37,6 +38,8 @@ public class EmailTemplate {
 	 * @return
 	 */
 	public String orderEmailTemplate(String nickName, String state, String orderNumber,Date date,String href){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String date1 = formatter.format(date);
 		String html = 
 				 "<div><br><br>" 
 				+ "<img style=\"border: currentColor; width: 100px; min-height: auto; float: left;\"> " 
@@ -49,7 +52,7 @@ public class EmailTemplate {
 				+ "<div style=\"line-height: 1.75; white-space: pre-wrap;\"><br></div>"
 				+ "您的訂單資訊<br> "
 				+ "碧沙商城訂單號碼：" + orderNumber + "<br>"
-				+ "訂單日期：" + date
+				+ "訂單日期：" + date1
 				+ "<br>訂單狀態詳情鏈接<br> "
 				+ "<a href="+href+">"+href+"</a>（點開跳商城登陸後顯示訂單詳情）<br>"
 				+ "<br> 如有任何疑問，請發送電子郵件或致電香港客戶服務團隊<br> "
@@ -102,9 +105,9 @@ public class EmailTemplate {
 		}else if(emailType == 3) {
 			return "感謝您訂購碧莎產品，您的訂單已取消，取消原因：（主動取消訂單/缺貨或者無法配送/物流到付賬號有誤），您可以登入碧莎商城賬戶或點擊下面訂單資訊鏈接查看訂單資訊。";
 		}else if (emailType==4){
-			return "感謝您訂購碧莎產品，您的訂單已提交，請在12小時內支付，您可以登入碧莎商城賬戶或點擊下面訂單資訊鏈接查看訂單資訊。";
+			return "感謝您訂購碧莎產品，您的訂單已提交，請在24小時內支付，您可以登入碧莎商城賬戶或點擊下面訂單資訊鏈接查看訂單資訊。";
 		}else if (emailType==5){
-			return "感謝您訂購碧莎產品，您的訂單在12小時內未完成付款，系統已自動取消，您可以登入碧莎商城帳護或點擊下面訂單資訊鏈接查看訂單資訊。";
+			return "感謝您訂購碧莎產品，您的訂單在24小時內未完成付款，系統已自動取消，您可以登入碧莎商城帳護或點擊下面訂單資訊鏈接查看訂單資訊。";
 		}
 		return "";
 	}
