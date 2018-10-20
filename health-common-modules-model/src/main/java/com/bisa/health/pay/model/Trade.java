@@ -1,5 +1,6 @@
 package com.bisa.health.pay.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "s_trade", indexes = {@Index(columnList = "trade_guid")})
-public class Trade {
+public class Trade implements Serializable {
 
     private int id;
     private String trade_no;        //交易流水号
