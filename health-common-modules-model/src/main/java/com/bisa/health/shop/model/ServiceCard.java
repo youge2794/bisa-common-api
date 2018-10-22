@@ -12,13 +12,15 @@ import javax.persistence.Table;
 import com.bisa.health.app.constraint.ServiceTypeConstraint;
 import com.bisa.health.app.enumerate.ServiceType;
 
+import java.io.Serializable;
+
 /**
  * 服务激活卡model
  */
 
 @Entity
 @Table(name = "s_service_card", indexes = {@Index(columnList = "card_number")})
-public class ServiceCard {
+public class ServiceCard implements Serializable {
 
     private int id;
     private String cardName; //卡名称

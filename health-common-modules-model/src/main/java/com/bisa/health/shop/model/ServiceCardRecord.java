@@ -1,5 +1,6 @@
 package com.bisa.health.shop.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -19,7 +20,7 @@ import com.bisa.health.app.enumerate.ServiceType;
 
 @Entity
 @Table(name = "s_service_card_record", indexes = {@Index(columnList = "user_guid")})
-public class ServiceCardRecord {
+public class ServiceCardRecord implements Serializable {
 
     private Integer id;
     private Integer userGuid; // 拥有者的user_guid
@@ -28,6 +29,7 @@ public class ServiceCardRecord {
     private String activeCode; // 激活码8位 随机数字
     private ServiceType cardType; // 卡类型（次数型；时限型）
     private String goodsNumber; // 商品编号（24小时报告；悉心铃）
+    private String goodsUrl; // 商品图片(这里是个冗余字段，看分页信息的方便点)
 
     private Integer count; // （激活卡面值）次数/月份
     private String account;// 激活账号（服务使用者的账号，手机号或邮箱）
@@ -129,6 +131,15 @@ public class ServiceCardRecord {
         this.createTime = createTime;
     }
 
+    @Column(name = "goods_url")
+    public String getGoodsUrl() {
+        return goodsUrl;
+    }
+
+    public void setGoodsUrl(String goodsUrl) {
+        this.goodsUrl = goodsUrl;
+    }
+
     @Column(name = "card_status")
     public Integer getCardStatus() {
         return cardStatus;
@@ -169,10 +180,7 @@ public class ServiceCardRecord {
         super();
     }
 
-    public ServiceCardRecord(Integer id, Integer userGuid, String cardName, String cardNumber, String activeCode,
-                             ServiceType cardType, String goodsNumber, Integer count, String account, Date activeTime, Date createTime,
-                             Integer cardStatus, Integer orderGoodsId, String serviceToken) {
-        super();
+    public ServiceCardRecord(Integer id, Integer userGuid, String cardName, String cardNumber, String activeCode, ServiceType cardType, String goodsNumber, String goodsUrl, Integer count, String account, Date activeTime, Date createTime, Integer cardStatus, Integer orderGoodsId, String serviceToken) {
         this.id = id;
         this.userGuid = userGuid;
         this.cardName = cardName;
@@ -180,6 +188,7 @@ public class ServiceCardRecord {
         this.activeCode = activeCode;
         this.cardType = cardType;
         this.goodsNumber = goodsNumber;
+        this.goodsUrl = goodsUrl;
         this.count = count;
         this.account = account;
         this.activeTime = activeTime;
@@ -191,11 +200,22 @@ public class ServiceCardRecord {
 
     @Override
     public String toString() {
-        return "ServiceCardRecord [id=" + id + ", userGuid=" + userGuid + ", cardName=" + cardName + ", cardNumber="
-                + cardNumber + ", activeCode=" + activeCode + ", cardType=" + cardType + ", goodsNumber=" + goodsNumber
-                + ", count=" + count + ", account=" + account + ", activeTime=" + activeTime + ", createTime="
-                + createTime + ", cardStatus=" + cardStatus + ", orderGoodsId=" + orderGoodsId + ", serviceToken="
-                + serviceToken + "]";
+        return "ServiceCardRecord{" +
+                "id=" + id +
+                ", userGuid=" + userGuid +
+                ", cardName='" + cardName + '\'' +
+                ", cardNumber='" + cardNumber + '\'' +
+                ", activeCode='" + activeCode + '\'' +
+                ", cardType=" + cardType +
+                ", goodsNumber='" + goodsNumber + '\'' +
+                ", goodsUrl='" + goodsUrl + '\'' +
+                ", count=" + count +
+                ", account='" + account + '\'' +
+                ", activeTime=" + activeTime +
+                ", createTime=" + createTime +
+                ", cardStatus=" + cardStatus +
+                ", orderGoodsId=" + orderGoodsId +
+                ", serviceToken='" + serviceToken + '\'' +
+                '}';
     }
-
 }
