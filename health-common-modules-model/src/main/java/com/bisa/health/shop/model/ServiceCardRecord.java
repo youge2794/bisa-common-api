@@ -1,5 +1,6 @@
 package com.bisa.health.shop.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -19,7 +20,7 @@ import com.bisa.health.app.enumerate.ServiceType;
 
 @Entity
 @Table(name = "s_service_card_record", indexes = {@Index(columnList = "user_guid")})
-public class ServiceCardRecord {
+public class ServiceCardRecord implements Serializable {
 
     private Integer id;
     private Integer userGuid; // 拥有者的user_guid
