@@ -67,6 +67,14 @@ public class ServiceCategory {
                 '}';
     }
 
+    public static ServiceCategory byName(List<ServiceCategory> list, String name) {
+        for (ServiceCategory serviceCategory : list) {
+            if (name.equals(serviceCategory.getName())) {
+                return serviceCategory;
+            }
+        }
+        return null;
+    }
     public static ServiceCategory byCategory(List<ServiceCategory> list, String stoken) {
         for (ServiceCategory serviceCategory : list) {
             if (stoken.equals(serviceCategory.getStoken())) {
