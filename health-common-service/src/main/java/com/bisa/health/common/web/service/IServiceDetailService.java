@@ -2,6 +2,7 @@ package com.bisa.health.common.web.service;
 
 import java.util.List;
 
+import com.bisa.health.app.enumerate.ActivateEnum;
 import com.bisa.health.app.enumerate.ServiceType;
 import com.bisa.health.app.model.ServiceDetail;
 
@@ -24,6 +25,14 @@ public interface IServiceDetailService {
      * @return
      */
     public List<ServiceDetail> listByUserguid(int userGuid);
+
+    /**
+     * 根据用户的guid和服务的状态，获取用户激活的集合
+     * @param userGuid
+     * @param activateEnum
+     * @return
+     */
+    public List<ServiceDetail> listByUserguidAndIsActive(int userGuid, int activateEnum);
 
     /**
      * 根据用户的guid和服务类型，获取用户激活的集合

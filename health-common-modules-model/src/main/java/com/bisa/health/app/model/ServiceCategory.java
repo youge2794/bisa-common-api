@@ -57,6 +57,16 @@ public class ServiceCategory {
         super();
     }
 
+    @Override
+    public String toString() {
+        return "ServiceCategory{" +
+                "id=" + id +
+                ", stoken='" + stoken + '\'' +
+                ", name='" + name + '\'' +
+                ", desc='" + desc + '\'' +
+                '}';
+    }
+
     public static ServiceCategory byCategory(List<ServiceCategory> list, String stoken) {
         for (ServiceCategory serviceCategory : list) {
             if (stoken.equals(serviceCategory.getStoken())) {

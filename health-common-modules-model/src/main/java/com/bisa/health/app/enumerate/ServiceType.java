@@ -1,26 +1,36 @@
 package com.bisa.health.app.enumerate;
 
+/**
+ * 服务的类型
+ */
+
 public enum ServiceType {
-	
-	COUNT("COUNT"),
-	TIMING("TIMING");
-	
-	private String value;
 
-	private ServiceType(String value) {
-		this.value = value;
-	}
+    /**
+     * 次数
+     */
+    COUNT("COUNT"),
+    /**
+     * 时限
+     */
+    TIMING("TIMING");
 
-	public String getValue() {
-		return value;
-	} 
+    private String value;
 
-	public static ServiceType getByValue(String value) {
-		for (ServiceType roleType : values()) {
-			if (roleType.getValue().equals(value.trim())) {
-				return roleType;
-			}
-		}
-		return null;
-	}
+    private ServiceType(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public static ServiceType getByValue(String value) {
+        for (ServiceType roleType : values()) {
+            if (roleType.getValue().equals(value.trim())) {
+                return roleType;
+            }
+        }
+        return null;
+    }
 }  

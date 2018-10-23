@@ -2,6 +2,7 @@ package com.bisa.health.common.web.dao;
 
 import java.util.List;
 
+import com.bisa.health.app.enumerate.ActivateEnum;
 import com.bisa.health.app.enumerate.ServiceType;
 import com.bisa.health.app.model.ServiceDetail;
 
@@ -40,5 +41,11 @@ public interface IServiceDetailDao {
      */
     public int updateServiceDetail(ServiceDetail serviceDetail, int version);
 
-
+    /**
+     * 根据用户的guid和服务的状态，获取用户激活的集合
+     * @param userGuid
+     * @param activateEnum
+     * @return
+     */
+    List<ServiceDetail> listByUserguidAndIsActive(int userGuid, int activateEnum);
 }

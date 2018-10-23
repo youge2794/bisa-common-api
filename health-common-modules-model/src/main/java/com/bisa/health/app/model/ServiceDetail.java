@@ -106,6 +106,20 @@ public class ServiceDetail implements Serializable {
         super();
     }
 
+    @Override
+    public String toString() {
+        return "ServiceDetail{" +
+                "id=" + id +
+                ", userGuid=" + userGuid +
+                ", finishedTime=" + finishedTime +
+                ", isActive=" + isActive +
+                ", count=" + count +
+                ", serviceType=" + serviceType +
+                ", category=" + category +
+                ", version=" + version +
+                '}';
+    }
+
     public static ServiceDetail byCategory(List<ServiceDetail> list, String name) {
         for (ServiceDetail serviceDetail : list) {
             if (name.equals(serviceDetail.getCategory().getName())) {
