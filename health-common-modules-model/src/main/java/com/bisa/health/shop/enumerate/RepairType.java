@@ -8,11 +8,22 @@ package com.bisa.health.shop.enumerate;
 
 public enum RepairType {
 
-    //类型:
-    UNCONNECTED(1, "UNCONNECTED"),  //1.无法连接手机
-    NOPOWER(2, "NOPOWER"),   //2.不通电
-    DAMAGED(3, "DAMAGED"),   // 3.破损
-    OTHER(4, "OTHER");   //4.其他
+    /**
+     * 无法连接手机
+     */
+    unconnected(1, "UNCONNECTED"),
+    /**
+     * 不通电
+     */
+    nopower(2, "NOPOWER"),
+    /**
+     * 破损
+     */
+    damaged(3, "DAMAGED"),
+    /**
+     * 其他
+     */
+    other(4, "OTHER");
 
     private int value;
     private String name;

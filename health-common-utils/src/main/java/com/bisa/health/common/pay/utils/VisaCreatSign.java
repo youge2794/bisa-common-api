@@ -13,24 +13,24 @@ import java.util.TimeZone;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
+
 /**
  * visa支付的工具类
  * 商城、支付模块通用
  * @author Administrator
- *
  */
 public class VisaCreatSign {
-	private static final String HMAC_SHA256 = "HmacSHA256";
+    private static final String HMAC_SHA256 = "HmacSHA256";
 
-	public static String getUTCDateTime() {
-	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-	        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-	        return sdf.format(new Date());
-	}
-  
+    public static String getUTCDateTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+        return sdf.format(new Date());
+    }
+
     @SuppressWarnings("rawtypes")
-	public static String sign(HashMap params, String secretKey) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
-    	String data = buildDataToSign(params);
+    public static String sign(HashMap params, String secretKey) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
+        String data = buildDataToSign(params);
         SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes(), HMAC_SHA256);
         Mac mac = Mac.getInstance(HMAC_SHA256);
         mac.init(secretKeySpec);
@@ -39,7 +39,7 @@ public class VisaCreatSign {
     }
 
     @SuppressWarnings("rawtypes")
-	private static String buildDataToSign(HashMap params) {
+    private static String buildDataToSign(HashMap params) {
         String[] signedFieldNames = String.valueOf(params.get("signed_field_names")).split(",");
         ArrayList<String> dataToSign = new ArrayList<String>();
         for (String signedFieldName : signedFieldNames) {
@@ -58,7 +58,5 @@ public class VisaCreatSign {
         }
         return csv.toString();
     }
-	
-	
-	
+
 }

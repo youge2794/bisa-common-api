@@ -12,29 +12,29 @@ import com.bisa.health.common.web.dao.IServiceDetailDao;
 
 @Service
 public class ServiceDetailServiceImpl implements IServiceDetailService {
-	
-	@Autowired
-	private IServiceDetailDao serviceDetailDao;
 
-	@Override
-	public ServiceDetail saveAndUpServiceDetail(ServiceDetail serviceDetail) {
-		serviceDetailDao.saveAndUpServiceDetail(serviceDetail);
-		return serviceDetail;
-	}
+    @Autowired
+    private IServiceDetailDao serviceDetailDao;
 
-	@Override
-	public List<ServiceDetail> listByUserguid(int userGuid) {
-		return serviceDetailDao.lsitByUserguid(userGuid);
-	}
+    @Override
+    public ServiceDetail saveAndUpServiceDetail(ServiceDetail serviceDetail) {
+        serviceDetailDao.saveAndUpServiceDetail(serviceDetail);
+        return serviceDetail;
+    }
 
-	@Override
-	public List<ServiceDetail> listByUserguidAndCategory(int userGuid, ServiceType serviceType) {
-		return serviceDetailDao.listByUserguidAndCategory(userGuid, serviceType);
-	}
+    @Override
+    public List<ServiceDetail> listByUserguid(int userGuid) {
+        return serviceDetailDao.lsitByUserguid(userGuid);
+    }
 
-	@Override
-	public boolean updateServiceDetail(ServiceDetail serviceDetail, int version) {
-		int result = serviceDetailDao.updateServiceDetail(serviceDetail, version);
-		return result >= 1 ? true : false;
-	}
+    @Override
+    public List<ServiceDetail> listByUserguidAndCategory(int userGuid, ServiceType serviceType) {
+        return serviceDetailDao.listByUserguidAndCategory(userGuid, serviceType);
+    }
+
+    @Override
+    public boolean updateServiceDetail(ServiceDetail serviceDetail, int version) {
+        int result = serviceDetailDao.updateServiceDetail(serviceDetail, version);
+        return result >= 1 ? true : false;
+    }
 }

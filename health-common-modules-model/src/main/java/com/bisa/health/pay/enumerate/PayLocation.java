@@ -2,14 +2,25 @@ package com.bisa.health.pay.enumerate;
 
 /**
  * 交易地址
- * 1 电脑网页端  2 安卓手机 3 ios手机 4 电脑客户端
  */
 
 public enum PayLocation {
 
+    /**
+     * 电脑网页端
+     */
     web(1, "web"),
+    /**
+     * 安卓手机
+     */
     android(2, "android"),
+    /**
+     * ios手机
+     */
     ios(3, "ios"),
+    /**
+     * 电脑客户端
+     */
     pc(4, "pc");
 
     private int value;
