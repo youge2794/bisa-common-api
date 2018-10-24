@@ -1,7 +1,5 @@
 package com.bisa.health.common.web.service;
 
-
-import com.bisa.health.app.enumerate.ActivateEnum;
 import com.bisa.health.app.enumerate.ServiceType;
 import com.bisa.health.app.model.ServiceDetail;
 import com.bisa.health.common.web.dao.IServiceDetailDao;
