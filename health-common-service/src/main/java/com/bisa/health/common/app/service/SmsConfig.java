@@ -9,11 +9,17 @@ public class SmsConfig {
     public static final int INTERNAL_ALARM_ERROR_TEMPLATE = 214847;
     public static final int INTERNAL_ALARM_XIXIN_TEMPLATE = 214846;
     public static final int INTERNAL_ALARM_SOS_TEMPLATE = 214829;
-    //国际
-    public static final int ABROAD_ALARM_ERROR_TEMPLATE = 214823;
-    public static final int ABROAD_ALARM_XIXIN_TEMPLATE = 214820;
-    public static final int ABROAD_ALARM_SOS_TEMPLATE = 214824;
     
+   
+    //港澳台
+    public static final int HK_ALARM_ERROR_TEMPLATE = 214823;
+    public static final int HK_ALARM_XIXIN_TEMPLATE = 214820;
+    public static final int HK_ALARM_SOS_TEMPLATE = 214824;
+    
+    //国际
+    public static final int ABROAD_ALARM_ERROR_TEMPLATE = 216771;
+    public static final int ABROAD_ALARM_XIXIN_TEMPLATE = 216769;
+    public static final int ABROAD_ALARM_SOS_TEMPLATE = 216767;
     
     
     public static final int COMM_SMS_APPID = 1400152720;
@@ -32,12 +38,13 @@ public class SmsConfig {
     //港澳台报告通知
     public static final int COMM_HONGKONG_REOIRT_PAYMENT = 214868;
     public static final int COMM_INTERNAL_REOIRT_PAYMENT = 214856;
+    public static final int COMM_ABROAD_REOIRT_PAYMENT = 216773;
     
     
     //默认密码
     public static final int COMM_INTERNAL_PASSWORD_PAYMENT = 214852;
     public static final int COMM_HONGKONG_PASSWORD_PAYMENT = 214863;
-    
+    public static final int COMM_ABROAD_PASSWORD_PAYMENT = 216766;
     
 	
     // 短信验证码的appId和appKey

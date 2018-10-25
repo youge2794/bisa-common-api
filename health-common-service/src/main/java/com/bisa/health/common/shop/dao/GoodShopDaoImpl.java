@@ -2,9 +2,12 @@ package com.bisa.health.common.shop.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.bisa.health.basic.dao.BaseDao;
 import com.bisa.health.shop.model.Goods;
 
+@Repository
 public class GoodShopDaoImpl extends BaseDao<Goods> implements IGoodShopDao{
 
 	@Override
@@ -16,7 +19,7 @@ public class GoodShopDaoImpl extends BaseDao<Goods> implements IGoodShopDao{
 	@Override
 	public List<Goods> listByParent(int pid) {
 		String sql="select * from s_goods where parent_id=?";
-		return super.listBySql(sql, Goods.class, true);
+		return super.listBySql(sql,new Object[]{pid}, Goods.class, true);
 	}
 	
 }

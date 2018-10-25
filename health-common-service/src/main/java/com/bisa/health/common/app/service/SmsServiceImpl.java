@@ -29,34 +29,44 @@ public class SmsServiceImpl implements ISmsService {
     int internal_validate_template = SmsConfig.VALIDATE_INTERNAL_VALIDATE_TEMPLATE;
     // 港澳台短信验证码发送模板
     int hongkong_validate_template = SmsConfig.VALIDATE_HONGKONG_VALIDATE_TEMPLATE;
-    
+    //国际短信验证码模板
+    int abroad_validate_template=SmsConfig.VALIDATE_ABROAD_VALIDATE_TEMPLATE;
     
 
     // 国内紧急联系人主动求救发送短信模板
     int internal_contact_template = SmsConfig.INTERNAL_ALARM_XIXIN_TEMPLATE;
     // 港澳台紧急联系人主动求救发送短信模板
-    int hongkong_contact_template = SmsConfig.ABROAD_ALARM_XIXIN_TEMPLATE;
+    int hongkong_contact_template = SmsConfig.HK_ALARM_XIXIN_TEMPLATE;
+    // 国际紧急联系人主动求救发送短信模板
+    int abroad_contact_template = SmsConfig.ABROAD_ALARM_XIXIN_TEMPLATE;
 
     // 国内紧急联系人心搏异常发送短信模板
     int internal_stop = SmsConfig.INTERNAL_ALARM_ERROR_TEMPLATE;
     // 港澳台紧急联系人心搏异常发送短信模板
-    int hongkong_stop = SmsConfig.ABROAD_ALARM_ERROR_TEMPLATE;
-    
+    int hongkong_stop = SmsConfig.HK_ALARM_ERROR_TEMPLATE;
+    // 国际紧急联系人心搏异常发送短信模板
+    int abroad_stop = SmsConfig.ABROAD_ALARM_ERROR_TEMPLATE;
 
     // 国内紧急联系人紧急通知发送短信模板
     int internal_short_stop = SmsConfig.INTERNAL_ALARM_SOS_TEMPLATE;
     // 港澳台紧急联系人紧急通知发送短信模板
-    int hongkong_short_stop = SmsConfig.ABROAD_ALARM_SOS_TEMPLATE;
-
+    int hongkong_short_stop = SmsConfig.HK_ALARM_SOS_TEMPLATE;
+    // 国际紧急联系人紧急通知发送短信模板
+    int abroad_short_stop = SmsConfig.ABROAD_ALARM_SOS_TEMPLATE;
+    
     // 国内报告推送短信模板
     int internal_report_template = SmsConfig.COMM_INTERNAL_REOIRT_PAYMENT;
     // 港澳台报告推送短信模板
     int hongkong_report_template = SmsConfig.COMM_HONGKONG_REOIRT_PAYMENT;
+    // 国际报告推送短信模板
+    int abroad_report_template = SmsConfig.COMM_ABROAD_REOIRT_PAYMENT;
 
     // 国内密码发送短信
     int internal_password = SmsConfig.COMM_INTERNAL_PASSWORD_PAYMENT;
     //港澳台密码发送
     int hongkong_password=SmsConfig.COMM_HONGKONG_PASSWORD_PAYMENT;
+    //国际密码发送
+    int abroad_password=SmsConfig.COMM_ABROAD_PASSWORD_PAYMENT;
 
     //国内提示用户订单付款短信
     int internal_order_payment = SmsConfig.COMM_INTERNAL_ORDER_PAYMENT;
@@ -74,8 +84,10 @@ public class SmsServiceImpl implements ISmsService {
             int tmplId = 0;
             if (area_code.equals("86")) {
                 tmplId = internal_validate_template;
-            } else {
+            } else if(area_code.equals("853")||area_code.equals("852")||area_code.equals("886")) {
                 tmplId = hongkong_validate_template;
+            }else {
+                tmplId = abroad_validate_template;
             }
             //初始化单发
             SmsSingleSender singleSender = new SmsSingleSender(validate_appid, validate_appkey);
@@ -118,16 +130,28 @@ public class SmsServiceImpl implements ISmsService {
                         break;
                 }
 
+            } else if(phone[0].equals("853")||phone[0].equals("852")||phone[0].equals("886")){
+                switch (tempLate) {
+                case 1:
+                    tmplId = hongkong_contact_template;
+                    break;
+                case 2:
+                    tmplId = hongkong_short_stop;
+                    break;
+                case 3:
+                    tmplId = hongkong_stop;
+                    break;
+            }
             } else {
                 switch (tempLate) {
                     case 1:
-                        tmplId = hongkong_contact_template;
+                        tmplId = abroad_contact_template;
                         break;
                     case 2:
-                        tmplId = hongkong_short_stop;
+                        tmplId = abroad_short_stop;
                         break;
                     case 3:
-                        tmplId = hongkong_stop;
+                        tmplId = abroad_stop;
                         break;
                 }
             }
@@ -156,9 +180,11 @@ public class SmsServiceImpl implements ISmsService {
             if (area_code.equals("86")) {
                 //国内短信
                 tmplId = internal_report_template;
+            }else if(area_code.equals("853")||area_code.equals("852")||area_code.equals("886")) {
+                tmplId = hongkong_validate_template;
             } else {
                 //国外短信
-                tmplId = hongkong_report_template;
+                tmplId = abroad_report_template;
             }
             //初始化单发
             SmsSingleSender singleSender = new SmsSingleSender(alarm_appid, alarm_appkey);
@@ -185,9 +211,11 @@ public class SmsServiceImpl implements ISmsService {
             if (area_code.equals("86")) {
                 //国内短信
                 tmplId = internal_password;
-            } else {
+            } else if(area_code.equals("853")||area_code.equals("852")||area_code.equals("886")) {
+                tmplId = hongkong_validate_template;
+            }else {
                 //国外短信
-                tmplId = hongkong_password;
+                tmplId = abroad_password;
             }
             //初始化单发
             SmsSingleSender singleSender = new SmsSingleSender(alarm_appid, alarm_appkey);
@@ -211,10 +239,9 @@ public class SmsServiceImpl implements ISmsService {
         if (area_code.equals("86")) {
             //国内短信
             tmplId = internal_order_payment;
-        } else if (area_code == "852") {
-            //香港
+        } else if(area_code.equals("853")||area_code.equals("852")||area_code.equals("886")) {
             tmplId = hongkong_order_payment;
-        } else {
+        }else {
             //国外短信
             tmplId = abroad_order_payment;
         }
