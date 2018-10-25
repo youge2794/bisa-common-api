@@ -60,7 +60,7 @@ public class EmailTemplate {
                         + "bisapecg@bisa.com.hk</a><br>客戶服務電話：+0755-2688 0962<br> "
                         + "客戶服務傳真：+0755-2681 0833<br>"
                         + "碧莎香港辦事處：碧莎科技(香港)有限司香港新界葵湧健康街18號恒亞中心315室<br>"
-                        + "刅倳處棴務溡簡：咯啉媙菭摽痽溡簡仩吘8:00臸芐吘6:30 + 8（淍①臸淍伍） </div> </div>"
+                        + "辦事處服務時間：格林威治標準時間上午8:00至下午6:30 + 8（周壹至周五）</div> </div>"
                         + "<div align=\"left\" style=\"width: 600px; margin-top: 2px; min-height: 120px; background-color: rgb(255, 255, 255);\" >"
                         + "<div align=\"left\" style=\"width: 500px; min-height: 120px; background-color: rgb(255, 255, 255);\"><br> "
                         + "<span style=\"color: rgb(176, 176, 176); font-size: 12px;\">"
