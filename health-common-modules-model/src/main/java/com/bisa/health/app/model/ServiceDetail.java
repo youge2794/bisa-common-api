@@ -122,7 +122,7 @@ public class ServiceDetail implements Serializable {
 
     public static ServiceDetail byCategory(List<ServiceDetail> list, String name) {
         for (ServiceDetail serviceDetail : list) {
-            if (name.equals(serviceDetail.getCategory().getName())) {
+            if (name.equals(serviceDetail.getCategory().getStoken())) {
                 return serviceDetail;
             }
         }
