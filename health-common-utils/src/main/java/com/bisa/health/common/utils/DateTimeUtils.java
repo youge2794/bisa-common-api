@@ -14,7 +14,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 import java.util.regex.Pattern;
 
-import com.bisa.health.connon.constant.DateTimeConstant;
+import com.bisa.health.common.constant.DateTimeConstant;
 
 /**
  * @author Shengzhao Li
