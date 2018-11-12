@@ -8,15 +8,15 @@ public enum RoleTypeEnum {
 	/**
 	 * 超级管理员
 	 */
-	ROLE_ADMIN("Admin"),
+	ROLE_ADMIN("ROLE_ADMIN"),
 	/**
 	 * 用户
 	 */
-	ROLE_USER("User"),
+	ROLE_USER("ROLE_USER"),
 	/**
 	 * 客服
 	 */
-	ROLE_CUSTOMER("Customer"),
+	ROLE_CUSTOMER("ROLE_CUSTOMER"),
 	/**
 	 * 仓库
 	 */
@@ -24,7 +24,7 @@ public enum RoleTypeEnum {
 	/**
 	 * 医生
 	 */
-	ROLE_DOCTOR("Doctor");
+	ROLE_DOCTOR("ROLE_DOCTOR");
 
 	private String value;
 

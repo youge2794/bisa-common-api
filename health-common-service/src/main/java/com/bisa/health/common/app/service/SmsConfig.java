@@ -36,9 +36,9 @@ public class SmsConfig {
     
     
     //港澳台报告通知
-    public static final int COMM_HONGKONG_REOIRT_PAYMENT = 214868;
-    public static final int COMM_INTERNAL_REOIRT_PAYMENT = 214856;
-    public static final int COMM_ABROAD_REOIRT_PAYMENT = 216773;
+    public static final int COMM_HONGKONG_REOIRT_PAYMENT = 227025;
+    public static final int COMM_INTERNAL_REOIRT_PAYMENT = 227019;
+    public static final int COMM_ABROAD_REOIRT_PAYMENT = 227023;
     
     
     //默认密码
