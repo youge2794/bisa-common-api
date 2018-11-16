@@ -1,23 +1,24 @@
 package com.bisa.health.shop.enumerate;
 
 /**
- * 商品状态
+ * 国际化 类型语言
  * @author Administrator
  */
-public enum GoodsStatusEnum {
+
+public enum InternationalizationEnum {
 
     /**
-     * 售罄0
+     * 中文简体
      */
-    sale_out(0, "sale_out"),
+    zh_CN(1, "zh_CN"),
     /**
-     * 销售中
+     * 中文繁体
      */
-    in_sale(1, "in_sale"),
+    zh_HK(2, "zh_HK"),
     /**
-     * 下架
+     * 英文
      */
-    invalid(2, "invalid");
+    en_US(3, "en_US");
 
     private int value;
     private String name;
@@ -38,13 +39,13 @@ public enum GoodsStatusEnum {
         this.name = name;
     }
 
-    private GoodsStatusEnum(int value, String name) {
+    private InternationalizationEnum(int value, String name) {
         this.value = value;
         this.name = name;
     }
 
-    public static GoodsStatusEnum getByValue(int value) {
-        for (GoodsStatusEnum status : values()) {
+    public static InternationalizationEnum getByValue(int value) {
+        for (InternationalizationEnum status : values()) {
             if (status.getValue() == value) {
                 return status;
             }

@@ -19,9 +19,10 @@ public class GoodsImg implements Serializable {
     private static final long serialVersionUID = 6982202429029890618L;
 
     private Integer id;
-    private String goodsNumber;    //商品编号
-    private String imgUrl;    // 商品图片地址
+    private String goodsNumber;     //商品编号
+    private String imgUrl;          // 商品图片地址
     private Integer position;        //位置
+    private Integer internationalization;//国际化 图片
 
     @Id
     @GeneratedValue
@@ -59,22 +60,37 @@ public class GoodsImg implements Serializable {
         this.position = position;
     }
 
-    public GoodsImg() {
-        super();
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public GoodsImg(Integer id, String goodsNumber, String imgUrl, Integer position) {
-        super();
+    public Integer getInternationalization() {
+        return internationalization;
+    }
+
+    public void setInternationalization(Integer internationalization) {
+        this.internationalization = internationalization;
+    }
+
+    public GoodsImg() {
+    }
+
+    public GoodsImg(Integer id, String goodsNumber, String imgUrl, Integer position, Integer internationalization) {
         this.id = id;
         this.goodsNumber = goodsNumber;
         this.imgUrl = imgUrl;
         this.position = position;
+        this.internationalization = internationalization;
     }
 
     @Override
     public String toString() {
-        return "GoodsImg [id=" + id + ", goodsNumber=" + goodsNumber + ", imgUrl=" + imgUrl + ", position=" + position
-                + "]";
+        return "GoodsImg{" +
+                "id=" + id +
+                ", goodsNumber='" + goodsNumber + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", position=" + position +
+                ", internationalization=" + internationalization +
+                '}';
     }
-
 }

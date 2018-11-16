@@ -106,9 +106,7 @@ public class News implements Serializable {
         super();
     }
 
-    public News(int id, int news_id, String news_title, String news_subhead, int read_quantity, String news_content,
-                String img_url, Date release_time, String author) {
-        super();
+    public News(int id, int news_id, String news_title, String news_subhead, int read_quantity, String news_content, String img_url, Date release_time, String author) {
         this.id = id;
         this.news_id = news_id;
         this.news_title = news_title;
@@ -122,10 +120,16 @@ public class News implements Serializable {
 
     @Override
     public String toString() {
-        return "News [id=" + id + ", news_id=" + news_id + ", news_title=" + news_title + ", news_subhead="
-                + news_subhead + ", read_quantity=" + read_quantity + ", news_content=" + news_content + ", img_url="
-                + img_url + ", release_time=" + release_time + ", author=" + author + "]";
+        return "News{" +
+                "id=" + id +
+                ", news_id=" + news_id +
+                ", news_title='" + news_title + '\'' +
+                ", news_subhead='" + news_subhead + '\'' +
+                ", read_quantity=" + read_quantity +
+                ", news_content='" + news_content + '\'' +
+                ", img_url='" + img_url + '\'' +
+                ", release_time=" + release_time +
+                ", author='" + author + '\'' +
+                '}';
     }
-
-
 }
