@@ -22,18 +22,9 @@ public class SmsConfig {
     public static final int ABROAD_ALARM_SOS_TEMPLATE = 216767;
     
     
+    
     public static final int COMM_SMS_APPID = 1400152720;
     public static final String COMM_SMS_APPKEY = "1d2df2197cd04d6921d00124397017e9";
-    
-    
-
-    //国内提示用户订单付款短信
-    public static final int COMM_INTERNAL_ORDER_PAYMENT = 214859;
-    //香港提示用户订单付款短信
-    public static final int COMM_HONGKONG_ORDER_PAYMENT = 214861;
-    //國外提示用户订单付款短信
-    public static final int COMM_ABROAD_ORDER_PAYMENT = 214862;
-    
     
     //港澳台报告通知
     public static final int COMM_HONGKONG_REOIRT_PAYMENT = 227025;
@@ -45,6 +36,16 @@ public class SmsConfig {
     public static final int COMM_INTERNAL_PASSWORD_PAYMENT = 214852;
     public static final int COMM_HONGKONG_PASSWORD_PAYMENT = 214863;
     public static final int COMM_ABROAD_PASSWORD_PAYMENT = 216766;
+    
+
+    //国内提示用户订单付款短信
+    public static final int COMM_INTERNAL_ORDER_PAYMENT = 214859;
+    //香港提示用户订单付款短信
+    public static final int COMM_HONGKONG_ORDER_PAYMENT = 214861;
+    //國外提示用户订单付款短信
+    public static final int COMM_ABROAD_ORDER_PAYMENT = 214862;
+    
+
     
 	
     // 短信验证码的appId和appKey

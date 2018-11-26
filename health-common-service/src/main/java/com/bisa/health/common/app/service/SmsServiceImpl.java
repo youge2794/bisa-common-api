@@ -164,6 +164,7 @@ public class SmsServiceImpl implements ISmsService {
             params.add(contact_name);
             params.add(DateTimeUtils.toDateTime(LocalDateTime.now()));
             singleSenderResult = singleSender.sendWithParam(phone[0], phone[1], tmplId, params, "", "", "");
+         
             return singleSenderResult;
         } catch (Exception e) {
             return null;
@@ -181,13 +182,13 @@ public class SmsServiceImpl implements ISmsService {
                 //国内短信
                 tmplId = internal_report_template;
             }else if(area_code.equals("853")||area_code.equals("852")||area_code.equals("886")) {
-                tmplId = hongkong_validate_template;
+                tmplId = hongkong_report_template;
             } else {
                 //国外短信
                 tmplId = abroad_report_template;
             }
             //初始化单发
-            SmsSingleSender singleSender = new SmsSingleSender(alarm_appid, alarm_appkey);
+            SmsSingleSender singleSender = new SmsSingleSender(comm_appid, comm_appkey);
             SmsSingleSenderResult singleSenderResult;
             // 指定模板单发
             // 短信内容：尊敬的用户，您好！您的{1}心电报告已生成，请在悉心APP或者前往{2}查看报告。如非本人操作，请忽略本短信。
@@ -212,17 +213,19 @@ public class SmsServiceImpl implements ISmsService {
                 //国内短信
                 tmplId = internal_password;
             } else if(area_code.equals("853")||area_code.equals("852")||area_code.equals("886")) {
-                tmplId = hongkong_validate_template;
+                tmplId = hongkong_password;
             }else {
                 //国外短信
                 tmplId = abroad_password;
             }
+            System.out.println("tmplId>>>"+tmplId);
             //初始化单发
-            SmsSingleSender singleSender = new SmsSingleSender(alarm_appid, alarm_appkey);
+            SmsSingleSender singleSender = new SmsSingleSender(comm_appid, comm_appkey);
             SmsSingleSenderResult singleSenderResult;
             ArrayList<String> params = new ArrayList<String>();
             params.add(passWord);
             singleSenderResult = singleSender.sendWithParam(area_code, phone, tmplId, params, "", "", "");
+            System.out.println(singleSenderResult.errMsg);
             return singleSenderResult;
         } catch (Exception e) {
             return null;
@@ -248,7 +251,7 @@ public class SmsServiceImpl implements ISmsService {
 
         try {
             //初始化单发
-            SmsSingleSender singleSender = new SmsSingleSender(alarm_appid, alarm_appkey);
+            SmsSingleSender singleSender = new SmsSingleSender(comm_appid, comm_appkey);
             SmsSingleSenderResult singleSenderResult;
             //   https://hk-shop.bisahealth.com/user/orderDetail?order_no=201810121558001666209791  這個是訂單額地址
             //尊敬的{1}用户，您好！您有个未支付的订单{2}，请尽快到{3}{4}查看，我们将在12小时后为您取消订单。
