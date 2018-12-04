@@ -52,6 +52,8 @@ public class EcgReport implements Serializable{
 	private String birthday;   //生日
 	private String idCard;  //身份证号
 	private String dev_no;  //设备号
+	private int hos_num;//医院number
+	private int activate;
 	
 	@Id//设置主键
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//设置自增
@@ -179,6 +181,19 @@ public class EcgReport implements Serializable{
 		this.dev_no = dev_no;
 	}
 	
+	public int getHos_num() {
+		return hos_num;
+	}
+	public void setHos_num(int hos_num) {
+		this.hos_num = hos_num;
+	}
+	@Column(columnDefinition="int default 0")
+	public int getActivate() {
+		return activate;
+	}
+	public void setActivate(int activate) {
+		this.activate = activate;
+	}
 	@Enumerated(EnumType.ORDINAL)
 	public SexTypeEnum getSex() {
 		return sex;
