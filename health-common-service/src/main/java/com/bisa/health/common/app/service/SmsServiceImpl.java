@@ -98,10 +98,13 @@ public class SmsServiceImpl implements ISmsService {
             params.add(veri_code);
             params.add("5");
             singleSenderResult = singleSender.sendWithParam(area_code, phone, tmplId, params, "", "", "");
+            
             return singleSenderResult;
         } catch (Exception e) {
             return null;
         }
+        
+        
     }
 
     /*

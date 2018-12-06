@@ -10,7 +10,10 @@ import java.security.Key;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.time.LocalDate;
 import java.util.Base64;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -153,7 +156,9 @@ public class EncryptionUtils {
         System.out.println("3DES 解密 ： " + d3esDecode(d3esEncode("arr1")));
         System.out.println("AES 加密 ： " + encryptBitAES(arr1, "arr1"));
         System.out.println("AES 解密 ： " + decryptBitAES(encryptBitAES(arr1, "arr1"), "arr1"));
-
+		Calendar c = Calendar.getInstance();
+	    int year = c.get(Calendar.YEAR);
+        System.out.println(year); 
     }
 
 

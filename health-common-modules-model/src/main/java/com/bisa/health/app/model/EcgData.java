@@ -15,7 +15,7 @@ import com.bisa.health.entity.bind.CustomDateSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
-@Table(name="e_ecg_data",indexes={@Index(columnList="reportId")})
+@Table(name="e_ecg_data",indexes={@Index(columnList="report_id")})
 public class EcgData {
 	
 	private	int	id;
@@ -59,7 +59,7 @@ public class EcgData {
 		this.datFilename = datFilename;
 	}
 	
-	@Column(name="reportid")
+	@Column(name="report_id")
 	public int getReportId() {
 		return reportId;
 	}

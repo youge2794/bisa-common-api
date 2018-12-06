@@ -268,6 +268,13 @@ public abstract class DateTimeUtils {
 
     }
 
+    public static String getLocalDateFormat(long timeMillis,String formatText){
+        TimeZone defaultTimeZone=TimeZone.getDefault();
+        Date date=new Date(timeMillis+defaultTimeZone.getRawOffset());
+        return toDateTime(date,formatText);
+
+    }
+    
     /**
      * 根据时区获取默认时间的Calendar
      * @param timeZoneStr
